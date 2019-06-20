@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "561249006321",
+    "firebase_url": "https://banu2-5f597.firebaseio.com",
+    "project_id": "banu2-5f597",
+    "storage_bucket": "banu2-5f597.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561249006321:android:d526ef3257716329",
+        "android_client_info": {
+          "package_name": "com.company.banu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561249006321-b77m0vjbpsivpio78ufnqp54iv0qtl1m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIn8IGAZdQeYgY_qxW7UiKBpDwN7Vqx9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561249006321-b77m0vjbpsivpio78ufnqp54iv0qtl1m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

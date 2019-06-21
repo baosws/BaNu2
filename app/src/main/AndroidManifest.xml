@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".WatchLectures.View"></activity>
+        <activity android:name=".WatchLevels.View" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +21,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <activity android:name=".SignIn.View" />
     </application>
 
 </manifest>

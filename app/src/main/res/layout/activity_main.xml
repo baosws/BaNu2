@@ -1,18 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@color/colorBackground"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    >
 
-    <TextView
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/logo"
+            android:alpha="0.75"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="555dp"
+            android:fontFamily="@font/pacifico"
+            android:gravity="center|bottom"
+            android:text="Math tutor"
+            android:textSize="70dp"
+            android:textStyle="bold"
+            />
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/bSearch"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:drawableLeft="@drawable/ic_email_white_24dp"
+        android:drawablePadding="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:padding="15dp"
+        android:text="Sign in with Email"
+        android:textSize="20sp"
+        android:theme="@style/Email.Button"
+        />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

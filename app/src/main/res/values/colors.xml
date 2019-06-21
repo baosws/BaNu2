@@ -3,7 +3,8 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorBackground">#A5F3FF</color>
+    <color name="colorBackground">#DCFBFF</color>
 
     <color name="colorButtonEmail">#FF0101</color>
+    <color name="white">#FFFFFF</color>
 </resources>

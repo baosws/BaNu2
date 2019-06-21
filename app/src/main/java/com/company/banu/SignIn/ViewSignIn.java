@@ -11,7 +11,6 @@ public class ViewSignIn extends AppCompatActivity {
     static int layoutId = R.layout.activity_main;
     PresenterSingIn signInPresenterSingIn;
     Button signInButton;
-    Button signUpButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +18,7 @@ public class ViewSignIn extends AppCompatActivity {
         setContentView(layoutId);
         bindViews();
         signInPresenterSingIn = new PresenterSingIn(this);
-        signIn();
+//        signIn();
     }
 
     void bindViews() {

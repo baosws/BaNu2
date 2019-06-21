@@ -1,4 +1,4 @@
-package com.company.banu.SignIn;
+package com.company.banu.ShowProfile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,12 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 import com.company.banu.R;
-import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.auth.api.Auth;
 
-public class View extends AppCompatActivity {
+public class ViewShowProfile extends AppCompatActivity {
     static int layoutId = R.layout.activity_main;
-    Presenter signInPresenter;
+    PresenterShowProfile signInPresenterShowProfile;
     Button signInButton;
     Button signUpButton;
 
@@ -20,8 +18,7 @@ public class View extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
         bindViews();
-        signInPresenter = new Presenter(this);
-        signIn();
+        signInPresenterShowProfile = new PresenterShowProfile(this);
     }
 
     void bindViews() {
@@ -29,11 +26,11 @@ public class View extends AppCompatActivity {
     }
 
     public void signIn() {
-        signInPresenter.signIn();
+        signInPresenterShowProfile.signIn();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        signInPresenter.signInReturn(requestCode, resultCode, data);
+        signInPresenterShowProfile.signInReturn(requestCode, resultCode, data);
     }
 }

@@ -1,18 +1,18 @@
-package com.company.banu.SolveProblem;
+package com.company.banu.Study;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.company.banu.R;
-import com.company.banu.WatchLevels.Presenter;
+import com.company.banu.WatchLevels.PresenterWatchLevels;
 
-public class View extends AppCompatActivity {
+public class ViewStudy extends AppCompatActivity {
     static int layoutId = R.layout.activity_main;
-    Presenter presenter;
+    PresenterWatchLevels presenterWatchLevels;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
-        presenter = new Presenter(this);
+        presenterWatchLevels = new PresenterWatchLevels(this);
     }
 }

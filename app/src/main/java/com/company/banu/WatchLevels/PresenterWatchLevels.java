@@ -2,12 +2,12 @@ package com.company.banu.WatchLevels;
 
 import android.app.Activity;
 
-public class Presenter {
+public class PresenterWatchLevels {
     Activity activity;
-    Model model;
-    public Presenter(Activity activity) {
+    ModelWatchLevels modelWatchLevels;
+    public PresenterWatchLevels(Activity activity) {
         this.activity = activity;
-        model = new Model();
+        modelWatchLevels = new ModelWatchLevels();
     }
 
     public void bindLevelsToView() {

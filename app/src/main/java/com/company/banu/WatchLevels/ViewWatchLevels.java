@@ -1,18 +1,17 @@
-package com.company.banu.WatchLectures;
+package com.company.banu.WatchLevels;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.company.banu.R;
-import com.company.banu.WatchLevels.Presenter;
 
-public class View extends AppCompatActivity {
+public class ViewWatchLevels extends AppCompatActivity {
     static int layoutId = R.layout.activity_main;
-    com.company.banu.WatchLevels.Presenter presenter;
+    PresenterWatchLevels presenterWatchLevels;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
-        presenter = new Presenter(this);
+        presenterWatchLevels = new PresenterWatchLevels(this);
     }
 }

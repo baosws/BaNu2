@@ -1,7 +1,6 @@
-package com.company.banu.SignIn;
+package com.company.banu.ShowProfile;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
@@ -13,11 +12,11 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Arrays;
 import java.util.List;
 
-public class Presenter {
+public class PresenterShowProfile {
     static final int RC_SIGN_IN = 2323;
 
     Activity activity;
-    public Presenter(Activity activity) {
+    public PresenterShowProfile(Activity activity) {
         this.activity = activity;
     }
 

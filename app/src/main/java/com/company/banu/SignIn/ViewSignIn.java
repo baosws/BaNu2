@@ -1,4 +1,4 @@
-package com.company.banu.ShowProfile;
+package com.company.banu.SignIn;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,9 +7,9 @@ import android.widget.Button;
 
 import com.company.banu.R;
 
-public class View extends AppCompatActivity {
+public class ViewSignIn extends AppCompatActivity {
     static int layoutId = R.layout.activity_main;
-    Presenter signInPresenter;
+    PresenterSingIn signInPresenterSingIn;
     Button signInButton;
     Button signUpButton;
 
@@ -18,7 +18,8 @@ public class View extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
         bindViews();
-        signInPresenter = new Presenter(this);
+        signInPresenterSingIn = new PresenterSingIn(this);
+        signIn();
     }
 
     void bindViews() {
@@ -26,11 +27,11 @@ public class View extends AppCompatActivity {
     }
 
     public void signIn() {
-        signInPresenter.signIn();
+        signInPresenterSingIn.signIn();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        signInPresenter.signInReturn(requestCode, resultCode, data);
+        signInPresenterSingIn.signInReturn(requestCode, resultCode, data);
     }
 }

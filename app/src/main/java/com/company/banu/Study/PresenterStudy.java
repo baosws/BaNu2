@@ -2,12 +2,12 @@ package com.company.banu.Study;
 
 import android.app.Activity;
 
-public class Presenter {
+public class PresenterStudy {
     Activity activity;
-    Model model;
-    public Presenter(Activity activity) {
+    ModelStudy modelStudy;
+    public PresenterStudy(Activity activity) {
         this.activity = activity;
-        model = new Model();
+        modelStudy = new ModelStudy();
     }
 
     public void bindLevelsToView() {

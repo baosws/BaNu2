@@ -17,8 +17,15 @@ public class ViewSignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
         bindViews();
+        getView();
+
         signInPresenterSingIn = new PresenterSingIn(this);
 //        signIn();
+    }
+
+    void getView()
+    {
+        signInButton = findViewById(R.id.btn_signin);
     }
 
     void bindViews() {

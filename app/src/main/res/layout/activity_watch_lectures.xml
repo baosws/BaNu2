@@ -17,6 +17,14 @@
             android:background="@color/colorPrimary"
             android:layout_height="200dp">
 
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="10dp"
+                android:layout_margin="1dp"
+                android:src="@drawable/ic_home_white_24dp"
+                />
+
             <com.github.abdularis.civ.AvatarImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -52,24 +60,40 @@
             </LinearLayout>
             
             <TextView
+                android:id="@+id/tv_levelGrade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="LECTURE"
+                android:text="Grade 1"
                 android:textColor="@color/white"
                 android:textSize="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
                 android:textStyle="bold"
                 android:padding="10dp"/>
 
         </RelativeLayout>
-        <ImageView
-            android:layout_width="220dp"
-            android:layout_height="220dp"
-            android:src="@drawable/penguin_teacher"
-            android:id="@+id/image_penguin_teacher"
-            android:layout_gravity="left|bottom"
-            android:layout_marginTop="50dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom|left">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/level1"
+                android:id="@+id/img_level"/>
+
+            <ProgressBar
+                android:id="@+id/determinateBar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="50dp"
+                android:paddingTop="20dp"
+                android:progress="25"/>
+        </LinearLayout>
+
     </FrameLayout>
 
     <GridView

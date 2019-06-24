@@ -34,33 +34,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_centerHorizontal="true">
+                android:layout_centerHorizontal="true"
+                android:id="@+id/ll_score">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textSize="48dp"
-                    android:textColor="@color/white"
+                    android:fontFamily="@font/permanent_marker"
+                    android:textSize="38dp"
+                    android:textColor="@color/scoreColor"
                     android:id="@+id/tv_score"
                     />
-                
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_margin="10dp"
                     android:src="@drawable/crown"/>
             </LinearLayout>
-            
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="LECTURE"
+                android:layout_below="@+id/ll_score"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/permanent_marker"
+                android:padding="10dp"
+                android:text="LEVEL"
                 android:textColor="@color/white"
                 android:textSize="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:textStyle="bold"
-                android:padding="10dp"/>
+                android:textStyle="bold" />
 
         </RelativeLayout>
         <ImageView

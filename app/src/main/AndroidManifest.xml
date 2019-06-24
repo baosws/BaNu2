@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ShowProfileSetting.ViewShowProfileSetting"></activity>
+        <activity android:name=".DetailLevel.ViewDetailLevel"></activity>
         <activity android:name=".WatchLectures.ViewWatchLectures" />
         <activity android:name=".Setting.ViewSetting" />
         <activity android:name=".WatchLevels.ViewWatchLevels" />

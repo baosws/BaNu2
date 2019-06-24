@@ -13,10 +13,14 @@
     </style>
 
     <style name="SettingProfileTheme" parent="Theme.AppCompat.Light">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#BEBEBE</item>
+        <item name="colorControlActivated">#FFC107</item>
     </style>
 
 </resources>

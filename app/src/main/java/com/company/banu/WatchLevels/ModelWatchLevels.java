@@ -43,10 +43,8 @@ public class ModelWatchLevels {
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.d("btag", databaseError.getMessage());
                 ref.removeEventListener(this);
-                m.notify();
             }
         });
         m.wait();
-        return levels;
     }
 }

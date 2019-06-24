@@ -47,7 +47,7 @@ public class ListLevelAdapter extends BaseAdapter {
         ViewHolder viewHolder;
         if (convertView == null)
         {
-            convertView = layoutInflater.inflate(R.layout.grid_lecture_item_layout, null);
+            convertView = layoutInflater.inflate(R.layout.grid_level_item_layout, null);
             viewHolder = new ViewHolder();
             viewHolder.imgLevel = convertView.findViewById(R.id.img_item_level);
             viewHolder.tvLevel = convertView.findViewById(R.id.tv_item_levelName);

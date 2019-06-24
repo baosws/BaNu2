@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.github.abdularis.civ.CircleImageView
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginLeft="20dp"
+        android:padding="5dp"/>
+
+    <TextView
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="@font/righteous"
+        android:padding="5dp"
+        android:text="Counting"
+        android:textAlignment="center"
+        android:textSize="25dp" />
+    
+    <android.support.v7.widget.AppCompatRatingBar
+        style="@style/RatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="3"
+        android:layout_marginLeft="20dp"
+        android:rating="1"
+        />
+
+</LinearLayout>

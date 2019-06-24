@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WatchLectures.ViewWatchLectures"/>
+        <activity android:name=".DetailLevel.ViewDetailLevel"></activity>
+        <activity android:name=".WatchLectures.ViewWatchLectures" />
         <activity android:name=".Setting.ViewSetting" />
         <activity android:name=".WatchLevels.ViewWatchLevels" />
         <activity android:name=".MainActivity">
@@ -21,9 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
         <activity android:name=".SignIn.ViewSignIn" />
         <activity android:name=".ShowProfile.ViewShowProfile" />
     </application>

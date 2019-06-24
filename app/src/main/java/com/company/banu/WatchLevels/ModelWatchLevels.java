@@ -11,16 +11,22 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import Universe.Lecture;
-import Universe.Level;
 
 public class ModelWatchLevels {
     public ModelWatchLevels() {
 
     }
-    ArrayList<Level> levels;
+    public static class Level {
+        public String name;
+        public String image;
+        public int level;
+        public Level(String name, String image) {
+            this.name = name;
+            this.image = image;
+        }
+    }
+    ArrayList levels;
 
     public ArrayList<Level> getLevels() throws InterruptedException {
         if (levels != null) {
@@ -32,8 +38,8 @@ public class ModelWatchLevels {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 levels = dataSnapshot.getValue(ArrayList.class);
-                for (Level level: levels) {
-                    Log.d("btag", level.name);
+                for (Object level: levels) {
+                    Log.d("btag", ((Level)level).name);
                 }
                 ref.removeEventListener(this);
                 m.notify();
@@ -46,5 +52,6 @@ public class ModelWatchLevels {
             }
         });
         m.wait();
+        return levels;
     }
 }

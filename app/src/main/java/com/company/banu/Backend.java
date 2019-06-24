@@ -13,7 +13,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import Universe.Lecture;
+import com.company.banu.WatchLectures.Lecture;
 import Universe.User;
 
 
@@ -47,6 +47,7 @@ public class Backend {
                 else {
                     Log.w("btag", "file download returned null " + filename);
                 }
+                cache.put(filename, bytes);
                 cb.call(bytes);
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -65,7 +66,6 @@ public class Backend {
                 if (bytes != null) {
                     bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                 }
-                cache.put(filename, bitmap);
                 cb.call(bitmap);
             }
         });

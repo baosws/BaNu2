@@ -113,12 +113,13 @@
                     android:padding="10dp"/>
 
                 <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_SignOut"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
                     android:text="Sign Out"
                     android:textAlignment="center"
-                    android:textSize="8pt"
-                    android:padding="10dp"/>
+                    android:textSize="8pt" />
             </LinearLayout>
 
             <LinearLayout

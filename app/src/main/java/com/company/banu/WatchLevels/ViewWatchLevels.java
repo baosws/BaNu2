@@ -2,21 +2,15 @@ package com.company.banu.WatchLevels;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
 import com.company.banu.R;
-import com.company.banu.WatchLectures.ListLevelAdapter;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-
-
-import static android.widget.Toast.LENGTH_LONG;
 
 public class ViewWatchLevels extends AppCompatActivity {
     static int layoutId = R.layout.activity_watch_levels;
@@ -44,17 +38,17 @@ public class ViewWatchLevels extends AppCompatActivity {
 
     void loadGridviewListLevel()
     {
-        final List<ModelWatchLevels.Level> levels = new ArrayList<>();
-        levels.add(new ModelWatchLevels.Level("Grade 1", "level1"));
-        levels.add(new ModelWatchLevels.Level("Grade 2", "level2"));
-        levels.add(new ModelWatchLevels.Level("Grade 3", "level3"));
+        final List<Level> levels = new ArrayList<>();
+        levels.add(new Level("Grade 1", "level1"));
+        levels.add(new Level("Grade 2", "level2"));
+        levels.add(new Level("Grade 3", "level3"));
 
         gridView_listLevel.setAdapter(new ListLevelAdapter(this, levels));
 
         gridView_listLevel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ModelWatchLevels.Level selectedItem = (ModelWatchLevels.Level) gridView_listLevel.getItemAtPosition(position);
+                Level selectedItem = (Level) gridView_listLevel.getItemAtPosition(position);
                 Toast.makeText(ViewWatchLevels.this, "Selected :"
                         + selectedItem.name, Toast.LENGTH_LONG).show();
             }

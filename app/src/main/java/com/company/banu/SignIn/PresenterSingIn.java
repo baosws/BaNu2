@@ -42,7 +42,7 @@ public class PresenterSingIn {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                 Toast.makeText(activity, "Sign In succeed " + user.getEmail(), Toast.LENGTH_LONG).show();
-                activity.startActivity(new Intent(activity, ViewShowProfile.class));
+                activity.finish();
             } else {
                 Toast.makeText(activity, "Sign In failed", Toast.LENGTH_LONG).show();
             }

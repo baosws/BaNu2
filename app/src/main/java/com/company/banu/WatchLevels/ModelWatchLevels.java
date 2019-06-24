@@ -28,18 +28,7 @@ public class ModelWatchLevels {
     public ModelWatchLevels() {
 
     }
-    public static class Level {
-        public String name;
-        public String image;
-        public int level;
 
-        public Level() {}
-
-        public Level(String name, String image) {
-            this.name = name;
-            this.image = image;
-        }
-    }
 
     public void getLevels(final CallBack<ArrayList<Level>> cb) throws InterruptedException {
         FirebaseFirestore.getInstance().collection("levels").get()

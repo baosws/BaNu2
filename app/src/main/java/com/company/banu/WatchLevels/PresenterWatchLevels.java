@@ -14,10 +14,10 @@ public class PresenterWatchLevels {
     public PresenterWatchLevels(Activity activity) throws InterruptedException {
         this.activity = activity;
         modelWatchLevels = new ModelWatchLevels();
-        modelWatchLevels.getLevels(new CallBack<ArrayList<ModelWatchLevels.Level>>() {
+        modelWatchLevels.getLevels(new CallBack<ArrayList<Level>>() {
             @Override
-            public void call(ArrayList<ModelWatchLevels.Level> data) {
-                for (ModelWatchLevels.Level level: data) {
+            public void call(ArrayList<Level> data) {
+                for (Level level: data) {
                     Log.d("btag", level.name + "; " + level.level);
                 }
             }

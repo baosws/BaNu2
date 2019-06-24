@@ -1,17 +1,15 @@
-package com.company.banu.ShowProfile;
+package com.company.banu.ShowProfileSetting;
+
+import android.graphics.Bitmap;
 
 import com.company.banu.Backend;
 import com.company.banu.CallBack;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.storage.FirebaseStorage;
 
-public class ModelShowProfile {
-    public ModelShowProfile() {
-    }
-    public void getAvatar(CallBack cb) {
-        Backend.downloadImage("avatars/"
-                + FirebaseAuth.getInstance().getCurrentUser().getUid()
-                + ".jpg",
-                cb);
+public class ModelShowProfileSetting {
+    public ModelShowProfileSetting() {
     }
 
     public String getUserName() {

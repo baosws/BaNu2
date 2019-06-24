@@ -1,4 +1,4 @@
-package com.company.banu.WatchLectures;
+package com.company.banu.WatchLevels;
 
 import android.content.Context;
 import android.util.Log;
@@ -10,17 +10,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.company.banu.R;
-import com.company.banu.WatchLevels.ModelWatchLevels;
+import com.company.banu.WatchLectures.Lecture;
 
 import java.util.List;
 
 
 public class ListLevelAdapter extends BaseAdapter {
-    List<ModelWatchLevels.Level> lectures;
+    List<Level> lectures;
     LayoutInflater layoutInflater;
     Context mContext;
 
-    public ListLevelAdapter(Context context, List<ModelWatchLevels.Level> dataLecture)
+    public ListLevelAdapter(Context context, List<Level> dataLecture)
     {
         this.mContext = context;
         this.lectures = dataLecture;
@@ -33,7 +33,7 @@ public class ListLevelAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Level getItem(int position) {
         return lectures.get(position);
     }
 
@@ -58,7 +58,7 @@ public class ListLevelAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        ModelWatchLevels.Level lecture = lectures.get(position);
+        Level lecture = lectures.get(position);
         viewHolder.tvLevel.setText(lecture.name);
         viewHolder.imgLevel.setImageResource(this.getMipmapResIdByName(lecture.image));
 

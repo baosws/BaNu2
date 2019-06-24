@@ -8,7 +8,8 @@
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:layout_marginLeft="20dp"
-        android:padding="5dp"/>
+        android:padding="5dp"
+        android:id="@+id/imv_topic"/>
 
     <TextView
         android:layout_width="128dp"
@@ -18,7 +19,8 @@
         android:padding="5dp"
         android:text="Counting"
         android:textAlignment="center"
-        android:textSize="25dp" />
+        android:textSize="20dp"
+        android:id="@+id/tv_topic"/>
     
     <android.support.v7.widget.AppCompatRatingBar
         style="@style/RatingBar"
@@ -27,6 +29,7 @@
         android:numStars="3"
         android:layout_marginLeft="20dp"
         android:rating="1"
+        android:id="@+id/rb_percentLearned"
         />
 
 </LinearLayout>

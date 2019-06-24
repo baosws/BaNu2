@@ -27,8 +27,8 @@
                 />
 
             <com.github.abdularis.civ.AvatarImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
                 android:layout_alignParentRight="true"
                 android:id="@+id/imv_avatar"
                 android:src="@drawable/avatar"
@@ -62,7 +62,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_levelGrade"
+                android:id="@+id/tv_levelName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Grade 1"

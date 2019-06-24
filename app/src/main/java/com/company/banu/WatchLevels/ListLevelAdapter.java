@@ -67,14 +67,6 @@ public class ListLevelAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public int getMipmapResIdByName(String resName)  {
-        String pkgName = this.mContext.getPackageName();
-        // Return 0 if not found
-        int resID = this.mContext.getResources().getIdentifier(resName , "mipmap", pkgName);
-        Log.i("CustomGridView", "Res Name: "+ resName+"==> Res ID = "+ resID);
-        return resID;
-    }
-
     static class ViewHolder{
         ImageView imgLevel;
         TextView tvLevel;

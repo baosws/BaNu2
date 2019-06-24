@@ -10,15 +10,16 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/img_item_level"/>
-    
+
     <android.support.v7.widget.AppCompatTextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/tv_item_levelName"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/righteous"
         android:gravity="center"
+        android:paddingHorizontal="10dp"
         android:text="Grade 1"
         android:textAlignment="center"
-        android:paddingHorizontal="10dp"
-        android:textSize="8pt"
-        android:id="@+id/tv_item_levelName"
-        />
+        android:textSize="10pt" />
 </LinearLayout>

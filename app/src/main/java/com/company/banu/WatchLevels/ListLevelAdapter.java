@@ -14,6 +14,8 @@ import com.company.banu.WatchLectures.Lecture;
 
 import java.util.List;
 
+import Universe.LoadImageResource;
+
 
 public class ListLevelAdapter extends BaseAdapter {
     List<Level> lectures;
@@ -60,7 +62,7 @@ public class ListLevelAdapter extends BaseAdapter {
 
         Level lecture = lectures.get(position);
         viewHolder.tvLevel.setText(lecture.name);
-        viewHolder.imgLevel.setImageResource(this.getMipmapResIdByName(lecture.image));
+        viewHolder.imgLevel.setImageResource(LoadImageResource.getMipmapResIdByName(this.mContext, lecture.image));
 
         return convertView;
     }

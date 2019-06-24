@@ -17,12 +17,13 @@
             android:background="@color/colorPrimary"
             android:layout_height="200dp">
 
-            <ImageView
+            <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:padding="10dp"
                 android:layout_margin="1dp"
                 android:src="@drawable/ic_home_white_24dp"
+                android:background="@null"
                 />
 
             <com.github.abdularis.civ.AvatarImageView

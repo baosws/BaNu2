@@ -17,8 +17,8 @@
             android:background="@color/colorPrimary"
             android:layout_height="200dp">
 
-            <ImageView
-                android:id="@+id/ivHome"
+            <ImageButton
+                android:id="@+id/btn_home"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="1dp"
@@ -28,7 +28,8 @@
                 android:layout_marginRight="1dp"
                 android:layout_marginBottom="1dp"
                 android:padding="10dp"
-                android:src="@drawable/ic_home_white_24dp" />
+                android:src="@drawable/ic_home_white_24dp"
+                android:background="@null"/>
 
             <ImageView
                 android:id="@+id/ivSettings"
@@ -89,22 +90,23 @@
             android:text="Achivements"
             android:textSize="8pt"
             android:textStyle="bold"
-            android:drawableLeft="@drawable/trophy"
+            android:drawableLeft="@mipmap/trophy"
             android:drawablePadding="10dp"
             android:background="@color/colorPrimaryLight"
             android:padding="10dp"
             android:layout_weight="1"
             android:textAlignment="viewStart"
             android:gravity="start" />
-        
-        <android.support.v7.widget.AppCompatTextView
+
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="View all"
             android:textSize="8pt"
             android:layout_gravity="center"
-            android:padding="5dp">
-        </android.support.v7.widget.AppCompatTextView>
+            android:padding="5dp"
+            android:background="@color/colorPrimaryLight">
+        </Button>
     </LinearLayout>
 
     <HorizontalScrollView
@@ -126,7 +128,7 @@
             android:text="Article"
             android:textSize="8pt"
             android:textStyle="bold"
-            android:drawableLeft="@drawable/shield"
+            android:drawableLeft="@mipmap/shield"
             android:drawablePadding="10dp"
             android:background="@color/colorPrimaryLight"
             android:padding="10dp"
@@ -134,14 +136,15 @@
             android:textAlignment="viewStart"
             android:gravity="start" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="View all"
             android:textSize="8pt"
             android:layout_gravity="center"
-            android:padding="5dp">
-        </android.support.v7.widget.AppCompatTextView>
+            android:padding="5dp"
+            android:background="@color/colorPrimaryLight">
+        </Button>
     </LinearLayout>
 
     <HorizontalScrollView

@@ -28,7 +28,11 @@ public class ViewWatchLevels extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
         getView();
-        presenterWatchLevels = new PresenterWatchLevels(this);
+        try {
+            presenterWatchLevels = new PresenterWatchLevels(this);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         loadGridviewListLevel();
     }

@@ -20,7 +20,7 @@ public class ListLevelAdapter extends BaseAdapter {
     LayoutInflater layoutInflater;
     Context mContext;
 
-    public  ListLevelAdapter(Context context, List<ModelWatchLevels.Level> dataLecture)
+    public ListLevelAdapter(Context context, List<ModelWatchLevels.Level> dataLecture)
     {
         this.mContext = context;
         this.lectures = dataLecture;

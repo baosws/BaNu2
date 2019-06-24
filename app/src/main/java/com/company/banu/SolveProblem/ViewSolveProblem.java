@@ -13,6 +13,10 @@ public class ViewSolveProblem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
-        presenterWatchLevels = new PresenterWatchLevels(this);
+        try {
+            presenterWatchLevels = new PresenterWatchLevels(this);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

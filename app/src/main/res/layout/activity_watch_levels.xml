@@ -64,8 +64,8 @@
 
         </RelativeLayout>
         <ImageView
-            android:layout_width="220dp"
-            android:layout_height="220dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:src="@drawable/penguin_teacher"
             android:id="@+id/image_penguin_teacher"
             android:layout_gravity="left|bottom"
@@ -75,7 +75,10 @@
     <GridView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/gl_listLevels">
+        android:id="@+id/gv_listLevels"
+        android:columnWidth="120dp"
+        android:numColumns="auto_fit"
+        android:gravity="center">
     </GridView>
 
 </LinearLayout>

@@ -1,22 +1,30 @@
 package com.company.banu.WatchLevels;
 
-import com.company.banu.Backend;
-
 import java.util.ArrayList;
 
-import Universe.Lecture;
 
 public class ModelWatchLevels {
+    public static class Level{
+        public String levelName;
+        public String levelImage;
+
+        public Level(String name, String image)
+        {
+            this.levelName = name;
+            this.levelImage = image;
+        }
+    }
+
     public ModelWatchLevels() {
 
     }
-    ArrayList<Lecture> levels;
+    ArrayList<Level> levels;
     ModelWatchLevels init() {
-        levels = Backend.getLectures();
+//        levels = Backend.getLectures();
         return this;
     }
 
-    public ArrayList<Lecture> getLevels() {
+    public ArrayList<Level> getLevels() {
         return levels;
     }
 }

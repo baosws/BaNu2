@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="20dp">
 
-    <com.github.abdularis.civ.CircleImageView
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:layout_marginLeft="20dp"
-        android:padding="5dp"
-        android:id="@+id/imv_topic"/>
 
-    <TextView
-        android:layout_width="128dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:fontFamily="@font/righteous"
-        android:padding="5dp"
-        android:text="Counting"
-        android:textAlignment="center"
-        android:textSize="20dp"
-        android:id="@+id/tv_topic"/>
-    
-    <android.support.v7.widget.AppCompatRatingBar
-        style="@style/RatingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="3"
-        android:layout_marginLeft="20dp"
-        android:rating="1"
-        android:id="@+id/rb_percentLearned"
-        />
+            <com.github.abdularis.civ.CircleImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:padding="5dp"
+                android:id="@+id/imv_topic"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="128dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/righteous"
+                android:text="Counting"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:id="@+id/tv_topic"
+                android:layout_gravity="center"/>
+
+            <android.support.v7.widget.AppCompatRatingBar
+                style="@style/RatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="3"
+                android:rating="1"
+                android:layout_gravity="center"
+                android:id="@+id/rb_percentLearned"
+                />
 
 </LinearLayout>

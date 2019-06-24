@@ -5,32 +5,27 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
+import com.company.banu.Backend;
 import com.company.banu.R;
+import com.google.firebase.auth.FirebaseAuth;
+
+import Universe.User;
 
 public class ViewShowProfile extends AppCompatActivity {
-    static int layoutId = R.layout.activity_main;
+    static int layoutId = R.layout.activity_profile;
     PresenterShowProfile signInPresenterShowProfile;
-    Button signInButton;
-    Button signUpButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
-        bindViews();
+
         signInPresenterShowProfile = new PresenterShowProfile(this);
     }
 
-    void bindViews() {
-
-    }
-
-    public void signIn() {
-        signInPresenterShowProfile.signIn();
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        signInPresenterShowProfile.signInReturn(requestCode, resultCode, data);
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        FirebaseAuth.getInstance().signOut();
     }
 }

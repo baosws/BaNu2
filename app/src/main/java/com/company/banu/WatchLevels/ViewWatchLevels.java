@@ -29,6 +29,7 @@ public class ViewWatchLevels extends AppCompatActivity {
         setContentView(layoutId);
         getView();
         presenterWatchLevels = new PresenterWatchLevels(this);
+
         loadGridviewListLevel();
     }
 
@@ -51,7 +52,7 @@ public class ViewWatchLevels extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ModelWatchLevels.Level selectedItem = (ModelWatchLevels.Level) gridView_listLevel.getItemAtPosition(position);
                 Toast.makeText(ViewWatchLevels.this, "Selected :"
-                        + selectedItem.levelName, Toast.LENGTH_LONG).show();
+                        + selectedItem.name, Toast.LENGTH_LONG).show();
             }
         });
     }

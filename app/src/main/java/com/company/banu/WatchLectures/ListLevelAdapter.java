@@ -59,8 +59,8 @@ public class ListLevelAdapter extends BaseAdapter {
         }
 
         ModelWatchLevels.Level lecture = lectures.get(position);
-        viewHolder.tvLevel.setText(lecture.levelName);
-        viewHolder.imgLevel.setImageResource(this.getMipmapResIdByName(lecture.levelImage));
+        viewHolder.tvLevel.setText(lecture.name);
+        viewHolder.imgLevel.setImageResource(this.getMipmapResIdByName(lecture.image));
 
         return convertView;
     }

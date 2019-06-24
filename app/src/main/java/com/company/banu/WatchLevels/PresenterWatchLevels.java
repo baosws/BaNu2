@@ -9,8 +9,4 @@ public class PresenterWatchLevels {
         this.activity = activity;
         modelWatchLevels = new ModelWatchLevels();
     }
-
-    public void bindLevelsToView() {
-
-    }
 }

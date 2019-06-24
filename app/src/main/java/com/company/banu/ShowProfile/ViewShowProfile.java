@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import com.company.banu.Backend;
 import com.company.banu.R;
+import com.company.banu.WatchLevels.ViewWatchLevels;
 import com.google.firebase.auth.FirebaseAuth;
 
 import Universe.User;
@@ -21,6 +22,7 @@ public class ViewShowProfile extends AppCompatActivity {
         setContentView(layoutId);
 
         signInPresenterShowProfile = new PresenterShowProfile(this);
+        startActivity(new Intent(this, ViewWatchLevels.class));
     }
 
     @Override

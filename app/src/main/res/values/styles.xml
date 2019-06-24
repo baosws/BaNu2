@@ -12,4 +12,11 @@
         <item name="colorAccent">@color/colorButtonEmail</item>
     </style>
 
+    <style name="SettingProfileTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
 </resources>

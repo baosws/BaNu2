@@ -26,10 +26,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/pacifico"
+            android:lineSpacingExtra="-30sp"
             android:text="Math \n tutor"
-            android:textSize="70dp"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="80dp"
             android:textStyle="bold"
-            android:textAlignment="center"/>
+            android:typeface="normal" />
     </FrameLayout>
 
     <Button

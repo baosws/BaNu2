@@ -6,175 +6,186 @@
     style="@style/SettingProfileTheme"
     android:orientation="vertical">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="10dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Your Profile"
-            android:textSize="10pt"
-            android:textStyle="bold"
-            android:paddingLeft="10dp" />
-
+        android:layout_height="match_parent"
+        android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="Name"
-                android:textSize="10pt"
-                android:paddingHorizontal="10dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="User name"
-                android:textSize="8pt"
-                android:layout_weight="1"
-                android:paddingLeft="20dp"
-                android:id="@+id/tv_profileName"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="Email"
-                android:textSize="10pt"
-                android:paddingHorizontal="10dp"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="username@gmail.com"
-                android:textSize="8pt"
-                android:layout_weight="1"
-                android:paddingLeft="20dp"
-                android:id="@+id/tv_profileEmail"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="Password"
-                android:textSize="10pt"
-                android:paddingHorizontal="10dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="User name"
-                android:textSize="8pt"
-                android:layout_weight="1"
-                android:paddingLeft="20dp"
-                android:id="@+id/tv_profilePassword"
-                style="@style/FirebaseUI.TextInputEditText.PasswordField"/>
-        </LinearLayout>
-
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp">
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Help Center"
-            android:textAlignment="center"
-            android:textSize="8pt"
-            android:padding="10dp"/>
-
-        <android.support.v7.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sign Out"
-            android:textAlignment="center"
-            android:textSize="8pt"
-            android:padding="10dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Notifications"
-            android:textSize="10pt"
-            android:textStyle="bold"
-            android:paddingLeft="10dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingVertical="10dp">
-            
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Practice reminder"
-                android:layout_weight="1"
-                android:textSize="8pt"
-                android:paddingLeft="10dp"/>
+                android:orientation="vertical"
+                android:paddingTop="10dp">
 
-            <Switch
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="10dp"
-                />
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Your Profile"
+                    android:textSize="10pt"
+                    android:textStyle="bold"
+                    android:paddingLeft="10dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingVertical="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            <TextView
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Name"
+                        android:textSize="10pt"
+                        android:paddingHorizontal="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="User name"
+                        android:textSize="8pt"
+                        android:layout_weight="1"
+                        android:paddingLeft="20dp"
+                        android:id="@+id/tv_profileName"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:textSize="10pt"
+                        android:paddingHorizontal="10dp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="username@gmail.com"
+                        android:textSize="8pt"
+                        android:layout_weight="1"
+                        android:paddingLeft="20dp"
+                        android:id="@+id/tv_profileEmail"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Password"
+                        android:textSize="10pt"
+                        android:paddingHorizontal="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="User name"
+                        android:textSize="8pt"
+                        android:layout_weight="1"
+                        android:paddingLeft="20dp"
+                        android:id="@+id/tv_profilePassword"
+                        style="@style/FirebaseUI.TextInputEditText.PasswordField"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Time reminder"
-                android:layout_weight="1"
-                android:textSize="8pt"
-                android:paddingLeft="10dp"/>
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Help Center"
+                    android:textAlignment="center"
+                    android:textSize="8pt"
+                    android:padding="10dp"/>
 
-            <Switch
-                android:layout_width="wrap_content"
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sign Out"
+                    android:textAlignment="center"
+                    android:textSize="8pt"
+                    android:padding="10dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="10dp"
-                />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Notifications"
+                    android:textSize="10pt"
+                    android:textStyle="bold"
+                    android:paddingLeft="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Practice reminder"
+                        android:layout_weight="1"
+                        android:textSize="8pt"
+                        android:paddingLeft="10dp"/>
+
+                    <Switch
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Time reminder"
+                        android:layout_weight="1"
+                        android:textSize="8pt"
+                        android:paddingLeft="10dp"/>
+
+                    <Switch
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text= "About us"
+                android:textAlignment="center"
+                android:textSize="8pt"
+                android:padding="10dp"/>
         </LinearLayout>
-
-    </LinearLayout>
-
-    <android.support.v7.widget.AppCompatTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text= "About us"
-        android:textAlignment="center"
-        android:textSize="8pt"
-        android:padding="10dp"/>
+    </ScrollView>
 
 </LinearLayout>

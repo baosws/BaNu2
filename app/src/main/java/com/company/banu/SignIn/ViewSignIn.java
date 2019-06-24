@@ -3,12 +3,13 @@ package com.company.banu.SignIn;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 
 import com.company.banu.R;
 
 public class ViewSignIn extends AppCompatActivity {
-    static int layoutId = R.layout.activity_main;
+    static int layoutId = R.layout.activity_signin;
     PresenterSingIn signInPresenterSingIn;
     Button signInButton;
 
@@ -16,24 +17,18 @@ public class ViewSignIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
-        bindViews();
-        getView();
-
         signInPresenterSingIn = new PresenterSingIn(this);
-//        signIn();
-    }
-
-    void getView()
-    {
-        signInButton = findViewById(R.id.btn_signin);
+        bindViews();
     }
 
     void bindViews() {
-
-    }
-
-    public void signIn() {
-        signInPresenterSingIn.signIn();
+        signInButton = findViewById(R.id.btn_signin);
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signInPresenterSingIn.signIn();
+            }
+        });
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".WatchLectures.ViewWatchLectures"/>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".WatchLevels.ViewWatchLevels">
+        <activity android:name=".WatchLevels.ViewWatchLevels" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,6 +24,7 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
         <activity android:name=".SignIn.ViewSignIn" />
+        <activity android:name=".ShowProfile.ViewShowProfile" />
     </application>
 
 </manifest>

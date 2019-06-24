@@ -13,5 +13,10 @@ public class ViewWatchLevels extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
         presenterWatchLevels = new PresenterWatchLevels(this);
+        bindViews();
+    }
+
+    private void bindViews() {
+
     }
 }

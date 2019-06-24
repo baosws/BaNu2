@@ -7,7 +7,7 @@ import com.company.banu.R;
 import com.company.banu.WatchLevels.PresenterWatchLevels;
 
 public class ViewStudy extends AppCompatActivity {
-    static int layoutId = R.layout.activity_main;
+    static int layoutId = R.layout.activity_signin;
     PresenterWatchLevels presenterWatchLevels;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

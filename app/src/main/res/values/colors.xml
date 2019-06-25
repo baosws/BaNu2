@@ -9,4 +9,7 @@
     <color name="colorButtonEmail">#FF0101</color>
     <color name="white">#FFFFFF</color>
     <color name="scoreColor">#FFC107</color>
+    <color name="backgroundLecture">#9bcef6</color>
+    <color name="headerLecture">#D1CCCC</color>
+
 </resources>

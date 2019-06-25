@@ -1,6 +1,7 @@
 package com.company.banu.DetailLevel;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import com.company.banu.CallBack;
 import com.company.banu.DetailLevel.DiaryTopic.Topic;
@@ -18,20 +19,11 @@ public class PresenterDetailLevel {
         init();
     }
 
-    private void invalidateTopic(int position) {
-        activity.invalidateTopic();
-    }
-
     private void init() {
         modelDetailLevel.getTopics(new CallBack<ArrayList<Topic>>() {
             @Override
             public void call(ArrayList<Topic> data) {
                 activity.loadGridViewListTopics(data);
-            }
-        }, new CallBack<Integer>() {
-            @Override
-            public void call(Integer data) {
-                invalidateTopic(data);
             }
         });
 

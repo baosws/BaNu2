@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.company.banu.CallBack;
 import com.company.banu.R;
 import com.company.banu.ShowProfileSetting.ViewShowProfileSetting;
-import com.company.banu.WatchLevels.ViewWatchLevels;
+import com.company.banu.WatchLevels.ActivityWatchLevels;
 import com.github.abdularis.civ.AvatarImageView;
 
 public class PresenterShowProfile {
@@ -54,7 +54,7 @@ public class PresenterShowProfile {
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.startActivity(new Intent(activity, ViewWatchLevels.class));
+                activity.startActivity(new Intent(activity, ActivityWatchLevels.class));
             }
         });
     }

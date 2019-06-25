@@ -8,15 +8,11 @@ import com.company.banu.WatchLevels.PresenterWatchLevels;
 
 public class ViewSolveProblem extends AppCompatActivity {
     static int layoutId = R.layout.activity_signin;
-    PresenterWatchLevels presenterWatchLevels;
+    PresenterSolveProblem presenterSolveProblem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
-        try {
-            presenterWatchLevels = new PresenterWatchLevels(this);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        presenterSolveProblem = new PresenterSolveProblem(this);
     }
 }

@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -69,5 +70,22 @@ public class Backend {
                 cb.call(bitmap);
             }
         });
+    }
+
+    public static void storeCache(String key, Object value) {
+        cache.put(key, value);
+    }
+    public static boolean inCache(String key) {
+        return cache.containsKey(key);
+    }
+    public static Object getCache(String key) {
+        return cache.get(key);
+    }
+
+    public static void downloadAvatar(CallBack<Bitmap> cb) {
+        Backend.downloadImage("avatars/"
+        + FirebaseAuth.getInstance().getCurrentUser().getUid()
+        + ".jpg",
+        cb);
     }
 }

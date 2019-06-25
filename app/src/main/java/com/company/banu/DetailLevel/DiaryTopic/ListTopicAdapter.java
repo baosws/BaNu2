@@ -1,6 +1,7 @@
-package com.company.banu.DetailLevel;
+package com.company.banu.DetailLevel.DiaryTopic;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,14 +41,11 @@ public class ListTopicAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Log.d("btag", "getView: ");
         TopicViewHolder viewHolder;
-        if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.grid_detail_level_item_layout, null);
-            viewHolder = new TopicViewHolder(convertView, topicList.get(position));
-            convertView.setTag(viewHolder);
-        }
-        else {
-        }
+        convertView = layoutInflater.inflate(R.layout.grid_detail_level_item_layout, null);
+        viewHolder = new TopicViewHolder(convertView, topicList.get(position));
+        convertView.setTag(viewHolder);
 
         return convertView;
     }

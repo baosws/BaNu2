@@ -18,7 +18,7 @@ import java.util.List;
 
 public class ViewWatchLectures extends AppCompatActivity {
     static int layoutId = R.layout.activity_watch_lectures;
-    PresenterWatchLevels presenterWatchLevels;
+    PresenterWatchLectures presenterWatchLectures;
     Toolbar toolbar;
     RecyclerView rvLecture;
 
@@ -26,11 +26,7 @@ public class ViewWatchLectures extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
-        try {
-            presenterWatchLevels = new PresenterWatchLevels(this);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        presenterWatchLectures = new PresenterWatchLectures(this);
         initUI();
         getView();
         showLecture();

@@ -26,12 +26,14 @@ public class ModelDetailLevel {
     }
 
     void getAvatar(CallBack<Bitmap> cb) {
-        Backend.downloadImage("avatars/"
-                + FirebaseAuth.getInstance().getCurrentUser().getUid()
-                + ".jpg", cb);
+        Backend.downloadAvatar(cb);
     }
 
-    void getTopics(final CallBack<ArrayList<Topic>> topicCb, final CallBack<Integer> doneCb) {
+    void getTopics(final CallBack<ArrayList<Topic>> cb) {
+        if (Backend.inCache("topics")) {
+            cb.call((ArrayList<Topic>)Backend.getCache("topics"));
+            return;
+        }
         final Task<QuerySnapshot> doc = FirebaseFirestore
                 .getInstance()
                 .collection(String.format("diary/%s/topics",
@@ -40,9 +42,7 @@ public class ModelDetailLevel {
         doc.addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                int i = 0;
                 for (DocumentSnapshot ds : queryDocumentSnapshots.getDocuments()) {
-                    final int id = i++;
                     final Topic t = new Topic();
                     topics.add(t);
                     t.percent = Float.parseFloat(ds.get("percent").toString());
@@ -52,21 +52,30 @@ public class ModelDetailLevel {
                     topic.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            Log.d("btag", "hello");
                             t.name = (String) documentSnapshot.get("name");
                             t.id = topic.getId();
-                            doneCb.call(id);
+                            Backend.downloadImage("topics/"
+                                    + t.id
+                                    + ".jpg", new CallBack<Bitmap>() {
+                                @Override
+                                public void call(Bitmap data) {
+                                    t.image = data;
+                                    t.notifyDone();
+                                }
+                            });
                             Log.d("btag", String.format("onSuccess: id %s, name %s", t.id, t.name));
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            doneCb.call(-id);
+                            t.notifyDone();
+
                             Log.d("btag", "onFailure: topic id " + t.id);
                         }
                     });
                 }
-                topicCb.call(topics);
+                Backend.storeCache("topics", topics);
+                cb.call(topics);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

@@ -8,10 +8,7 @@ public class ModelShowProfile {
     public ModelShowProfile() {
     }
     public void getAvatar(CallBack cb) {
-        Backend.downloadImage("avatars/"
-                + FirebaseAuth.getInstance().getCurrentUser().getUid()
-                + ".jpg",
-                cb);
+        Backend.downloadAvatar(cb);
     }
 
     public String getUserName() {

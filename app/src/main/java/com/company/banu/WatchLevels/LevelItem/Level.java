@@ -1,25 +1,28 @@
-package com.company.banu.DetailLevel.DiaryTopic;
+package com.company.banu.WatchLevels.LevelItem;
 
 import android.graphics.Bitmap;
+import android.telecom.Call;
 
 import com.company.banu.CallBack;
 
 import java.util.ArrayList;
 
-public class Topic {
+public class Level {
     public String id;
     public String name;
+    public int level;
     public float percent;
     public Bitmap image;
-    ArrayList<CallBack<Topic>> observers;
-    public Topic() {
+    ArrayList<CallBack<Level>> observers;
+    public Level() {
         observers = new ArrayList<>();
     }
-    public void addObserver(CallBack<Topic> cb) {
+    public void addObserver(CallBack<Level> cb) {
         observers.add(cb);
     }
+
     public void notifyDone() {
-        for (CallBack cb: observers) {
+        for (CallBack<Level> cb: observers) {
             cb.call(this);
         }
     }

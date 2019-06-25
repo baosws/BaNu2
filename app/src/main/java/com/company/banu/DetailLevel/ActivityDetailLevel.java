@@ -36,7 +36,7 @@ public class ActivityDetailLevel extends AppCompatActivity implements ViewDetail
 
     public void getViews()
     {
-        ibHome = findViewById(R.id.ibHome);
+        ibHome = findViewById(R.id.ib_home);
         ibHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

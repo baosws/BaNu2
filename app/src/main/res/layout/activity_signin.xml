@@ -19,10 +19,9 @@
             android:alpha="0.75"
             android:src="@drawable/logo"
             android:layout_gravity="center|top"
-            android:layout_marginTop="-200dp"/>
+            android:layout_marginTop="-200dp" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:layout_marginTop="50dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -33,7 +32,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="80dp"
             android:textStyle="bold"
-            android:typeface="normal" />
+            android:typeface="normal"/>
     </FrameLayout>
 
     <Button
@@ -52,12 +51,12 @@
         android:layout_marginTop="-150dp" />
 
     <TextView
+        android:id="@+id/tv_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_signin"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="30dp"
-        android:text="Developed by BaNu" />
+        android:text="Developed by BaNu"
+        android:layout_marginBottom="20dp"/>
 
 </RelativeLayout>

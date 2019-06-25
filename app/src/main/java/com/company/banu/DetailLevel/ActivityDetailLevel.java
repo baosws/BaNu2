@@ -8,11 +8,11 @@ import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.company.banu.DetailLevel.DiaryTopic.Topic;
 import com.company.banu.R;
 import com.company.banu.ShowProfile.ViewShowProfile;
 import com.github.abdularis.civ.AvatarImageView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ActivityDetailLevel extends AppCompatActivity implements ViewDetailLevel {
@@ -43,20 +43,17 @@ public class ActivityDetailLevel extends AppCompatActivity implements ViewDetail
         });
     }
 
-    public void loadGridViewListTopics()
+    public void loadGridViewListTopics(List<Topic> topics)
     {
-        final List<Topic> topics = new ArrayList<>();
-        topics.add(new Topic("Counting", "counting", (float) 1.0));
-        topics.add(new Topic("Comparison", "cmp", (float) 1.0));
-        topics.add(new Topic("Adding", "ading", (float) 1.0));
-        topics.add(new Topic("Counting", "counting", (float) 1.0));
-        topics.add(new Topic("Comparison", "cmp", (float) 1.0));
-        topics.add(new Topic("Adding", "ading", (float) 1.0));
-
         gridViewListTopic.setAdapter(new ListTopicAdapter(this, topics));
     }
 
     public void loadAvatar(Bitmap bitmap) {
         avatarImageView.setImageBitmap(bitmap);
+    }
+
+    @Override
+    public void invalidateTopic() {
+        gridViewListTopic.invalidate();
     }
 }

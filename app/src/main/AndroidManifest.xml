@@ -14,9 +14,9 @@
         <activity android:name=".ShowProfileSetting.ViewShowProfileSetting"></activity>
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".WatchLevels.ActivityWatchLevels" />
-        <activity android:name=".WatchLectures.ViewWatchLectures"/>
+        <activity android:name=".Study.ViewStudy"/>
         <activity android:name=".DetailLevel.ActivityDetailLevel"/>
-        <activity android:name=".Study.ViewStudy">
+        <activity android:name=".WatchLectures.ActivityWatchLectures">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

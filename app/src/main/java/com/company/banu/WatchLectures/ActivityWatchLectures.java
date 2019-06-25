@@ -10,55 +10,59 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.company.banu.CallBack;
 import com.company.banu.R;
 import com.company.banu.WatchLevels.PresenterWatchLevels;
+import com.company.banu.WatchLevels.WatchLevelView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewWatchLectures extends AppCompatActivity {
+public class ActivityWatchLectures extends AppCompatActivity implements WatchLecturesView {
     static int layoutId = R.layout.activity_watch_lectures;
     PresenterWatchLectures presenterWatchLectures;
     Toolbar toolbar;
     RecyclerView rvLecture;
+    ImageView imgPenguin;
+    ImageView imgMathBackground;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
         presenterWatchLectures = new PresenterWatchLectures(this);
-        initUI();
-        getView();
-        showLecture();
     }
 
-    void getView()
+    public void getViews()
     {
         rvLecture = findViewById(R.id.rv_lectures);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        imgPenguin = findViewById(R.id.img_penguin);
+        imgMathBackground = findViewById(R.id.img_math_pattern);
     }
 
-    void showLecture()
+    public void showLectures(List<Lecture> lectures)
     {
-        List<Lecture> lectures = new ArrayList<>();
-        lectures.add(new Lecture("Count and Write", 1, (float) 1.0));
-        lectures.add(new Lecture("Count and Write", 2, (float) 1.0));
-        lectures.add(new Lecture("Count and Write", 3, (float) 1.0));
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         rvLecture.setLayoutManager(layoutManager);
-        LectureAdapter adapter = new LectureAdapter(this, lectures);
+        final LectureAdapter adapter = new LectureAdapter(this, lectures);
         rvLecture.setAdapter(adapter);
-
+        for (Lecture lecture: lectures) {
+            lecture.addObserver(new CallBack<Lecture>() {
+                @Override
+                public void call(Lecture data) {
+                    adapter.notifyDataSetChanged();
+                    rvLecture.invalidate();
+                }
+            });
+        }
         PagerSnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(rvLecture);
     }
 
-    void initUI()
+    public void initUI()
     {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ImageView imgPenguin = findViewById(R.id.img_penguin);
-        ImageView imgMathBackground = findViewById(R.id.img_math_pattern);
         Glide.with(this).load(R.mipmap.penguin_study).into(imgPenguin);
         Glide.with(this).load(R.mipmap.math_pattern).into(imgMathBackground);
     }

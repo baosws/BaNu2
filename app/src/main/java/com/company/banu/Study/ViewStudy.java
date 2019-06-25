@@ -9,27 +9,15 @@ import com.company.banu.R;
 import com.company.banu.WatchLevels.PresenterWatchLevels;
 
 public class ViewStudy extends AppCompatActivity {
-<<<<<<< HEAD
-    static int layoutId = R.layout.activity_signin;
-    PresenterStudy presenterStudy;
-=======
     static int layoutId = R.layout.activity_study;
-    PresenterWatchLevels presenterWatchLevels;
+    PresenterStudy presenterStudy;
     ViewPager vpStudy;
 
->>>>>>> c2862bb8047ce5d4e7ac90363616c732ef8d537c
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
-<<<<<<< HEAD
         presenterStudy = new PresenterStudy(this);
-=======
-        try {
-            presenterWatchLevels = new PresenterWatchLevels(this);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         initUI();
     }
 
@@ -41,6 +29,5 @@ public class ViewStudy extends AppCompatActivity {
         tabLayout.setupWithViewPager(vpStudy);
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_library_books_black_24dp);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_assignment_black_24dp);
->>>>>>> c2862bb8047ce5d4e7ac90363616c732ef8d537c
     }
 }

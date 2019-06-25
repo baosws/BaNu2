@@ -15,8 +15,7 @@ import com.company.banu.R;
 
 import java.util.List;
 
-public class LectureAdapter extends RecyclerView.Adapter<LectureAdapter.ViewHolder> {
-
+public class LectureAdapter extends RecyclerView.Adapter<LectureHolder> {
     List<Lecture> lectureList;
     Context mContext;
 
@@ -28,44 +27,19 @@ public class LectureAdapter extends RecyclerView.Adapter<LectureAdapter.ViewHold
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+    public LectureHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lecture_layout, parent, false);
-        return new ViewHolder(view);
+        return new LectureHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
-
+    public void onBindViewHolder(LectureHolder holder, final int position) {
         Lecture lecture = lectureList.get(position);
-        holder.tvLectureID.setText("Lecture " + lecture.id.toString());
-        holder.tvLectureName.setText(lecture.name);
-        holder.rbPercent.setRating(lecture.percent);
-
-        holder.btnPlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "Clicked: " + lectureList.get(position).id.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        holder.bind(lecture);
     }
 
     @Override
     public int getItemCount() {
         return lectureList.size();
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView tvLectureID;
-        TextView tvLectureName;
-        RatingBar rbPercent;
-        ImageButton btnPlay;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvLectureID = itemView.findViewById(R.id.tv_lectureID);
-            tvLectureName = itemView.findViewById(R.id.tv_lectureName);
-            rbPercent = itemView.findViewById(R.id.rb_percent);
-            btnPlay = itemView.findViewById(R.id.btn_play);
-        }
     }
 }

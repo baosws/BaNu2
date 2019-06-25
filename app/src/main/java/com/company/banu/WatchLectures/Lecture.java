@@ -1,16 +1,28 @@
 package com.company.banu.WatchLectures;
 
+import com.company.banu.CallBack;
+
+import java.util.ArrayList;
+
 public class Lecture {
     String name;
-    Integer id;
+    String id;
     Float percent;
     Boolean isLock;
+    ArrayList<CallBack<Lecture>> observers;
 
-    public Lecture(String n, Integer id, Float percent)
+    public Lecture()
     {
-        this.name = n;
-        this.id = id;
-        this.percent = percent;
-        this.isLock = true;
+        observers = new ArrayList<>();
+    }
+
+    public void addObserver(CallBack<Lecture> cb) {
+        observers.add(cb);
+    }
+
+    public void notifyDone() {
+        for (CallBack<Lecture> cb: observers) {
+            cb.call(this);
+        }
     }
 }

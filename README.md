@@ -26,7 +26,7 @@
 **Màn hình profile:**
 
 - [x] Giao diện
-- [ ] Load thông tin user
+- [x] Load thông tin user
 
 **Màn hình cài đặt:**
 
@@ -38,7 +38,7 @@
 **Màn hình chi tiết level (topic):**
 
 - [x] Giao diện
-- [ ] Load dữ liệu các topic
+- [x] Load dữ liệu các topic
 
 **Màn hình chi tiết topic(bài học):**
 
@@ -49,12 +49,12 @@
 
 1. Lí Thuyết
 
-- [ ] Giao diện
+- [x] Giao diện
 - [ ] Thể hiện tài liệu giảng dạy: video, slide, ...
 
 2. Bài tập
 
-- [ ] Giao diện
+- [x] Giao diện
 - [ ] Thể hiện dữ liệu về điểm của user
 
 3. Chi tiết từng bài tập

@@ -36,9 +36,6 @@ public class ViewDetailLevel extends AppCompatActivity {
         topics.add(new Topic("Counting", "counting", (float) 1.0));
         topics.add(new Topic("Comparison", "cmp", (float) 1.0));
         topics.add(new Topic("Adding", "ading", (float) 1.0));
-        topics.add(new Topic("Counting", "counting", (float) 1.0));
-        topics.add(new Topic("Comparison", "cmp", (float) 1.0));
-        topics.add(new Topic("Adding", "ading", (float) 1.0));
 
         gridViewListTopic.setAdapter(new ListTopicAdapter(this, topics));
     }

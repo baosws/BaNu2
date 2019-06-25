@@ -31,6 +31,7 @@
                 android:rating="1"
                 android:layout_gravity="center"
                 android:id="@+id/rb_percentLearned"
+                android:isIndicator="true"
                 />
 
 </LinearLayout>

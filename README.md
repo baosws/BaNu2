@@ -7,6 +7,8 @@
 - [ ] Database diagram
 - [ ] Kiến trúc
 - [x] Màn hình thiết kế UI
+- [ ] Code
+- [ ] Demo
 
 ## Danh sách chức năng và màn hình:
 
@@ -18,7 +20,7 @@
 **Màn hình home (level):**
 
 - [x] Giao diện
-- [ ] Thể hiện avatar
+- [x] Thể hiện avatar
 - [ ] Load dữ liệu level
 
 **Màn hình profile:**

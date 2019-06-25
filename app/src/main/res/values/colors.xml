@@ -11,5 +11,8 @@
     <color name="scoreColor">#FFC107</color>
     <color name="backgroundLecture">#9bcef6</color>
     <color name="headerLecture">#D1CCCC</color>
+    <color name="headerStudy">#3CA4FA</color>
 
+    <color name="tab_background_selected">#3CA4FA</color>
+    <color name="tab_background_unselected">#FFFFFF</color>
 </resources>

@@ -16,7 +16,8 @@
         <activity android:name=".Setting.ViewSetting" />
         <activity android:name=".WatchLevels.ViewWatchLevels" />
         <activity android:name=".WatchLectures.ViewWatchLectures"/>
-        <activity android:name=".DetailLevel.ActivityDetailLevel">
+        <activity android:name=".DetailLevel.ActivityDetailLevel"/>
+        <activity android:name=".Study.ViewStudy">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

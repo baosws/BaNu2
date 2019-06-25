@@ -13,10 +13,10 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ShowProfileSetting.ViewShowProfileSetting"></activity>
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".DetailLevel.ViewDetailLevel" />
         <activity android:name=".Setting.ViewSetting" />
         <activity android:name=".WatchLevels.ViewWatchLevels" />
-        <activity android:name=".WatchLectures.ViewWatchLectures">
+        <activity android:name=".WatchLectures.ViewWatchLectures"/>
+        <activity android:name=".DetailLevel.ActivityDetailLevel">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -2,8 +2,13 @@ package com.company.banu.DetailLevel;
 
 import android.graphics.Bitmap;
 
+import com.company.banu.DetailLevel.DiaryTopic.Topic;
+
+import java.util.List;
+
 public interface ViewDetailLevel {
-    public void getViews();
-    public void loadGridViewListTopics();
-    public void loadAvatar(Bitmap bitmap);
+    void getViews();
+    void loadGridViewListTopics(List<Topic> topics);
+    void loadAvatar(Bitmap bitmap);
+    void invalidateTopic();
 }

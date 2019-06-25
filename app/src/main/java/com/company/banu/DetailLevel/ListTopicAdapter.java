@@ -5,15 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
 
+import com.company.banu.DetailLevel.DiaryTopic.Topic;
+import com.company.banu.DetailLevel.DiaryTopic.TopicViewHolder;
 import com.company.banu.R;
 
 import java.util.List;
-
-import Universe.LoadImageResource;
 
 public class ListTopicAdapter extends BaseAdapter {
     List<Topic> topicList;
@@ -32,7 +29,7 @@ public class ListTopicAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Topic getItem(int position) {
         return topicList.get(position);
     }
 
@@ -43,32 +40,15 @@ public class ListTopicAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder;
-        if (convertView == null)
-        {
-            convertView = (View) layoutInflater.inflate(R.layout.grid_detail_level_item_layout, null);
-            viewHolder = new ViewHolder();
-            viewHolder.imgTopic = convertView.findViewById(R.id.imv_topic);
-            viewHolder.tvTopic = convertView.findViewById(R.id.tv_topic);
-            viewHolder.rbTopic = convertView.findViewById(R.id.rb_percentLearned);
+        TopicViewHolder viewHolder;
+        if (convertView == null) {
+            convertView = layoutInflater.inflate(R.layout.grid_detail_level_item_layout, null);
+            viewHolder = new TopicViewHolder(convertView, topicList.get(position));
             convertView.setTag(viewHolder);
         }
-        else
-        {
-            viewHolder = (ViewHolder) convertView.getTag();
+        else {
         }
 
-        Topic topic = topicList.get(position);
-        viewHolder.tvTopic.setText(topic.name);
-        int resImageID = LoadImageResource.getMipmapResIdByName(this.mContext, topic.image);
-        viewHolder.imgTopic.setImageResource(resImageID);
-        viewHolder.rbTopic.setRating(topic.percentLearned);
         return convertView;
-    }
-
-    static class ViewHolder{
-        ImageView imgTopic;
-        TextView tvTopic;
-        RatingBar rbTopic;
     }
 }

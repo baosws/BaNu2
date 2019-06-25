@@ -42,7 +42,7 @@
 
 **Màn hình chi tiết topic(bài học):**
 
-- [ ] Giao diện
+- [x] Giao diện
 - [ ] Load dữ liệu các bài học
 
 **Chi tiết bài học:**

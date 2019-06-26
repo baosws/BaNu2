@@ -1,4 +1,4 @@
-package com.company.banu.WatchLectures;
+package com.company.banu.WatchLectures.LectureItem;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,7 +7,6 @@ import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.company.banu.CallBack;
 import com.company.banu.R;
 
 public class LectureHolder extends RecyclerView.ViewHolder implements LectureView {

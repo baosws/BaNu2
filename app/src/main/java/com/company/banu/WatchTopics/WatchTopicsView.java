@@ -1,12 +1,12 @@
-package com.company.banu.DetailLevel;
+package com.company.banu.WatchTopics;
 
 import android.graphics.Bitmap;
 
-import com.company.banu.DetailLevel.DiaryTopic.Topic;
+import com.company.banu.WatchTopics.TopicItem.Topic;
 
 import java.util.List;
 
-public interface ViewDetailLevel {
+public interface WatchTopicsView {
     void getViews();
     void loadGridViewListTopics(List<Topic> topics);
     void loadAvatar(Bitmap bitmap);

@@ -14,7 +14,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.company.banu.WatchLectures.Lecture;
+import com.company.banu.WatchLectures.LectureItem.Lecture;
 import Universe.User;
 
 

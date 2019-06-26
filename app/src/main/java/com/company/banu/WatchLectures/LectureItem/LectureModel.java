@@ -1,4 +1,4 @@
-package com.company.banu.WatchLectures;
+package com.company.banu.WatchLectures.LectureItem;
 
 class LectureModel {
     LecturePresenter presenter;
@@ -12,7 +12,7 @@ class LectureModel {
     }
 
     public String getId() {
-        return lecture.id.toString();
+        return lecture.ord.toString();
     }
 
     public String getName() {

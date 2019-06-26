@@ -1,4 +1,4 @@
-package com.company.banu.DetailLevel.DiaryTopic;
+package com.company.banu.WatchTopics.TopicItem;
 
 import android.graphics.Bitmap;
 import android.util.Log;
@@ -26,5 +26,9 @@ class TopicModel {
 
     public float getRating() {
         return topic.percent;
+    }
+
+    public String getId() {
+        return topic.id;
     }
 }

@@ -1,4 +1,4 @@
-package com.company.banu.WatchLectures;
+package com.company.banu.WatchLectures.LectureItem;
 
 class LecturePresenter {
     LectureView view;

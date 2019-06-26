@@ -46,7 +46,7 @@ public class ActivityWatchLevels extends AppCompatActivity implements WatchLevel
     {
         final ListLevelAdapter listLevelAdapter = new ListLevelAdapter(this, levels);
         for (Level level: levels) {
-            level.addObserver(new CallBack<Level>() {
+            level.addObserver("done", new CallBack<Level>() {
                 @Override
                 public void call(Level data) {
                     Log.d("btag", String.format("observer call: %s", data.id));

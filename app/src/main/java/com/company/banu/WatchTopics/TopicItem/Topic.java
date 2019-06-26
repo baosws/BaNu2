@@ -1,30 +1,32 @@
-package com.company.banu.WatchLevels.LevelItem;
+package com.company.banu.WatchTopics.TopicItem;
 
 import android.graphics.Bitmap;
 import android.util.Log;
 
 import com.company.banu.CallBack;
-import com.company.banu.WatchTopics.TopicItem.Topic;
+import com.company.banu.WatchLectures.LectureItem.Lecture;
+import com.company.banu.WatchLevels.LevelItem.Level;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Level {
+public class Topic {
+    Level level;
     public String id;
     public String name;
-    public Float percent;
+    public float percent;
     public Bitmap image;
-    public ArrayList<Topic> topics;
-
-    HashMap<String, ArrayList<CallBack<Level>>> observers;
-    public Level() {
+    public ArrayList<Lecture> lectures;
+    HashMap<String, ArrayList<CallBack<Topic>>> observers;
+    public Topic(Level level) {
+        this.level = level;
+        this.lectures = new ArrayList<>();
         observers = new HashMap<>();
-        topics = new ArrayList<>();
     }
 
-    public void addObserver(String event, CallBack<Level> cb) {
+    public void addObserver(String event, CallBack<Topic> cb) {
         if (observers.containsKey(event) == false) {
-            observers.put(event, new ArrayList<CallBack<Level>>());
+            observers.put(event, new ArrayList<CallBack<Topic>>());
         }
         observers.get(event).add(cb);
     }

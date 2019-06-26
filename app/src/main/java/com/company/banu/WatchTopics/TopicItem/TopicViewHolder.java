@@ -1,12 +1,15 @@
-package com.company.banu.DetailLevel.DiaryTopic;
+package com.company.banu.WatchTopics.TopicItem;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.company.banu.Backend;
 import com.company.banu.R;
+import com.company.banu.WatchLectures.ActivityWatchLectures;
 
 public class TopicViewHolder implements TopicView {
     ImageView imgTopic;
@@ -25,6 +28,14 @@ public class TopicViewHolder implements TopicView {
         imgTopic = view.findViewById(R.id.imv_topic);
         tvTopic = view.findViewById(R.id.tv_topic);
         rbTopic = view.findViewById(R.id.rb_percentLearned);
+        imgTopic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), ActivityWatchLectures.class);
+                intent.putExtra("topicId", topicViewPresenter.getTopicId());
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

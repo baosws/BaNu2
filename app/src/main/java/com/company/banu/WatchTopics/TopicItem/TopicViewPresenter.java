@@ -1,4 +1,4 @@
-package com.company.banu.DetailLevel.DiaryTopic;
+package com.company.banu.WatchTopics.TopicItem;
 
 import android.graphics.Bitmap;
 
@@ -25,5 +25,9 @@ public class TopicViewPresenter {
                 view.setImage(data);
             }
         });
+    }
+
+    public String getTopicId() {
+        return topicModel.getId();
     }
 }

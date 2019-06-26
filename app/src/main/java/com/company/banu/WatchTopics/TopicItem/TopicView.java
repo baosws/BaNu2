@@ -1,4 +1,4 @@
-package com.company.banu.DetailLevel.DiaryTopic;
+package com.company.banu.WatchTopics.TopicItem;
 
 import android.graphics.Bitmap;
 

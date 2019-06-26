@@ -1,4 +1,4 @@
-package com.company.banu.DetailLevel;
+package com.company.banu.WatchTopics;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -9,9 +9,11 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.company.banu.Backend;
 import com.company.banu.CallBack;
-import com.company.banu.DetailLevel.DiaryTopic.ListTopicAdapter;
-import com.company.banu.DetailLevel.DiaryTopic.Topic;
+import com.company.banu.WatchLevels.LevelItem.Level;
+import com.company.banu.WatchTopics.TopicItem.ListTopicAdapter;
+import com.company.banu.WatchTopics.TopicItem.Topic;
 import com.company.banu.R;
 import com.company.banu.ShowProfile.ViewShowProfile;
 import com.company.banu.WatchLevels.ActivityWatchLevels;
@@ -19,19 +21,21 @@ import com.github.abdularis.civ.AvatarImageView;
 
 import java.util.List;
 
-public class ActivityDetailLevel extends AppCompatActivity implements ViewDetailLevel {
+public class ActivityWatchTopics extends AppCompatActivity implements WatchTopicsView {
     TextView tvLevelName;
     TextView tvScore;
     GridView gridViewListTopic;
     AvatarImageView avatarImageView;
-    PresenterDetailLevel presenterDetailLevel;
+    WatchTopicsPresenter watchTopicsPresenter;
     ImageButton ibHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_level);
-        presenterDetailLevel = new PresenterDetailLevel(this);
+        Intent intent = getIntent();
+        Level level = (Level) Backend.getCache(intent.getStringExtra("levelId"));
+        watchTopicsPresenter = new WatchTopicsPresenter(this, level);
     }
 
     public void getViews()
@@ -59,7 +63,7 @@ public class ActivityDetailLevel extends AppCompatActivity implements ViewDetail
     {
         final ListTopicAdapter listTopicAdapter = new ListTopicAdapter(this, topics);
         for (Topic topic: topics) {
-            topic.addObserver(new CallBack<Topic>() {
+            topic.addObserver("image", new CallBack<Topic>() {
                 @Override
                 public void call(Topic data) {
                     listTopicAdapter.notifyDataSetChanged();

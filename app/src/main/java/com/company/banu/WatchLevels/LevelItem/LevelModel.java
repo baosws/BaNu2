@@ -14,12 +14,6 @@ public class LevelModel {
         assert presenter != null;
         this.presenter = presenter;
         this.level = level;
-        this.level.addObserver(new CallBack<Level>() {
-            @Override
-            public void call(Level data) {
-                presenter.invalidate();
-            }
-        });
     }
 
     public Bitmap getImage() {
@@ -28,5 +22,9 @@ public class LevelModel {
 
     public String getName() {
         return level.name;
+    }
+
+    public String getId() {
+        return level.id;
     }
 }

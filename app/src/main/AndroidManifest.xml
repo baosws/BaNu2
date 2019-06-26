@@ -14,9 +14,11 @@
         <activity android:name=".ShowProfileSetting.ViewShowProfileSetting"></activity>
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".WatchLevels.ActivityWatchLevels" />
-        <activity android:name=".Study.ViewStudy"/>
+        <activity android:name=".WatchLectures.ActivityWatchLectures"/>
         <activity android:name=".DetailLevel.ActivityDetailLevel"/>
-        <activity android:name=".WatchLectures.ActivityWatchLectures">
+        <activity android:name=".Study.ViewStudy"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

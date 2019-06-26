@@ -1,4 +1,4 @@
-package com.company.banu.Study.Exercise;
+package com.company.banu.Study.Exercise.LevelItem;
 
 public class Level {
     String name;

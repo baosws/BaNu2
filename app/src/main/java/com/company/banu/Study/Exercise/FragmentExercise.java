@@ -1,4 +1,4 @@
-package com.company.banu.Study;
+package com.company.banu.Study.Exercise;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

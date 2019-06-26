@@ -1,4 +1,4 @@
-package com.company.banu.Study;
+package com.company.banu.Study.Theory;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +16,8 @@ import com.company.banu.R;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
+
+import Universe.YoutubeUtils;
 
 
 public class FragmentTheory extends Fragment implements YouTubePlayer.OnInitializedListener {
@@ -61,7 +63,7 @@ public class FragmentTheory extends Fragment implements YouTubePlayer.OnInitiali
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
         if(!b){
-            youTubePlayer.cueVideo("EJylz_9KYf8");
+            youTubePlayer.cueVideo(YoutubeUtils.GetCueFromLink("https://youtu.be/Z14lqZRf2ZM"));
         }
     }
 

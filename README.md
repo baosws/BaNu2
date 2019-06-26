@@ -2,7 +2,8 @@
 
 ## Cần nộp
 
-- [ ] Use case và đặc tả (viết lại)
+- [ ] Use case
+- [ ] Đặc tả
 - [ ] Class diagram: chỉnh lại
 - [ ] Database diagram
 - [ ] Kiến trúc
@@ -21,7 +22,7 @@
 
 - [x] Giao diện
 - [x] Thể hiện avatar
-- [ ] Load dữ liệu level
+- [x] Load dữ liệu level
 
 **Màn hình profile:**
 
@@ -43,14 +44,14 @@
 **Màn hình chi tiết topic(bài học):**
 
 - [x] Giao diện
-- [ ] Load dữ liệu các bài học
+- [x] Load dữ liệu các bài học
 
 **Chi tiết bài học:**
 
 1. Lí Thuyết
 
 - [x] Giao diện
-- [ ] Thể hiện tài liệu giảng dạy: video, slide, ...
+- [x] Thể hiện tài liệu giảng dạy: video, slide, ...
 
 2. Bài tập
 

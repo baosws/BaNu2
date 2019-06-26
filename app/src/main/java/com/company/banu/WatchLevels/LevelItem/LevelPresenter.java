@@ -17,7 +17,7 @@ public class LevelPresenter {
         view.setImage(levelModel.getImage());
     }
 
-    void invalidate() {
-        init();
+    public String getLevelId() {
+        return levelModel.getId();
     }
 }

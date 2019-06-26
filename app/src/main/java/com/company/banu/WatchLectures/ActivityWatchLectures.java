@@ -1,6 +1,6 @@
 package com.company.banu.WatchLectures;
 
-import android.media.Image;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,19 +8,22 @@ import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.company.banu.Backend;
 import com.company.banu.CallBack;
+import com.company.banu.WatchTopics.TopicItem.Topic;
 import com.company.banu.R;
-import com.company.banu.WatchLevels.PresenterWatchLevels;
-import com.company.banu.WatchLevels.WatchLevelView;
+import com.company.banu.WatchLectures.LectureItem.Lecture;
+import com.company.banu.WatchLectures.LectureItem.LectureAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ActivityWatchLectures extends AppCompatActivity implements WatchLecturesView {
     static int layoutId = R.layout.activity_watch_lectures;
     PresenterWatchLectures presenterWatchLectures;
+    TextView tbTitle;
     Toolbar toolbar;
     RecyclerView rvLecture;
     ImageView imgPenguin;
@@ -30,13 +33,17 @@ public class ActivityWatchLectures extends AppCompatActivity implements WatchLec
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layoutId);
-        presenterWatchLectures = new PresenterWatchLectures(this);
+        Intent intent = getIntent();
+        String topicId = intent.getStringExtra("topicId");
+        Topic topic = (Topic)Backend.getCache(topicId);
+        presenterWatchLectures = new PresenterWatchLectures(this, topic);
     }
 
     public void getViews()
     {
+        tbTitle = findViewById(R.id.tb_title);
         rvLecture = findViewById(R.id.rv_lectures);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         imgPenguin = findViewById(R.id.img_penguin);
         imgMathBackground = findViewById(R.id.img_math_pattern);
     }
@@ -48,7 +55,7 @@ public class ActivityWatchLectures extends AppCompatActivity implements WatchLec
         final LectureAdapter adapter = new LectureAdapter(this, lectures);
         rvLecture.setAdapter(adapter);
         for (Lecture lecture: lectures) {
-            lecture.addObserver(new CallBack<Lecture>() {
+            lecture.addObserver("all", new CallBack<Lecture>() {
                 @Override
                 public void call(Lecture data) {
                     adapter.notifyDataSetChanged();
@@ -60,6 +67,9 @@ public class ActivityWatchLectures extends AppCompatActivity implements WatchLec
         snapHelper.attachToRecyclerView(rvLecture);
     }
 
+    public void setTitle(String title) {
+        tbTitle.setText(title);
+    }
     public void initUI()
     {
         setSupportActionBar(toolbar);

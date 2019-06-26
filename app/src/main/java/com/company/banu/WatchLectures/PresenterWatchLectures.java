@@ -1,17 +1,17 @@
 package com.company.banu.WatchLectures;
 
-import android.app.Activity;
-
 import com.company.banu.CallBack;
+import com.company.banu.WatchTopics.TopicItem.Topic;
+import com.company.banu.WatchLectures.LectureItem.Lecture;
 
 import java.util.ArrayList;
 
 public class PresenterWatchLectures {
     WatchLecturesView view;
     ModelWatchLectures modelWatchLectures;
-    public PresenterWatchLectures(WatchLecturesView view) {
+    public PresenterWatchLectures(WatchLecturesView view, Topic topic) {
         this.view = view;
-        modelWatchLectures = new ModelWatchLectures(this);
+        modelWatchLectures = new ModelWatchLectures(this, topic);
         view.getViews();
         view.initUI();
         init();
@@ -24,5 +24,6 @@ public class PresenterWatchLectures {
                 view.showLectures(data);
             }
         });
+        view.setTitle(modelWatchLectures.getTopicName());
     }
 }

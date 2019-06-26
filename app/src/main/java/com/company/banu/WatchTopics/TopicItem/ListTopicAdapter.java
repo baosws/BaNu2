@@ -1,4 +1,4 @@
-package com.company.banu.DetailLevel.DiaryTopic;
+package com.company.banu.WatchTopics.TopicItem;
 
 import android.content.Context;
 import android.util.Log;
@@ -7,8 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.company.banu.DetailLevel.DiaryTopic.Topic;
-import com.company.banu.DetailLevel.DiaryTopic.TopicViewHolder;
 import com.company.banu.R;
 
 import java.util.List;

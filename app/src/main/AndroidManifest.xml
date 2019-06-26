@@ -15,12 +15,16 @@
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".WatchLevels.ActivityWatchLevels" />
         <activity android:name=".WatchLectures.ActivityWatchLectures"/>
-        <activity android:name=".WatchTopics.ActivityWatchTopics"/>
         <activity android:name=".Study.ViewStudy"
             android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation|screenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
+        <activity android:name=".WatchTopics.ActivityWatchTopics" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

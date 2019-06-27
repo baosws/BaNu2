@@ -78,7 +78,7 @@
         android:layout_gravity="center"
         android:padding="10dp"
         android:layout_margin="10dp"
-        android:background="@drawable/button_done_shape"
+        android:background="@drawable/button_quiz_shape"
         android:focusableInTouchMode="true"
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"

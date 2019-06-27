@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Quiz.QuizView"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/headerStudy">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Score:"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:padding="10dp"
+                android:id="@+id/tv_scoretitle"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1/10"
+                android:padding="10dp"
+                android:textSize="25sp"
+                android:layout_weight="1"
+                android:id="@+id/tv_score"
+                android:layout_toRightOf="@+id/tv_scoretitle"/>
+            
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_pause_black_24dp"
+                android:background="@null"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:padding="10dp"
+                android:id="@+id/btn_pause"
+                android:focusableInTouchMode="true"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                />
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:src="@drawable/penguin_teacher"
+        android:id="@+id/img_question"/>
+
+    <com.nex3z.fingerpaintview.FingerPaintView
+        android:id="@+id/fpv_paint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:background="@drawable/paint_view_border"/>
+    
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/button_done_shape"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        />
+
+</LinearLayout>

@@ -43,7 +43,7 @@ public class ActivityWatchTopics extends AppCompatActivity implements WatchTopic
     public void getViews()
     {
         determinateBar = findViewById(R.id.determinateBar);
-        ibHome = findViewById(R.id.ibHome);
+        ibHome = findViewById(R.id.ib_home);
         ibHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

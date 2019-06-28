@@ -2,11 +2,44 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <TextView
+    
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Theory"
-        android:textSize="30dp"/>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/fl_video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"></FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Summarize"
+                    android:background="@color/backgroundLecture"
+                    android:textSize="24dp"
+                    android:layout_marginVertical="10dp"
+                    android:paddingLeft="10dp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tv_summarizeContent"
+                    android:paddingLeft="10dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
 
 </LinearLayout>

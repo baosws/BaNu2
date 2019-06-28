@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.company.banu"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -44,6 +44,15 @@ dependencies {
     implementation 'com.github.abdularis:circularimageview:1.4'
     implementation 'com.github.bumptech.glide:glide:4.6.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
+    implementation 'bg.devlabs.fullscreenvideoview:library:1.1.1'
+
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
+    implementation 'me.panavtec:drawableview:0.6.0'
+
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.nex3z:finger-paint-view:0.1.0'
+    implementation 'org.tensorflow:tensorflow-lite:1.13.1'
 }
 apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin
 

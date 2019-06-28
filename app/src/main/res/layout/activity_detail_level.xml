@@ -18,7 +18,7 @@
             android:layout_height="200dp">
 
             <ImageButton
-                android:id="@+id/ibHome"
+                android:id="@+id/ib_home"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="1dp"

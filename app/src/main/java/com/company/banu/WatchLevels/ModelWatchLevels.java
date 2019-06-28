@@ -44,6 +44,9 @@ public class ModelWatchLevels {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 ArrayList<Level> res = new ArrayList<>();
                 ArrayList levels = (ArrayList)documentSnapshot.get("levels");
+                if (levels == null) {
+                    return;
+                }
                 for (Object l: levels) {
                     Map<String, Object> levelMap = (Map)l;
                     Level level = new Level();
@@ -58,6 +61,7 @@ public class ModelWatchLevels {
                         Map<String, Object> topicMap = (Map)t;
                         Topic topic = new Topic(level);
                         level.topics.add(topic);
+
                         bindDocRefToTopic((DocumentReference)topicMap.get("topic"), topic);
 
                         ArrayList lectures = (ArrayList) topicMap.get("lectures");

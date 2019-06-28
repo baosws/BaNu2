@@ -18,7 +18,7 @@ public class TopicViewPresenter {
 
     public void init() {
         view.setName(topicModel.getName());
-        view.setRating(topicModel.getRating());
+        view.setRating(topicModel.getPercent());
         topicModel.getImage(new CallBack<Bitmap>() {
             @Override
             public void call(Bitmap data) {

@@ -24,11 +24,11 @@ class TopicModel {
         + ".jpg", cb);
     }
 
-    public float getRating() {
-        return topic.percent;
-    }
-
     public String getId() {
         return topic.id;
+    }
+
+    public float getPercent() {
+        return topic.getPercent();
     }
 }

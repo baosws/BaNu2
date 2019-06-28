@@ -23,6 +23,10 @@ public class Lecture {
         observers = new HashMap<>();
     }
 
+    public Float getPercent() {
+        return percent;
+    }
+
     public void addObserver(String event, CallBack<Lecture> cb) {
         if (observers.containsKey(event) == false) {
             observers.put(event, new ArrayList<CallBack<Lecture>>());

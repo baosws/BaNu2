@@ -10,5 +10,5 @@ public interface WatchTopicsView {
     void getViews();
     void loadGridViewListTopics(List<Topic> topics);
     void loadAvatar(Bitmap bitmap);
-    void invalidateTopic();
+    void setPercent(Float percent);
 }

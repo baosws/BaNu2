@@ -9,19 +9,29 @@ import com.company.banu.WatchLevels.LevelItem.Level;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.Semaphore;
 
 public class Topic {
     Level level;
     public String id;
     public String name;
-    public float percent;
     public Bitmap image;
     public ArrayList<Lecture> lectures;
     HashMap<String, ArrayList<CallBack<Topic>>> observers;
+    Semaphore semaphore;
     public Topic(Level level) {
         this.level = level;
         this.lectures = new ArrayList<>();
         observers = new HashMap<>();
+        semaphore = new Semaphore(1);
+    }
+
+    public Float getPercent() {
+        Float res = 0f;
+        for (Lecture lecture: lectures) {
+            res += lecture.getPercent();
+        }
+        return res;
     }
 
     public void addObserver(String event, CallBack<Topic> cb) {

@@ -22,4 +22,8 @@ public class WatchTopicsModel {
     void getTopics(final CallBack<ArrayList<Topic>> cb) {
         cb.call(level.topics);
     }
+
+    public Float getPercent() {
+        return level.getPercent();
+    }
 }

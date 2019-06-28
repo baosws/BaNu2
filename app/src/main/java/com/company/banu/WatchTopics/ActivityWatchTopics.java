@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.company.banu.Backend;
@@ -28,6 +29,7 @@ public class ActivityWatchTopics extends AppCompatActivity implements WatchTopic
     AvatarImageView avatarImageView;
     WatchTopicsPresenter watchTopicsPresenter;
     ImageButton ibHome;
+    ProgressBar determinateBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class ActivityWatchTopics extends AppCompatActivity implements WatchTopic
 
     public void getViews()
     {
+        determinateBar = findViewById(R.id.determinateBar);
         ibHome = findViewById(R.id.ibHome);
         ibHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,13 +77,10 @@ public class ActivityWatchTopics extends AppCompatActivity implements WatchTopic
         gridViewListTopic.setAdapter(listTopicAdapter);
     }
 
+    public void setPercent(Float percent) {
+        determinateBar.setProgress((int)(percent * 100));
+    }
     public void loadAvatar(Bitmap bitmap) {
         avatarImageView.setImageBitmap(bitmap);
-    }
-
-    @Override
-    public void invalidateTopic() {
-        ((ListTopicAdapter)gridViewListTopic.getAdapter()).notifyDataSetChanged();
-        gridViewListTopic.invalidate();
     }
 }

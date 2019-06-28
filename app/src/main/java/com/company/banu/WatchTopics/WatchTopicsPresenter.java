@@ -33,5 +33,6 @@ public class WatchTopicsPresenter {
                 view.loadAvatar(data);
             }
         });
+        view.setPercent(watchTopicsModel.getPercent());
     }
 }

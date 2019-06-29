@@ -17,8 +17,18 @@ public class TopicViewPresenter {
     }
 
     public void init() {
-        view.setName(topicModel.getName());
-        view.setRating(topicModel.getPercent());
+        topicModel.getName(new CallBack<String>() {
+            @Override
+            public void call(String data) {
+                view.setName(data);
+            }
+        });
+        topicModel.getPercent(new CallBack<Float>() {
+            @Override
+            public void call(Float data) {
+                view.setRating(data * 3);
+            }
+        });
         topicModel.getImage(new CallBack<Bitmap>() {
             @Override
             public void call(Bitmap data) {
@@ -27,7 +37,7 @@ public class TopicViewPresenter {
         });
     }
 
-    public String getTopicId() {
-        return topicModel.getId();
+    public void getTopicId(CallBack<String> cb) {
+        topicModel.getId(cb);
     }
 }

@@ -8,6 +8,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.company.banu.Backend;
+import com.company.banu.CallBack;
 import com.company.banu.R;
 import com.company.banu.WatchLectures.ActivityWatchLectures;
 
@@ -31,9 +32,14 @@ public class TopicViewHolder implements TopicView {
         imgTopic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(view.getContext(), ActivityWatchLectures.class);
-                intent.putExtra("topicId", topicViewPresenter.getTopicId());
-                view.getContext().startActivity(intent);
+                final Intent intent = new Intent(view.getContext(), ActivityWatchLectures.class);
+                topicViewPresenter.getTopicId(new CallBack<String>() {
+                    @Override
+                    public void call(String data) {
+                        intent.putExtra("topicId", data);
+                        view.getContext().startActivity(intent);
+                    }
+                });
             }
         });
     }

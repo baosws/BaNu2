@@ -10,9 +10,9 @@ public class LevelPresenter {
         this.model = new LevelModel(this);
     }
 
-    public void setLevel(Level level)
+    public void setLevel(ExcerciseLevel excerciseLevel)
     {
-        model.setLevel(level);
+        model.setExcerciseLevel(excerciseLevel);
     }
 
     public void updateUI()

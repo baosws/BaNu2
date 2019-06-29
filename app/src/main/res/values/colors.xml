@@ -16,7 +16,7 @@
     <color name="tab_background_selected">#3CA4FA</color>
     <color name="tab_background_unselected">#FFFFFF</color>
 
-    <!--Color for level exercises-->
+    <!--Color for excerciseLevel exercises-->
     <color name="beginner">#4CAF50</color>
     <color name="intermediate">#087DB3</color>
     <color name="advanced">#FF5722</color>

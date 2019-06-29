@@ -1,16 +1,24 @@
 package com.company.banu.Study;
 
-import android.app.Activity;
+import com.company.banu.CallBack;
+import com.company.banu.WatchLectures.LectureItem.Lecture;
 
 public class PresenterStudy {
-    Activity activity;
+    StudyView view;
     ModelStudy modelStudy;
-    public PresenterStudy(Activity activity) {
-        this.activity = activity;
-        modelStudy = new ModelStudy();
+    public PresenterStudy(StudyView view, Lecture lecture) {
+        this.view = view;
+        modelStudy = new ModelStudy(lecture);
+        init();
     }
 
-    public void bindLevelsToView() {
-
+    private void init() {
+        view.initUI(modelStudy.getLecture());
+        modelStudy.getLectureName(new CallBack<String>() {
+            @Override
+            public void call(String data) {
+                view.setTitle(data);
+            }
+        });
     }
 }

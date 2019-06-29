@@ -39,7 +39,7 @@ public class ListTopicAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Log.d("btag", "getView: ");
+        Log.d("btag", "ListTopicAdapter.getView");
         TopicViewHolder viewHolder;
         convertView = layoutInflater.inflate(R.layout.grid_detail_level_item_layout, null);
         viewHolder = new TopicViewHolder(convertView, topicList.get(position));

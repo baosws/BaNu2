@@ -55,7 +55,7 @@ public class ActivityWatchLectures extends AppCompatActivity implements WatchLec
         final LectureAdapter adapter = new LectureAdapter(this, lectures);
         rvLecture.setAdapter(adapter);
         for (Lecture lecture: lectures) {
-            lecture.addObserver("all", new CallBack<Lecture>() {
+            lecture.getAny(new CallBack<Lecture>() {
                 @Override
                 public void call(Lecture data) {
                     adapter.notifyDataSetChanged();

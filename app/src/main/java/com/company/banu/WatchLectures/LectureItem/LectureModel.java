@@ -1,5 +1,7 @@
 package com.company.banu.WatchLectures.LectureItem;
 
+import com.company.banu.CallBack;
+
 class LectureModel {
     LecturePresenter presenter;
     Lecture lecture;
@@ -11,15 +13,24 @@ class LectureModel {
         this.lecture = lecture;
     }
 
-    public String getId() {
-        return lecture.ord.toString();
+    public void getId(final CallBack<String> cb) {
+        lecture.getOrd(new CallBack<Integer>() {
+            @Override
+            public void call(Integer data) {
+                cb.call(data.toString());
+            }
+        });
     }
 
-    public String getName() {
-        return lecture.name;
+    public void getName(CallBack<String> cb) {
+        lecture.getName(cb);
     }
 
-    public float getPercent() {
-        return lecture.percent;
+    public void getPercent(CallBack<Float> cb) {
+        lecture.getPercent(cb);
+    }
+
+    public void getLectureId(CallBack<String> cb) {
+        lecture.getId(cb);
     }
 }

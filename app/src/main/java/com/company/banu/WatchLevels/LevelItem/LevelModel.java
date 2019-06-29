@@ -16,15 +16,15 @@ public class LevelModel {
         this.level = level;
     }
 
-    public Bitmap getImage() {
-        return level.image;
+    public void getImage(CallBack<Bitmap> cb) {
+        level.getImage(cb);
     }
 
-    public String getName() {
-        return level.name;
+    public void getName(CallBack<String> cb) {
+        level.getName(cb);
     }
 
-    public String getId() {
-        return level.id;
+    public void getId(CallBack<String> cb) {
+        level.getId(cb);
     }
 }

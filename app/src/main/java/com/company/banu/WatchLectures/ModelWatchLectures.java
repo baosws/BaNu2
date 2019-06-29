@@ -15,10 +15,10 @@ public class ModelWatchLectures {
     }
 
     public void getLectures(CallBack<ArrayList<Lecture>> cb) {
-        cb.call(topic.lectures);
+        topic.getLectures(cb);
     }
 
-    public String getTopicName() {
-        return topic.name;
+    public void getTopicName(CallBack<String> cb) {
+        topic.getName(cb);
     }
 }

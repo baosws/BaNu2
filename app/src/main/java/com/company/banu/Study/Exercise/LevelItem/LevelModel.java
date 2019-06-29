@@ -4,23 +4,23 @@ package com.company.banu.Study.Exercise.LevelItem;
 public class LevelModel {
 
     LevelPresenter presenter;
-    Level level;
+    ExcerciseLevel excerciseLevel;
 
     public LevelModel(LevelPresenter levelPresenter)
     {
         this.presenter = levelPresenter;
     }
 
-    public void setLevel(Level level){
-        this.level = level;
+    public void setExcerciseLevel(ExcerciseLevel excerciseLevel){
+        this.excerciseLevel = excerciseLevel;
     }
 
     public String getName(){
-        return level.name;
+        return excerciseLevel.name;
     }
 
     public int getColor()
     {
-        return level.color;
+        return excerciseLevel.color;
     }
 }

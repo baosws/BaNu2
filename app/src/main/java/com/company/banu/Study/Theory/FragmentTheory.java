@@ -1,5 +1,6 @@
 package com.company.banu.Study.Theory;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,7 +13,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.company.banu.Backend;
 import com.company.banu.R;
+import com.company.banu.Study.StudyFragment;
+import com.company.banu.WatchLectures.LectureItem.Lecture;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
@@ -20,11 +24,14 @@ import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import Universe.YoutubeUtils;
 
 
-public class FragmentTheory extends Fragment implements YouTubePlayer.OnInitializedListener {
+public class FragmentTheory extends StudyFragment implements YouTubePlayer.OnInitializedListener, TheoryView {
     View mRootView;
     TextView tvContentLecture;
-
-
+    TheoryPresenter presenter;
+    public FragmentTheory() {
+        super();
+        name = "Theory";
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,22 +42,23 @@ public class FragmentTheory extends Fragment implements YouTubePlayer.OnInitiali
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getViews();
-        showSummarize();
-        loadVideo();
+        Bundle args = getArguments();
+        String lectureId = args.getString("lectureId");
+        Lecture lecture = (Lecture)Backend.getCache(lectureId);
+        presenter = new TheoryPresenter(this, lecture);
     }
 
-    void getViews()
+    public void getViews()
     {
         tvContentLecture = mRootView.findViewById(R.id.tv_summarizeContent);
     }
 
-    void showSummarize()
+    public void showSummarize(String summary)
     {
-        tvContentLecture.setText("Hello!\nThis is Summarize Content" );
+        tvContentLecture.setText(summary);
     }
 
-    void loadVideo()
+    public void loadVideo()
     {
         YouTubePlayerSupportFragment youtubePlayerFragment = new YouTubePlayerSupportFragment();
         youtubePlayerFragment.initialize(getString(R.string.api_key), this);
@@ -62,13 +70,11 @@ public class FragmentTheory extends Fragment implements YouTubePlayer.OnInitiali
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-        if(!b){
-            youTubePlayer.cueVideo(YoutubeUtils.GetCueFromLink("https://youtu.be/Z14lqZRf2ZM"));
-        }
+        presenter.onInitializationSuccess(provider, youTubePlayer, b);
     }
 
     @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-        Toast.makeText(getActivity(),"fail",Toast.LENGTH_SHORT).show();
+        presenter.onInitializationFailure(provider, youTubeInitializationResult);
     }
 }

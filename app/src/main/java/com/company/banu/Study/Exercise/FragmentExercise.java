@@ -3,24 +3,31 @@ package com.company.banu.Study.Exercise;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.company.banu.Backend;
 import com.company.banu.R;
-import com.company.banu.Study.Exercise.LevelItem.Level;
-import com.company.banu.Study.Exercise.LevelItem.LevelAdapter;
+import com.company.banu.Study.Exercise.LevelItem.ExcerciseLevel;
+import com.company.banu.Study.Exercise.LevelItem.ExcerciseLevelAdapter;
+import com.company.banu.Study.StudyFragment;
+import com.company.banu.WatchLectures.LectureItem.Lecture;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentExercise extends Fragment {
+public class FragmentExercise extends StudyFragment implements ExcerciseView {
     View mRootView;
     RecyclerView rvLevelExercise;
+    ExercisePresenter presenter;
 
+    public FragmentExercise() {
+        super();
+        name = "Excercise";
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -31,26 +38,27 @@ public class FragmentExercise extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        this.getViews();
-        this.showLevelExercise();
+        Bundle args = getArguments();
+        String lectureId = args.getString("lectureId");
+        Lecture lecture = (Lecture)Backend.getCache(lectureId);
+        presenter = new ExercisePresenter(this, lecture);
     }
 
-    void getViews()
+    public void getViews()
     {
         rvLevelExercise = mRootView.findViewById(R.id.rv_levelExercises);
     }
 
-    void showLevelExercise()
-    {
-        List<Level> levelData = new ArrayList<>();
-        levelData.add(new Level("Beginner", getResources().getColor(R.color.beginner)));
-        levelData.add(new Level("Intermediate", getResources().getColor(R.color.intermediate)));
-        levelData.add(new Level("Advanced", getResources().getColor(R.color.advanced)));
+    public void showLevelExercise() {
+        List<ExcerciseLevel> excerciseLevelData = new ArrayList<>();
+        excerciseLevelData.add(new ExcerciseLevel("Beginner", getResources().getColor(R.color.beginner)));
+        excerciseLevelData.add(new ExcerciseLevel("Intermediate", getResources().getColor(R.color.intermediate)));
+        excerciseLevelData.add(new ExcerciseLevel("Advanced", getResources().getColor(R.color.advanced)));
 
-        LevelAdapter levelAdapter = new LevelAdapter(levelData);
+        ExcerciseLevelAdapter excerciseLevelAdapter = new ExcerciseLevelAdapter(excerciseLevelData);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mRootView.getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvLevelExercise.setLayoutManager(layoutManager);
-        rvLevelExercise.setAdapter(levelAdapter);
+        rvLevelExercise.setAdapter(excerciseLevelAdapter);
     }
 }

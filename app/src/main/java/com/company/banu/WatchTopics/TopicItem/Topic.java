@@ -1,53 +1,102 @@
 package com.company.banu.WatchTopics.TopicItem;
 
 import android.graphics.Bitmap;
-import android.util.Log;
 
 import com.company.banu.CallBack;
+import com.company.banu.Notifier.Notifier;
 import com.company.banu.WatchLectures.LectureItem.Lecture;
 import com.company.banu.WatchLevels.LevelItem.Level;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.concurrent.Semaphore;
 
-public class Topic {
-    Level level;
-    public String id;
-    public String name;
-    public Bitmap image;
-    public ArrayList<Lecture> lectures;
-    HashMap<String, ArrayList<CallBack<Topic>>> observers;
-    Semaphore semaphore;
+public class Topic extends Notifier<TopicEvent> {
+    private Level level;
+    private String id;
+    private String name;
+    private Bitmap image;
+    private ArrayList<Lecture> lectures;
     public Topic(Level level) {
         this.level = level;
         this.lectures = new ArrayList<>();
-        observers = new HashMap<>();
-        semaphore = new Semaphore(1);
     }
 
-    public Float getPercent() {
-        Float res = 0f;
+    public void getPercent(final CallBack<Float> cb) {
+        final Float[] res = {0f};
         for (Lecture lecture: lectures) {
-            res += lecture.getPercent();
+            lecture.getPercent(new CallBack<Float>() {
+                @Override
+                public void call(Float data) {
+                    res[0] += data;
+                }
+            });
         }
-        return res;
+        cb.call(res[0]);
     }
 
-    public void addObserver(String event, CallBack<Topic> cb) {
-        if (observers.containsKey(event) == false) {
-            observers.put(event, new ArrayList<CallBack<Topic>>());
-        }
-        observers.get(event).add(cb);
+    public void setName(String name) {
+        this.name = name;
+        notify(TopicEvent.HadName);
     }
 
-    public void notify(String event) {
-        if (observers.containsKey(event) == false) {
-            Log.d("btag", String.format("notifyDone: topic event not found: %s, %s", id, event));
-            return;
-        }
-        for (CallBack cb: observers.get(event)) {
-            cb.call(this);
+    public void getName(final CallBack<String> cb) {
+        addEvent(TopicEvent.HadName, new CallBack<Notifier>() {
+            @Override
+            public void call(Notifier data) {
+                cb.call(name);
+            }
+        });
+    }
+
+    public void setImage(Bitmap image) {
+        this.image = image;
+        notify(TopicEvent.HadImage);
+    }
+
+    public void getImage(final CallBack<Bitmap> cb) {
+        addEvent(TopicEvent.HadImage, new CallBack<Notifier>() {
+            @Override
+            public void call(Notifier data) {
+                cb.call(image);
+            }
+        });
+    }
+
+    public void setId(String id) {
+        this.id = id;
+        notify(TopicEvent.HadId);
+    }
+
+    public void getId(final CallBack<String> cb) {
+         addEvent(TopicEvent.HadId, new CallBack<Notifier>() {
+             @Override
+             public void call(Notifier data) {
+                 cb.call(id);
+             }
+         });
+    }
+
+    public void addLecture(Lecture lecture) {
+        lectures.add(lecture);
+        notify(TopicEvent.NewLecture);
+    }
+    public void setLectures(ArrayList<Lecture> lectures) {
+        this.lectures = lectures;
+        notify(TopicEvent.HadLectures);
+    }
+
+    public void getLectures(final CallBack<ArrayList<Lecture>> cb) {
+        addEvent(TopicEvent.HadLectures, new CallBack<Notifier>() {
+            @Override
+            public void call(Notifier data) {
+                cb.call(lectures);
+            }
+        });
+    }
+
+    public void getAny(CallBack cb) {
+        for (TopicEvent event: events.keySet()) {
+            addEvent(event, cb);
         }
     }
 }

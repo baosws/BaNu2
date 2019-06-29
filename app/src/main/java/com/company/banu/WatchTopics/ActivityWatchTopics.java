@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -12,12 +13,14 @@ import android.widget.TextView;
 
 import com.company.banu.Backend;
 import com.company.banu.CallBack;
+import com.company.banu.Notifier.Notifier;
 import com.company.banu.WatchLevels.LevelItem.Level;
 import com.company.banu.WatchTopics.TopicItem.ListTopicAdapter;
 import com.company.banu.WatchTopics.TopicItem.Topic;
 import com.company.banu.R;
 import com.company.banu.ShowProfile.ViewShowProfile;
 import com.company.banu.WatchLevels.ActivityWatchLevels;
+import com.company.banu.WatchTopics.TopicItem.TopicEvent;
 import com.github.abdularis.civ.AvatarImageView;
 
 import java.util.List;
@@ -64,11 +67,12 @@ public class ActivityWatchTopics extends AppCompatActivity implements WatchTopic
 
     public void loadGridViewListTopics(List<Topic> topics)
     {
+        Log.d("btag", "loadGridViewListTopics: len = " + topics.size());
         final ListTopicAdapter listTopicAdapter = new ListTopicAdapter(this, topics);
         for (Topic topic: topics) {
-            topic.addObserver("image", new CallBack<Topic>() {
+            topic.getAny(new CallBack<Notifier>() {
                 @Override
-                public void call(Topic data) {
+                public void call(Notifier data) {
                     listTopicAdapter.notifyDataSetChanged();
                     gridViewListTopic.invalidate();
                 }
@@ -82,5 +86,9 @@ public class ActivityWatchTopics extends AppCompatActivity implements WatchTopic
     }
     public void loadAvatar(Bitmap bitmap) {
         avatarImageView.setImageBitmap(bitmap);
+    }
+
+    public void setLevelName(String name) {
+        tvLevelName.setText(name);
     }
 }

@@ -1,5 +1,9 @@
 package com.company.banu.WatchLevels.LevelItem;
 
+import android.graphics.Bitmap;
+
+import com.company.banu.CallBack;
+
 public class LevelPresenter {
     LevelView view;
     LevelModel levelModel;
@@ -8,16 +12,26 @@ public class LevelPresenter {
         assert level != null;
         this.view = view;
         levelModel = new LevelModel(this, level);
-        view.getViews();
         init();
     }
 
     private void init() {
-        view.setName(levelModel.getName());
-        view.setImage(levelModel.getImage());
+        view.getViews();
+        levelModel.getName(new CallBack<String>() {
+            @Override
+            public void call(String data) {
+                view.setName(data);
+            }
+        });
+        levelModel.getImage(new CallBack<Bitmap>() {
+            @Override
+            public void call(Bitmap data) {
+                view.setImage(data);
+            }
+        });
     }
 
-    public String getLevelId() {
-        return levelModel.getId();
+    public void getLevelId(CallBack<String> cb) {
+        levelModel.getId(cb);
     }
 }

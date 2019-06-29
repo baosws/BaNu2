@@ -46,10 +46,9 @@ public class ActivityWatchLevels extends AppCompatActivity implements WatchLevel
     {
         final ListLevelAdapter listLevelAdapter = new ListLevelAdapter(this, levels);
         for (Level level: levels) {
-            level.addObserver("done", new CallBack<Level>() {
+            level.getAny(new CallBack<Level>() {
                 @Override
                 public void call(Level data) {
-                    Log.d("btag", String.format("observer call: %s", data.id));
                     listLevelAdapter.notifyDataSetChanged();
                     gridView_listLevel.invalidate();
                 }
@@ -61,8 +60,8 @@ public class ActivityWatchLevels extends AppCompatActivity implements WatchLevel
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Level selectedItem = (Level) gridView_listLevel.getItemAtPosition(position);
-                Toast.makeText(ActivityWatchLevels.this, "Selected :"
-                        + selectedItem.name, Toast.LENGTH_LONG).show();
+//                Toast.makeText(ActivityWatchLevels.this, "Selected :"
+//                        + selectedItem.name, Toast.LENGTH_LONG).show();
             }
         });
 

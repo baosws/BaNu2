@@ -13,12 +13,12 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ShowProfileSetting.ViewShowProfileSetting" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".WatchLevels.ActivityWatchLevels" />
+        <activity android:name=".Quiz.QuizView" />
         <activity android:name=".WatchLectures.ActivityWatchLectures" />
-        <activity android:name=".Study.ViewStudy" />
+        <activity android:name=".Study.ActivityStudy" />
         <activity android:name=".WatchTopics.ActivityWatchTopics" />
 
-        <activity android:name=".Quiz.QuizView">
+        <activity android:name=".WatchLevels.ActivityWatchLevels">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

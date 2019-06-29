@@ -13,22 +13,19 @@ class TopicModel {
         assert topic != null;
     }
 
-    public String getName() {
-        Log.d("btag", String.format("getName: %s", topic.name));
-        return topic.name;
+    public void getName(CallBack<String> cb) {
+        topic.getName(cb);
     }
 
-    public void getImage(CallBack<Bitmap> cb) {
-        Backend.downloadImage("topics/"
-        + topic.id
-        + ".jpg", cb);
+    public void getImage(final CallBack<Bitmap> cb) {
+        topic.getImage(cb);
     }
 
-    public String getId() {
-        return topic.id;
+    public void getId(CallBack<String> cb) {
+        topic.getId(cb);
     }
 
-    public float getPercent() {
-        return topic.getPercent();
+    public void getPercent(CallBack<Float> cb) {
+        topic.getPercent(cb);
     }
 }

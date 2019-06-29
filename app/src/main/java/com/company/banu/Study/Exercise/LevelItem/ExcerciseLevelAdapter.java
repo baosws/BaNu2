@@ -11,13 +11,13 @@ import com.company.banu.R;
 import java.util.List;
 
 
-public class LevelAdapter extends RecyclerView.Adapter<LevelHolder> {
-    List<Level> levelList;
+public class ExcerciseLevelAdapter extends RecyclerView.Adapter<LevelHolder> {
+    List<ExcerciseLevel> excerciseLevelList;
 
 
-    public LevelAdapter(List<Level> data)
+    public ExcerciseLevelAdapter(List<ExcerciseLevel> data)
     {
-        levelList = data;
+        excerciseLevelList = data;
     }
 
     @NonNull
@@ -30,13 +30,13 @@ public class LevelAdapter extends RecyclerView.Adapter<LevelHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull LevelHolder viewHolder, int i) {
-        Level level = levelList.get(i);
-        viewHolder.bind(level);
+        ExcerciseLevel excerciseLevel = excerciseLevelList.get(i);
+        viewHolder.bind(excerciseLevel);
     }
 
     @Override
     public int getItemCount() {
-        return levelList.size();
+        return excerciseLevelList.size();
     }
 
 

@@ -1,5 +1,6 @@
 package com.company.banu.WatchLectures.LectureItem;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -7,7 +8,9 @@ import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.company.banu.CallBack;
 import com.company.banu.R;
+import com.company.banu.Study.ActivityStudy;
 
 public class LectureHolder extends RecyclerView.ViewHolder implements LectureView {
     TextView tvLectureID;
@@ -30,6 +33,14 @@ public class LectureHolder extends RecyclerView.ViewHolder implements LectureVie
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final Intent intent = new Intent(itemView.getContext(), ActivityStudy.class);
+                lecturePresenter.getLectureId(new CallBack<String>() {
+                    @Override
+                    public void call(String data) {
+                        intent.putExtra("lectureId", data);
+                        itemView.getContext().startActivity(intent);
+                    }
+                });
             }
         });
     }

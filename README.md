@@ -18,11 +18,11 @@
 - [x] Giao diện
 - [x] Đăng nhập + Đăng kí: sử dụng ui đăng kí firebase
 
-**Màn hình home (level):**
+**Màn hình home (excerciseLevel):**
 
 - [x] Giao diện
 - [x] Thể hiện avatar
-- [x] Load dữ liệu level
+- [x] Load dữ liệu excerciseLevel
 
 **Màn hình profile:**
 
@@ -36,7 +36,7 @@
 - [x] Load thông tin user
 - [ ] Cài thông báo nhắc nhở
 
-**Màn hình chi tiết level (topic):**
+**Màn hình chi tiết excerciseLevel (topic):**
 
 - [x] Giao diện
 - [x] Load dữ liệu các topic

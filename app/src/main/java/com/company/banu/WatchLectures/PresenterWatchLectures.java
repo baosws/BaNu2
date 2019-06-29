@@ -24,6 +24,11 @@ public class PresenterWatchLectures {
                 view.showLectures(data);
             }
         });
-        view.setTitle(modelWatchLectures.getTopicName());
+        modelWatchLectures.getTopicName(new CallBack<String>() {
+            @Override
+            public void call(String data) {
+                view.setTitle(data);
+            }
+        });
     }
 }

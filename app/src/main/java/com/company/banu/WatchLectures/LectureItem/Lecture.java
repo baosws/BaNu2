@@ -1,46 +1,83 @@
 package com.company.banu.WatchLectures.LectureItem;
 
-import android.util.Log;
+import android.content.Intent;
+import android.telecom.Call;
 
 import com.company.banu.CallBack;
+import com.company.banu.Notifier.Notifier;
 import com.company.banu.WatchTopics.TopicItem.Topic;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-public class Lecture {
-    public Topic topic;
-    public String name;
-    public String id;
-    public Float percent;
-    public Integer ord;
-    public Boolean isLock;
-    HashMap<String, ArrayList<CallBack<Lecture>>> observers;
+public class Lecture extends Notifier<LectureEvent> {
+    private Topic topic;
+    private String name;
+    private String id;
+    Float percent;
+    private Integer ord;
 
     public Lecture(Topic topic)
     {
         this.topic = topic;
-        observers = new HashMap<>();
     }
 
-    public Float getPercent() {
-        return percent;
+    public void setName(String name) {
+        this.name = name;
+        notify(LectureEvent.HadName);
     }
 
-    public void addObserver(String event, CallBack<Lecture> cb) {
-        if (observers.containsKey(event) == false) {
-            observers.put(event, new ArrayList<CallBack<Lecture>>());
-        }
-        observers.get(event).add(cb);
+    public void getName(final CallBack<String> cb) {
+        addEvent(LectureEvent.HadName, new CallBack<Notifier>() {
+            @Override
+            public void call(Notifier data) {
+                cb.call(name);
+            }
+        });
     }
 
-    public void notify(String event) {
-        if (observers.containsKey(event) == false) {
-            Log.d("btag", String.format("notifyDone: lecture event not found: %s, %s", id, event));
-            return;
-        }
-        for (CallBack cb: observers.get(event)) {
-            cb.call(this);
+    public void setId(String id) {
+        this.id = id;
+        notify(LectureEvent.HadId);
+    }
+
+    public void getId(final CallBack<String> cb) {
+        addEvent(LectureEvent.HadId, new CallBack<Notifier>() {
+            @Override
+            public void call(Notifier data) {
+                cb.call(id);
+            }
+        });
+    }
+
+    public void setPercent(Float percent) {
+        this.percent = percent;
+        notify(LectureEvent.HadPercent);
+    }
+
+    public void getPercent(final CallBack<Float> cb) {
+        addEvent(LectureEvent.HadPercent, new CallBack<Notifier>() {
+            @Override
+            public void call(Notifier data) {
+                cb.call(percent);
+            }
+        });
+    }
+
+    public void setOrd(Integer ord) {
+        this.ord = ord;
+        notify(LectureEvent.HadOrd);
+    }
+
+    public void getOrd(final CallBack<Integer> cb) {
+        addEvent(LectureEvent.HadOrd, new CallBack<Notifier>() {
+            @Override
+            public void call(Notifier data) {
+                cb.call(ord);
+            }
+        });
+    }
+
+    public void getAny(CallBack<Lecture> cb) {
+        for (LectureEvent event: events.keySet()) {
+            addEvent(event, cb);
         }
     }
 }

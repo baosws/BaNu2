@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 
 import com.company.banu.Backend;
 import com.company.banu.CallBack;
+import com.company.banu.Notifier.Notifier;
+import com.company.banu.WatchLevels.LevelItem.LevelEvent;
 import com.company.banu.WatchTopics.TopicItem.Topic;
 import com.company.banu.WatchLevels.LevelItem.Level;
 
@@ -20,10 +22,14 @@ public class WatchTopicsModel {
     }
 
     void getTopics(final CallBack<ArrayList<Topic>> cb) {
-        cb.call(level.topics);
+        level.getTopics(cb);
     }
 
-    public Float getPercent() {
-        return level.getPercent();
+    public void getPercent(CallBack<Float> cb) {
+        level.getPercent(cb);
+    }
+
+    public void getName(CallBack<String> cb) {
+        level.getName(cb);
     }
 }

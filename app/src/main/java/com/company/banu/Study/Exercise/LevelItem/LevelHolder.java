@@ -23,8 +23,8 @@ public class LevelHolder extends RecyclerView.ViewHolder implements LevelView {
     }
 
     @Override
-    public void bind(Level level) {
-        presenter.setLevel(level);
+    public void bind(ExcerciseLevel excerciseLevel) {
+        presenter.setLevel(excerciseLevel);
         presenter.updateUI();
     }
 

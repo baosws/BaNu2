@@ -4,46 +4,101 @@ import android.graphics.Bitmap;
 import android.util.Log;
 
 import com.company.banu.CallBack;
-import com.company.banu.WatchLectures.LectureItem.Lecture;
+import com.company.banu.Notifier.Notifier;
 import com.company.banu.WatchTopics.TopicItem.Topic;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.concurrent.Semaphore;
 
-public class Level {
-    public String id;
-    public String name;
-    public Bitmap image;
-    public ArrayList<Topic> topics;
-    HashMap<String, ArrayList<CallBack<Level>>> observers;
+public class Level extends Notifier<LevelEvent> {
+    private String id;
+    private String name;
+    private Bitmap image;
+    private ArrayList<Topic> topics;
     public Level() {
-        observers = new HashMap<>();
+        super();
         topics = new ArrayList<>();
     }
 
-    public Float getPercent() {
-        Float res = 0f;
+    public void getPercent(final CallBack<Float> cb) {
+        final Float[] res = {0f};
         for (Topic topic: topics) {
-            res += topic.getPercent();
+            topic.getPercent(new CallBack<Float>() {
+                @Override
+                public void call(Float data) {
+                    res[0] += data;
+                }
+            });
         }
-        return res;
+        cb.call(res[0]);
     }
 
-    public void addObserver(String event, CallBack<Level> cb) {
-        if (observers.containsKey(event) == false) {
-            observers.put(event, new ArrayList<CallBack<Level>>());
-        }
-        observers.get(event).add(cb);
+    public void setId(String id) {
+        this.id = id;
+        notify(LevelEvent.HadId);
     }
 
-    public void notify(String event) {
-        if (observers.containsKey(event) == false) {
-            Log.d("btag", String.format("notifyDone: topic event not found: %s, %s", id, event));
-            return;
-        }
-        for (CallBack cb: observers.get(event)) {
-            cb.call(this);
+    public void getId(final CallBack<String> cb) {
+        addEvent(LevelEvent.HadId, new CallBack<Notifier>() {
+            @Override
+            public void call(Notifier data) {
+                cb.call(id);
+            }
+        });
+    }
+
+    public void setName(String name) {
+        this.name = name;
+        notify(LevelEvent.HadName);
+    }
+
+    public void getName(final CallBack<String> cb) {
+        addEvent(LevelEvent.HadName, new CallBack<Notifier>() {
+            @Override
+            public void call(Notifier data) {
+                cb.call(name);
+            }
+        });
+    }
+
+    public void setImage(Bitmap image) {
+        this.image = image;
+        notify(LevelEvent.HadImage);
+    }
+
+    public void getImage(final CallBack<Bitmap> cb) {
+        addEvent(LevelEvent.HadImage, new CallBack<Notifier>() {
+            @Override
+            public void call(Notifier data) {
+                cb.call(image);
+            }
+        });
+    }
+
+    public void addTopic(Topic topic) {
+        this.topics.add(topic);
+        notify(LevelEvent.NewTopic);
+    }
+
+    public void setTopics(ArrayList<Topic> topics) {
+        Log.d("btag", String.format("Level:setTopics: name = %s, size = %d", name, topics.size()));
+        this.topics = topics;
+        notify(LevelEvent.HadTopics);
+    }
+
+    public void getTopics(final CallBack<ArrayList<Topic>> cb) {
+        Log.d("btag", String.format("Level:getTopics: name = %s, id = %s", name, id));
+        addEvent(LevelEvent.HadTopics, new CallBack<Notifier>() {
+            @Override
+            public void call(Notifier data) {
+                Log.d("btag", "got topics: size = " + topics.size());
+                cb.call(topics);
+            }
+        });
+    }
+
+    public void getAny(CallBack cb) {
+        for (LevelEvent event: events.keySet()) {
+            addEvent(event, cb);
         }
     }
 }

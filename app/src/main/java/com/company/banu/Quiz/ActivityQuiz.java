@@ -5,14 +5,17 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.company.banu.Backend;
 import com.company.banu.CallBack;
 import com.company.banu.Classifier;
@@ -39,6 +42,9 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
     ImageView imgQuestion;
     @BindView(R.id.btn_done)
     Button btnDone;
+    @BindView(R.id.btn_clear)
+    Button btnClear;
+
 
     QuizPresenter presenter;
     Dialog dialog;
@@ -81,19 +87,26 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bitmap bitmap = fpvPaint.exportToBitmap();
+                Bitmap bitmap = fpvPaint.exportToBitmap(Classifier.IMG_WIDTH, Classifier.IMG_HEIGHT);
                 presenter.check(bitmap);
             }
         });
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("btag", String.format("ActivityQuiz:onClick: clicked"));
+                fpvPaint.clear();
+            }
+        });
 
-        Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
-        p.setDither(true);
-        p.setColor(Color.BLACK);
-        p.setStyle(Paint.Style.STROKE);
-        p.setStrokeJoin(Paint.Join.ROUND);
-        p.setStrokeCap(Paint.Cap.ROUND);
-        p.setStrokeWidth(21);
-        fpvPaint.setPen(p);
+//        Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
+//        p.setDither(true);
+//        p.setColor(Color.BLACK);
+//        p.setStyle(Paint.Style.STROKE);
+//        p.setStrokeJoin(Paint.Join.ROUND);
+//        p.setStrokeCap(Paint.Cap.ROUND);
+//        p.setStrokeWidth(21);
+//        fpvPaint.setPen(p);
     }
 
     @Override

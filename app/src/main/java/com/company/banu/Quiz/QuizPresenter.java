@@ -53,7 +53,7 @@ public class QuizPresenter {
     public void check(Bitmap bitmap) {
         Result result = model.check(bitmap);
         final String out = String.valueOf(result.getNumber());
-        Log.d("btag", String.format("QuizPresenter:check: out = %s", out));
+        Log.d("btag", String.format("QuizPresenter:check: out = %s, conf = %f, %d", out, result.getProbability(), result.getTimeCost()));
         model.getExcercise(current, new CallBack<Excercise>() {
             @Override
             public void call(Excercise data) {

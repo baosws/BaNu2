@@ -63,12 +63,11 @@
 
     <com.nex3z.fingerpaintview.FingerPaintView
         android:id="@+id/fpv_paint"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:layout_weight="1"
-        android:background="@drawable/paint_view_border"/>
+        android:background="@drawable/paint_view_border" />
 
 
     <LinearLayout

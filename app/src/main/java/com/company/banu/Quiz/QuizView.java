@@ -55,8 +55,8 @@ public class QuizView extends AppCompatActivity {
     void showDialog()
     {
         dialog = new Dialog(QuizView.this);
-//        dialog.setTitle("Hehe");
         dialog.setContentView(R.layout.dialog_quiz);
+
         dialog.show();
     }
 }

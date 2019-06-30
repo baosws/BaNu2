@@ -5,7 +5,10 @@ import com.company.banu.CallBack;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ModelShowProfile {
-    public ModelShowProfile() {
+    PresenterShowProfile presenter;
+
+    public ModelShowProfile(PresenterShowProfile presenter) {
+        this.presenter = presenter;
     }
     public void getAvatar(CallBack cb) {
         Backend.downloadAvatar(cb);

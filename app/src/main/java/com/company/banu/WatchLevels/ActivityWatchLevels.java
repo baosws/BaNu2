@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.company.banu.CallBack;
 import com.company.banu.R;
+import com.company.banu.ShowProfile.ShowProfileActivity;
 import com.company.banu.ShowProfile.ViewShowProfile;
 import com.company.banu.WatchLevels.LevelItem.Level;
 import com.company.banu.WatchLevels.LevelItem.ListLevelAdapter;
@@ -68,7 +69,7 @@ public class ActivityWatchLevels extends AppCompatActivity implements WatchLevel
         avatarImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ViewShowProfile.class));
+                startActivity(new Intent(getApplicationContext(), ShowProfileActivity.class));
             }
         });
     }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.company.banu.ShowProfile.ShowProfileActivity;
 import com.company.banu.ShowProfile.ViewShowProfile;
 import com.company.banu.SignIn.ViewSignIn;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        startActivity(new Intent(this, ViewShowProfile.class));
+        startActivity(new Intent(this, ShowProfileActivity.class));
         finish();
     }
 

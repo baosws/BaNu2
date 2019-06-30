@@ -18,8 +18,8 @@
             android:layout_height="200dp">
 
             <com.github.abdularis.civ.AvatarImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_alignParentRight="true"
                 android:id="@+id/imv_avatar"
                 android:src="@drawable/avatar"
@@ -27,6 +27,9 @@
                 app:view_state="IMAGE"
                 app:strokeWidth="1dp"
                 android:padding="10dp"
+                android:focusableInTouchMode="true"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 />
 
 

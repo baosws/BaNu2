@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.company.banu.CallBack;
 import com.company.banu.R;
 import com.company.banu.WatchTopics.ActivityWatchTopics;
@@ -42,7 +43,10 @@ public class LevelHolder implements LevelView {
         tvLevel = view.findViewById(R.id.tv_item_levelName);
     }
     public void setImage(Bitmap bitmap) {
-        imgLevel.setImageBitmap(bitmap);
+        Glide.with(view.getContext())
+                .load(bitmap)
+                .into(imgLevel);
+//        imgLevel.setImageBitmap(bitmap);
     }
     public void setName(String name) {
         tvLevel.setText(name);

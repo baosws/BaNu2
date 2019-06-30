@@ -46,7 +46,6 @@ public class LevelHolder implements LevelView {
         Glide.with(view.getContext())
                 .load(bitmap)
                 .into(imgLevel);
-//        imgLevel.setImageBitmap(bitmap);
     }
     public void setName(String name) {
         tvLevel.setText(name);

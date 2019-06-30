@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.company.banu.Backend;
 import com.company.banu.CallBack;
 import com.company.banu.R;
@@ -51,7 +52,9 @@ public class TopicViewHolder implements TopicView {
 
     @Override
     public void setImage(Bitmap bitmap) {
-        imgTopic.setImageBitmap(bitmap);
+        Glide.with(view.getContext())
+                .load(bitmap)
+                .into(imgTopic);
     }
 
     @Override

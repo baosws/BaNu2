@@ -87,10 +87,12 @@ public class ShowProfileActivity extends AppCompatActivity implements ViewShowPr
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch(requestCode) {
             case PICK_IMAGE_ID:
+                Log.d("Nunu", data.getData().toString());
                 Bitmap bitmap = ImagePicker.getImageFromResult(this, resultCode, data);
                 Glide.with(this)
                         .load(bitmap)
                         .into(avatarImageView);
+                presenterShowProfile.uploadAvatar(bitmap);
                 break;
             default:
                 super.onActivityResult(requestCode, resultCode, data);

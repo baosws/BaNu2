@@ -37,4 +37,9 @@ public class PresenterShowProfile {
         viewShowProfile.setUserName(modelShowProfile.getUserName());
     }
 
+    public void uploadAvatar(Bitmap avatar)
+    {
+        this.modelShowProfile.uploadAvatar("avatars/" + modelShowProfile.getUID()+ ".jpg", avatar);
+    }
+
 }

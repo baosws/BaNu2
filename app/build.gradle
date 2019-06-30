@@ -53,6 +53,9 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.nex3z:finger-paint-view:0.1.0'
     implementation 'org.tensorflow:tensorflow-lite:1.13.1'
+
+    implementation 'com.github.esafirm.android-image-picker:imagepicker:1.13.1'
+    implementation 'com.github.esafirm.android-image-picker:rximagepicker:1.13.1'
 }
 apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin
 

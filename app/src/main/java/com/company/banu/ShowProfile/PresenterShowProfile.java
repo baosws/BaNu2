@@ -3,6 +3,7 @@ package com.company.banu.ShowProfile;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.view.Display;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -15,47 +16,25 @@ import com.company.banu.WatchLevels.ActivityWatchLevels;
 import com.github.abdularis.civ.AvatarImageView;
 
 public class PresenterShowProfile {
-    Activity activity;
-    AvatarImageView avatarImageView;
-    TextView textViewUserName;
-    TextView textViewEmail;
-    TextView textViewPassword;
-    ImageView imageViewSetting;
-    ImageButton btnHome;
     ModelShowProfile modelShowProfile;
+    ViewShowProfile viewShowProfile;
 
-    public PresenterShowProfile(Activity activity) {
-        this.activity = activity;
-        modelShowProfile = new ModelShowProfile();
-        bindViews();
+    public PresenterShowProfile(ViewShowProfile view) {
+        this.viewShowProfile = view;
+        modelShowProfile = new ModelShowProfile(this);
+        init();
     }
 
-    private void bindViews() {
-        avatarImageView = activity.findViewById(R.id.imv_avatar);
-        btnHome = activity.findViewById(R.id.btn_home);
-        imageViewSetting = activity.findViewById(R.id.ivSettings);
-        textViewUserName = activity.findViewById(R.id.tvUserName);
-
-        textViewUserName.setText(modelShowProfile.getUserName());
-        modelShowProfile.getAvatar(new CallBack<Bitmap>() {
+    public void init()
+    {
+        modelShowProfile.getAvatar(new CallBack() {
             @Override
-            public void call(Bitmap data) {
-                avatarImageView.setImageBitmap(data);
+            public void call(Object data) {
+                viewShowProfile.setAvatar((Bitmap) data);
             }
         });
 
-        imageViewSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activity.startActivity(new Intent(activity, ViewShowProfileSetting.class));
-            }
-        });
-
-        btnHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activity.startActivity(new Intent(activity, ActivityWatchLevels.class));
-            }
-        });
+        viewShowProfile.setUserName(modelShowProfile.getUserName());
     }
+
 }

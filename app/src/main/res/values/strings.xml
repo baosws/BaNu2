@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">BaNu</string>
     <string name="api_key">AIzaSyBtAeHTAXOLEMN3YEsmr9zKk086GJHvPMs</string>
+    <string name="pick_image_intent_text">Select you avatar</string>
 </resources>

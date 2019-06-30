@@ -17,7 +17,6 @@
         <activity android:name=".WatchLectures.ActivityWatchLectures" />
         <activity android:name=".Study.ActivityStudy" />
         <activity android:name=".WatchTopics.ActivityWatchTopics" />
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,6 +1,7 @@
 package com.company.banu.ShowProfile;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageButton;
@@ -13,6 +14,6 @@ import com.github.abdularis.civ.AvatarImageView;
 import butterknife.BindView;
 
 public interface ViewShowProfile {
-    void initViews();
-
+    void setAvatar(Bitmap img);
+    void setUserName(String userName);
 }

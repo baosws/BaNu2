@@ -2,10 +2,13 @@ package com.company.banu.Quiz;
 
 import android.app.Dialog;
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import com.company.banu.CallBack;
+import com.company.banu.Classifier;
 import com.company.banu.Notifier.Notifier;
 import com.company.banu.R;
+import com.company.banu.Result;
 
 import java.util.ArrayList;
 
@@ -14,9 +17,9 @@ public class QuizPresenter {
     QuizModel model;
     int current = 0;
 
-    public QuizPresenter(QuizView view) {
+    public QuizPresenter(QuizView view, Classifier classifier) {
         this.view = view;
-        model = new QuizModel();
+        model = new QuizModel(classifier);
     }
 
     public void init() {
@@ -43,7 +46,18 @@ public class QuizPresenter {
                         view.setImage(data);
                     }
                 });
+            }
+        });
+    }
 
+    public void check(Bitmap bitmap) {
+        Result result = model.check(bitmap);
+        final String out = String.valueOf(result.getNumber());
+        Log.d("btag", String.format("QuizPresenter:check: out = %s", out));
+        model.getExcercise(current, new CallBack<Excercise>() {
+            @Override
+            public void call(Excercise data) {
+                model.check(out, data);
             }
         });
     }

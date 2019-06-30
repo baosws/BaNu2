@@ -5,24 +5,24 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.company.banu.Backend;
 import com.company.banu.CallBack;
+import com.company.banu.Classifier;
 import com.company.banu.R;
 import com.company.banu.WatchLectures.LectureItem.Lecture;
 import com.nex3z.fingerpaintview.FingerPaintView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.Semaphore;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,15 +37,24 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
     ImageButton btnPause;
     @BindView(R.id.img_question)
     ImageView imgQuestion;
+    @BindView(R.id.btn_done)
+    Button btnDone;
 
     QuizPresenter presenter;
     Dialog dialog;
+
+    Classifier classifier;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_view);
         presenter = new QuizPresenter(this);
+        try {
+            classifier = new Classifier(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         presenter.init();
     }
 
@@ -68,6 +77,13 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
             @Override
             public void onClick(View v) {
                 presenter.onPause();
+            }
+        });
+        btnDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bitmap bitmap = fpvPaint.exportToBitmap();
+                presenter.check(bitmap);
             }
         });
 

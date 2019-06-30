@@ -3,13 +3,17 @@ package com.company.banu.Quiz;
 import android.graphics.Bitmap;
 
 import com.company.banu.CallBack;
+import com.company.banu.Classifier;
 import com.company.banu.Notifier.Notifier;
+import com.company.banu.Result;
 
 import java.util.ArrayList;
 
 public class QuizModel extends Notifier<QuizEvent> {
     ArrayList<Excercise> excercises;
-    public QuizModel() {
+    Classifier classifier;
+    public QuizModel(Classifier classifier) {
+        this.classifier = classifier;
     }
 
     public void setExcercises(ArrayList<Excercise> excercises) {
@@ -31,6 +35,19 @@ public class QuizModel extends Notifier<QuizEvent> {
             @Override
             public void call(ArrayList<Excercise> data) {
                 cb.call(data.get(i));
+            }
+        });
+    }
+
+    public Result check(Bitmap bitmap) {
+        return classifier.classify(bitmap);
+    }
+
+    public void check(final String out, final Excercise excercise) {
+        excercise.getAnswer(new CallBack<String>() {
+            @Override
+            public void call(String data) {
+                excercise.setPassed(data.equals(out));
             }
         });
     }

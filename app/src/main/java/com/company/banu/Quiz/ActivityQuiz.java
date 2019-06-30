@@ -49,9 +49,8 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_view);
-        presenter = new QuizPresenter(this);
         try {
-            classifier = new Classifier(this);
+            presenter = new QuizPresenter(this, new Classifier(this));
         } catch (IOException e) {
             e.printStackTrace();
         }

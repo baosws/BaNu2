@@ -1,18 +1,18 @@
 package com.company.banu.ShowProfile;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.company.banu.R;
+import com.github.abdularis.civ.AvatarImageView;
 
-public class ViewShowProfile extends AppCompatActivity {
-    static int layoutId = R.layout.activity_profile;
-    PresenterShowProfile presenterShowProfile;
+import butterknife.BindView;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(layoutId);
-        presenterShowProfile = new PresenterShowProfile(this);
-    }
+public interface ViewShowProfile {
+    void initViews();
+
 }

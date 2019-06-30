@@ -5,23 +5,24 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.company.banu.Backend;
 import com.company.banu.CallBack;
+import com.company.banu.Classifier;
 import com.company.banu.R;
 import com.company.banu.WatchLectures.LectureItem.Lecture;
 import com.nex3z.fingerpaintview.FingerPaintView;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.Semaphore;
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,15 +37,23 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
     ImageButton btnPause;
     @BindView(R.id.img_question)
     ImageView imgQuestion;
+    @BindView(R.id.btn_done)
+    Button btnDone;
 
     QuizPresenter presenter;
     Dialog dialog;
+
+    Classifier classifier;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_view);
-        presenter = new QuizPresenter(this);
+        try {
+            presenter = new QuizPresenter(this, new Classifier(this));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         presenter.init();
     }
 
@@ -52,29 +61,10 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
         Intent intent = getIntent();
         Lecture lecture = (Lecture)Backend.getCache(intent.getStringExtra("lectureId"));
         final String level = (String)intent.getStringExtra("level");
-        lecture.getExcercises(new CallBack<ArrayList<Excercise>>() {
+        lecture.getExcercises(new CallBack<HashMap<QuizLevel, ArrayList<Excercise>>>() {
             @Override
-            public void call(ArrayList<Excercise> data) {
-                final ArrayList<Excercise> excercises = new ArrayList<>();
-                final Semaphore semaphore = new Semaphore(1);
-                for (final Excercise excercise: excercises) {
-                    excercise.getLevel(new CallBack<QuizLevel>() {
-                        @Override
-                        public void call(QuizLevel data) {
-                            Log.d("btag", String.format("ActivityQuiz:call: %s", data.toString()));
-                            if (data.toString().equalsIgnoreCase(level)) {
-                                try {
-                                    semaphore.acquire();
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                                excercises.add(excercise);
-                                semaphore.release();
-                            }
-                        }
-                    });
-                }
-                presenter.setExcercises(excercises);
+            public void call(HashMap<QuizLevel, ArrayList<Excercise>> data) {
+                presenter.setExcercises(data.get(QuizLevel.valueOf(level)));
             }
         });
     }
@@ -86,6 +76,13 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
             @Override
             public void onClick(View v) {
                 presenter.onPause();
+            }
+        });
+        btnDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bitmap bitmap = fpvPaint.exportToBitmap();
+                presenter.check(bitmap);
             }
         });
 

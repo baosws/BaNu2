@@ -1,8 +1,8 @@
 package com.company.banu.WatchLevels;
 
 public class MediaResource {
-    public String name;
-    public String url;
+    private String name;
+    private String url;
     public MediaResource(String name, String url) {
         this.name = name;
         this.url = url;

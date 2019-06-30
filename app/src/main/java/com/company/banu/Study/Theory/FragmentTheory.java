@@ -58,7 +58,7 @@ public class FragmentTheory extends StudyFragment implements YouTubePlayer.OnIni
         tvContentLecture.setText(summary);
     }
 
-    public void loadVideo()
+    public void initVideo()
     {
         YouTubePlayerSupportFragment youtubePlayerFragment = new YouTubePlayerSupportFragment();
         youtubePlayerFragment.initialize(getString(R.string.api_key), this);

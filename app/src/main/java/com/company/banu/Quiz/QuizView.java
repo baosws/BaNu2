@@ -6,6 +6,5 @@ public interface QuizView {
     void getViews();
     void showDialog();
     void setImage(Bitmap bitmap);
-
     void getData();
 }

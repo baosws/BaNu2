@@ -70,6 +70,7 @@
         android:layout_weight="1"
         android:background="@drawable/paint_view_border"/>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -111,5 +112,4 @@
 
     </LinearLayout>
     
-
 </LinearLayout>

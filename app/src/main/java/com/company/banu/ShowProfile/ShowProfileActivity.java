@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.company.banu.R;
 import com.company.banu.ShowProfileSetting.ViewShowProfileSetting;
 import com.company.banu.WatchLevels.ActivityWatchLevels;
@@ -26,6 +27,7 @@ import com.github.abdularis.civ.AvatarImageView;
 
 
 import Universe.ImagePicker;
+import Universe.ImageUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -86,7 +88,9 @@ public class ShowProfileActivity extends AppCompatActivity implements ViewShowPr
         switch(requestCode) {
             case PICK_IMAGE_ID:
                 Bitmap bitmap = ImagePicker.getImageFromResult(this, resultCode, data);
-                avatarImageView.setImageBitmap(bitmap);
+                Glide.with(this)
+                        .load(bitmap)
+                        .into(avatarImageView);
                 break;
             default:
                 super.onActivityResult(requestCode, resultCode, data);

@@ -20,8 +20,8 @@ public class QuizPresenter {
     }
 
     public void init() {
-        view.getData();
         view.getViews();
+        view.getData();
     }
 
     public void onPause() {
@@ -30,5 +30,21 @@ public class QuizPresenter {
 
     public void setExcercises(ArrayList<Excercise> excercises) {
         model.setExcercises(excercises);
+        nextQuiz();
+    }
+
+    private void nextQuiz() {
+        model.getExcercise(current, new CallBack<Excercise>() {
+            @Override
+            public void call(Excercise data) {
+                data.getImage(new CallBack<Bitmap>() {
+                    @Override
+                    public void call(Bitmap data) {
+                        view.setImage(data);
+                    }
+                });
+
+            }
+        });
     }
 }

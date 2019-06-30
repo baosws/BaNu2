@@ -8,6 +8,7 @@ import android.util.Log;
 import com.company.banu.Backend;
 import com.company.banu.CallBack;
 import com.company.banu.Quiz.Excercise;
+import com.company.banu.Quiz.QuizLevel;
 import com.company.banu.WatchTopics.TopicItem.Topic;
 import com.company.banu.WatchLectures.LectureItem.Lecture;
 import com.company.banu.WatchLevels.LevelItem.Level;
@@ -21,8 +22,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
-
 
 public class ModelWatchLevels {
     public ModelWatchLevels() {
@@ -91,19 +92,57 @@ public class ModelWatchLevels {
         return topicLectures;
     }
 
-    private ArrayList<Excercise> getExcercises(ArrayList excercises, Lecture lecture) {
+    private HashMap getExcercises(HashMap<String, Object> excercises, Lecture lecture) {
         if (excercises == null) {
             Log.d("btag", String.format("ModelWatchLevels:getExcercises: excercises is null"));
-            return new ArrayList<>();
+            return new HashMap();
         }
-        ArrayList<Excercise> lectureExcercises = new ArrayList<>();
-        for (Object e: excercises) {
-            Excercise excercise = new Excercise(lecture);
-//            excercise.setPassed((Boolean)excerciseMap.get("passed"));
-            bindDocRefToExcercise((DocumentReference)e, excercise);
-            lectureExcercises.add(excercise);
+        HashMap<QuizLevel, ArrayList<Excercise>> res = new HashMap<>();
+        for (String key: excercises.keySet()) {
+            QuizLevel quizLevel = QuizLevel.valueOf(key);
+            ArrayList<Excercise> lectureExcercises = new ArrayList<>();
+            for (Object e : (ArrayList)excercises.get(key)) {
+                final Excercise excercise = new Excercise(lecture);
+                excercise.getId(new CallBack<String>() {
+                    @Override
+                    public void call(String data) {
+                        getDiary(data, new CallBack<Boolean>() {
+                            @Override
+                            public void call(Boolean data) {
+                                excercise.setPassed(data == null ? false : data);
+                            }
+                        });
+                    }
+                });
+                bindDocRefToExcercise((DocumentReference) e, excercise);
+                lectureExcercises.add(excercise);
+            }
+            res.put(quizLevel, lectureExcercises);
         }
-        return lectureExcercises;
+        return res;
+    }
+
+    private void getDiary(final String excerciseId, final CallBack<Boolean> cb) {
+        if (Backend.inCache("diary/" + excerciseId)) {
+            cb.call(((Map<String, Boolean>)Backend.getCache("diary/" + excerciseId)).get(excerciseId));
+            return;
+        }
+        final DocumentReference docRef = FirebaseFirestore
+                .getInstance()
+                .document(String.format("diary/%s", FirebaseAuth.getInstance().getUid()));
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Map passed = (Map)documentSnapshot.getData().get("passed");
+                Backend.putCache("diary/" + excerciseId, passed);
+                cb.call((Boolean)passed.get(excerciseId));
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
     }
 
     private void bindDocRefToExcercise(final DocumentReference excerciseRef, final Excercise excercise) {
@@ -113,7 +152,6 @@ public class ModelWatchLevels {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 excercise.setAnswer((String)documentSnapshot.get("answer"));
-                excercise.setLevel((String)documentSnapshot.get("level"));
                 Backend.downloadImage("excercises/"
                         + (String) documentSnapshot.get("image")
                         + ".jpg", new CallBack<Bitmap>() {
@@ -145,7 +183,7 @@ public class ModelWatchLevels {
                         lecture.setResource(data);
                     }
                 });
-                lecture.setExcercises(getExcercises((ArrayList)documentSnapshot.get("excercises"), lecture));
+                lecture.setExcercises(getExcercises((HashMap)documentSnapshot.get("excercises"), lecture));
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -162,7 +200,9 @@ public class ModelWatchLevels {
                 String name = (String)documentSnapshot.get("name");
                 String type = (String)documentSnapshot.get("type");
                 String url = (String)documentSnapshot.get("url");
-                cb.call(MediaResourceFactory.produce(name, type, url));
+                MediaResource resource = MediaResourceFactory.produce(name, type, url);
+                Backend.putCache(documentSnapshot.getId(), resource);
+                cb.call(resource);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

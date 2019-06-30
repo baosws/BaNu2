@@ -21,6 +21,7 @@ import com.company.banu.WatchLectures.LectureItem.Lecture;
 import com.nex3z.fingerpaintview.FingerPaintView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.Semaphore;
 
 import butterknife.BindView;
@@ -52,29 +53,10 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
         Intent intent = getIntent();
         Lecture lecture = (Lecture)Backend.getCache(intent.getStringExtra("lectureId"));
         final String level = (String)intent.getStringExtra("level");
-        lecture.getExcercises(new CallBack<ArrayList<Excercise>>() {
+        lecture.getExcercises(new CallBack<HashMap<QuizLevel, ArrayList<Excercise>>>() {
             @Override
-            public void call(ArrayList<Excercise> data) {
-                final ArrayList<Excercise> excercises = new ArrayList<>();
-                final Semaphore semaphore = new Semaphore(1);
-                for (final Excercise excercise: excercises) {
-                    excercise.getLevel(new CallBack<QuizLevel>() {
-                        @Override
-                        public void call(QuizLevel data) {
-                            Log.d("btag", String.format("ActivityQuiz:call: %s", data.toString()));
-                            if (data.toString().equalsIgnoreCase(level)) {
-                                try {
-                                    semaphore.acquire();
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                                excercises.add(excercise);
-                                semaphore.release();
-                            }
-                        }
-                    });
-                }
-                presenter.setExcercises(excercises);
+            public void call(HashMap<QuizLevel, ArrayList<Excercise>> data) {
+                presenter.setExcercises(data.get(QuizLevel.valueOf(level)));
             }
         });
     }

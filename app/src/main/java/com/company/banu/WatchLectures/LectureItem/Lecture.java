@@ -6,10 +6,12 @@ import android.telecom.Call;
 import com.company.banu.CallBack;
 import com.company.banu.Notifier.Notifier;
 import com.company.banu.Quiz.Excercise;
+import com.company.banu.Quiz.QuizLevel;
 import com.company.banu.WatchLevels.MediaResource;
 import com.company.banu.WatchTopics.TopicItem.Topic;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Lecture extends Notifier<LectureEvent> {
     private Topic topic;
@@ -17,7 +19,7 @@ public class Lecture extends Notifier<LectureEvent> {
     private String id;
     Float percent;
     private Integer ord;
-    private ArrayList<Excercise> excercises;
+    private HashMap<QuizLevel, ArrayList<Excercise>> excercises;
     private String description;
     private MediaResource resource;
 
@@ -88,12 +90,12 @@ public class Lecture extends Notifier<LectureEvent> {
         }
     }
 
-    public void setExcercises(ArrayList<Excercise> excercises) {
+    public void setExcercises(HashMap<QuizLevel, ArrayList<Excercise>> excercises) {
         this.excercises = excercises;
         notify(LectureEvent.HadExcercises);
     }
 
-    public void getExcercises(final CallBack<ArrayList<Excercise>> cb) {
+    public void getExcercises(final CallBack<HashMap<QuizLevel, ArrayList<Excercise>>> cb) {
         addEvent(LectureEvent.HadExcercises, new CallBack<Notifier>() {
             @Override
             public void call(Notifier data) {

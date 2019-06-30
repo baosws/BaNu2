@@ -2,8 +2,8 @@
 
 ## Cần nộp
 
-- [ ] Use case
-- [ ] Đặc tả
+- [x] Use case
+- [x] Đặc tả
 - [ ] Class diagram: chỉnh lại
 - [ ] Database diagram
 - [ ] Kiến trúc
@@ -60,6 +60,7 @@
 
 3. Chi tiết từng bài tập
 
-- [ ] Giao diện
-- [ ] Vẽ hình
-- [ ] Nhận diện và chấm điểm
+- [x] Giao diện
+- [x] Vẽ hình
+- [ ] Nhận diện
+- [ ] C

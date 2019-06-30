@@ -17,4 +17,8 @@ public class ExcerciseModel {
     {
         this.lecture = lecture;
     }
+
+    public Lecture getLecture() {
+        return lecture;
+    }
 }

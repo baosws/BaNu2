@@ -14,6 +14,6 @@ public class ExercisePresenter {
 
     private void init() {
         view.getViews();
-        view.showLevelExercise();
+        view.showExcerciseLevels(model.getLecture());
     }
 }

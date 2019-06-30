@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.company.banu.Backend;
+import com.company.banu.Quiz.QuizLevel;
 import com.company.banu.R;
 import com.company.banu.Study.Exercise.LevelItem.ExcerciseLevel;
 import com.company.banu.Study.Exercise.LevelItem.ExcerciseLevelAdapter;
@@ -49,11 +50,11 @@ public class FragmentExercise extends StudyFragment implements ExcerciseView {
         rvLevelExercise = mRootView.findViewById(R.id.rv_levelExercises);
     }
 
-    public void showLevelExercise() {
+    public void showExcerciseLevels(Lecture lecture) {
         List<ExcerciseLevel> excerciseLevelData = new ArrayList<>();
-        excerciseLevelData.add(new ExcerciseLevel("Beginner", getResources().getColor(R.color.beginner)));
-        excerciseLevelData.add(new ExcerciseLevel("Intermediate", getResources().getColor(R.color.intermediate)));
-        excerciseLevelData.add(new ExcerciseLevel("Advanced", getResources().getColor(R.color.advanced)));
+        excerciseLevelData.add(new ExcerciseLevel(lecture, QuizLevel.Beginner, getResources().getColor(R.color.beginner)));
+        excerciseLevelData.add(new ExcerciseLevel(lecture, QuizLevel.Intermediate, getResources().getColor(R.color.intermediate)));
+        excerciseLevelData.add(new ExcerciseLevel(lecture, QuizLevel.Advanced, getResources().getColor(R.color.advanced)));
 
         ExcerciseLevelAdapter excerciseLevelAdapter = new ExcerciseLevelAdapter(excerciseLevelData);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mRootView.getContext());

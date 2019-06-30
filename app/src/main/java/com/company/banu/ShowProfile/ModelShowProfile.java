@@ -41,7 +41,7 @@ public class ModelShowProfile {
     public void uploadAvatar(final String filename, Bitmap chosenAvatar) {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         if (chosenAvatar != null) {
-//            cache.put(filename, chosenAvatar);
+            Backend.putCache(filename, chosenAvatar);
             StorageReference ref = storage.getReference();
             final StorageReference avatarRef = ref.child(filename);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();

@@ -24,14 +24,6 @@ public class Backend {
         cache = new HashMap<>();
     }
 
-    public static ArrayList<Lecture> getLectures() {
-        return null;
-    }
-
-    public static User getCurrentUser() {
-        return null;
-    }
-
     public static void downloadFile(final String filename, final CallBack<byte[]> cb) {
         if (cache.containsKey(filename)) {
             cb.call((byte[])cache.get(filename));
@@ -72,7 +64,7 @@ public class Backend {
         });
     }
 
-    public static void storeCache(String key, Object value) {
+    public static void putCache(String key, Object value) {
         cache.put(key, value);
     }
     public static boolean inCache(String key) {

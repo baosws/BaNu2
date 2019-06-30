@@ -7,29 +7,28 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.company.banu.R;
+import com.company.banu.WatchLectures.LectureItem.Lecture;
 
 import java.util.List;
 
 
-public class ExcerciseLevelAdapter extends RecyclerView.Adapter<LevelHolder> {
+public class ExcerciseLevelAdapter extends RecyclerView.Adapter<ExcerciseLevelHolder> {
     List<ExcerciseLevel> excerciseLevelList;
 
-
-    public ExcerciseLevelAdapter(List<ExcerciseLevel> data)
-    {
+    public ExcerciseLevelAdapter(List<ExcerciseLevel> data) {
         excerciseLevelList = data;
     }
 
     @NonNull
     @Override
-    public LevelHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+    public ExcerciseLevelHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.level_exercise_item_layout, parent, false);
-        return new LevelHolder(view);
+        return new ExcerciseLevelHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull LevelHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ExcerciseLevelHolder viewHolder, int i) {
         ExcerciseLevel excerciseLevel = excerciseLevelList.get(i);
         viewHolder.bind(excerciseLevel);
     }
@@ -38,6 +37,4 @@ public class ExcerciseLevelAdapter extends RecyclerView.Adapter<LevelHolder> {
     public int getItemCount() {
         return excerciseLevelList.size();
     }
-
-
 }

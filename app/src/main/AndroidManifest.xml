@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ShowProfileSetting.ViewShowProfileSetting" />
         <activity android:name=".WatchLevels.ActivityWatchLevels" />
-        <activity android:name=".Quiz.QuizView" />
+        <activity android:name=".Quiz.ActivityQuiz" />
         <activity android:name=".WatchLectures.ActivityWatchLectures" />
         <activity android:name=".Study.ActivityStudy" />
         <activity android:name=".WatchTopics.ActivityWatchTopics" />
@@ -30,7 +30,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".SignIn.ViewSignIn" />
-        <activity android:name=".ShowProfile.ViewShowProfile" />
+        <activity android:name=".ShowProfile.ShowProfileActivity" />
     </application>
 
 </manifest>

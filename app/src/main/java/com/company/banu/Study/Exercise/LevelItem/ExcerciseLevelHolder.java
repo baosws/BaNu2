@@ -1,6 +1,10 @@
 package com.company.banu.Study.Exercise.LevelItem;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -37,21 +41,37 @@ public class ExcerciseLevelHolder extends RecyclerView.ViewHolder implements Exc
         cvLevel = itemView.findViewById(R.id.cv_levelExercise);
     }
 
-    public void setOnClick() {
+    public void setOnClick(final boolean haveData) {
         cvLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.onClick();
+                presenter.onClick(haveData);
             }
         });
     }
+
+    @Override
+    public void showNoExercise() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+        builder.setTitle("Notification");
+        builder.setMessage("No exercise! We will add later!");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
     public void startQuiz(String lectureId, QuizLevel level) {
         Intent intent = new Intent(itemView.getContext(), ActivityQuiz.class);
         intent.putExtra("lectureId", lectureId);
         intent.putExtra("level", level.toString());
-
         itemView.getContext().startActivity(intent);
     }
+
     @Override
     public void setName(String name) {
         tvName.setText(name);

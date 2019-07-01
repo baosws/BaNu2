@@ -10,5 +10,6 @@ public interface ExcerciseLevelView {
     void updateState(boolean passed);
     void getViews();
     void startQuiz(String lectureId, QuizLevel level);
-    void setOnClick();
+    void setOnClick(boolean haveData);
+    void showNoExercise();
 }

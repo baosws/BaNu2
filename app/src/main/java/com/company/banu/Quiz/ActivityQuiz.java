@@ -6,17 +6,17 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.SystemClock;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import com.bumptech.glide.util.ByteBufferUtil;
 import com.company.banu.Backend;
 import com.company.banu.CallBack;
 import com.company.banu.Classifier;
@@ -49,7 +49,9 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
     TextView tvNumQuiz;
 
     QuizPresenter presenter;
-    Dialog dialog;
+    Dialog dialogPause, dialogDone;
+
+    private static int score = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +121,7 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
 
     private void setDialogListener()
     {
-        Button btnHome = dialog.findViewById(R.id.btn_home);
+        Button btnHome = dialogPause.findViewById(R.id.btn_home);
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,17 +129,17 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
             }
         });
 
-        Button btnContinue = dialog.findViewById(R.id.btn_continue);
+        Button btnContinue = dialogPause.findViewById(R.id.btn_continue);
 
         btnContinue.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
+                dialogPause.dismiss();
             }
         });
 
-        Button btnRestart = dialog.findViewById(R.id.btn_restart);
+        Button btnRestart = dialogPause.findViewById(R.id.btn_restart);
 
         btnRestart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,16 +151,47 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
     }
 
     @Override
-    public void showDialog() {
-        dialog = new Dialog(this);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.setContentView(R.layout.dialog_quiz);
+    public void showDialogPause() {
+        dialogPause = new Dialog(this);
+        dialogPause.setCanceledOnTouchOutside(false);
+        dialogPause.setContentView(R.layout.dialog_quiz);
         setDialogListener();
-        dialog.show();
+        dialogPause.show();
+    }
+
+    private void bindResultToDialog()
+    {
+        TextView tvResult = dialogDone.findViewById(R.id.tv_result);
+        tvResult.setText(Integer.toString(score) + tvNumQuiz.getText());
+
+        Button btnDoAgain = dialogDone.findViewById(R.id.btn_doAgain);
+        btnDoAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        Button btnDoneResult = dialogDone.findViewById(R.id.btn_done);
+        btnDoneResult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public void showDialogDone() {
+        dialogDone = new Dialog(this);
+        dialogDone.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogDone.setCanceledOnTouchOutside(false);
+        dialogDone.setContentView(R.layout.dialog_result_exercise);
+        bindResultToDialog();
+        dialogDone.show();
     }
 
     public void updateScore() {
-        int score = Integer.valueOf((String) tvScore.getText());
         score++;
         tvScore.setText(Integer.toString(score));
     }

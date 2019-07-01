@@ -1,5 +1,6 @@
 package com.company.banu.Study.Exercise.LevelItem;
 
+import android.app.AlertDialog;
 import android.util.Pair;
 
 import com.company.banu.CallBack;
@@ -29,6 +30,7 @@ public class ExcerciseLevelPresenter {
             @Override
             public void call(Pair<Integer, Integer> data) {
                 view.updateScore(data.first, data.second);
+                // Check result to update state
                 if (data.first * 1.0 / data.second >= 0.7)
                 {
                     view.updateState(true);
@@ -36,18 +38,20 @@ public class ExcerciseLevelPresenter {
                 else {
                     view.updateState(false);
                 }
-                if (data.second != 0) {
-                    view.setOnClick();
-                }
+                // Check if there are some exercise
+                view.setOnClick(data.second != 0);
             }
         });
     }
 
-    public void onClick() {
+    public void onClick(final boolean haveData) {
         model.getLectureId(new CallBack<String>() {
             @Override
             public void call(String data) {
-                view.startQuiz(data, model.getLevel());
+                if (haveData)
+                    view.startQuiz(data, model.getLevel());
+                else
+                    view.showNoExercise();
             }
         });
     }

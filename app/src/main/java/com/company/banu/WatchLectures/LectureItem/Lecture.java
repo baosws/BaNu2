@@ -26,21 +26,26 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Lecture extends Notifier<LectureEvent> {
     private Topic topic;
     private String name;
     private String id;
-    Float percent;
     private Integer ord;
     private HashMap<QuizLevel, ArrayList<Excercise>> excercises;
     private String description;
     private MediaResource resource;
     private DocumentReference ref;
+    private Semaphore semaphore;
+    private int passedCount = 0;
 
     public Lecture(Topic topic)
     {
         this.topic = topic;
+        semaphore = new Semaphore(1);
+        notify(LectureEvent.HadPercent);
     }
 
     public void setName(String name) {
@@ -71,16 +76,20 @@ public class Lecture extends Notifier<LectureEvent> {
         });
     }
 
-    public void setPercent(Float percent) {
-        this.percent = percent;
-        notify(LectureEvent.HadPercent);
-    }
-
     public void getPercent(final CallBack<Float> cb) {
         addEvent(LectureEvent.HadPercent, new CallBack<Notifier>() {
             @Override
             public void call(Notifier data) {
-                cb.call(percent);
+                getExcercises(new CallBack<HashMap<QuizLevel, ArrayList<Excercise>>>() {
+                    @Override
+                    public void call(HashMap<QuizLevel, ArrayList<Excercise>> data) {
+                        int total = 0;
+                        for (QuizLevel quizLevel: data.keySet()) {
+                            total += data.get(quizLevel).size();
+                        }
+                        cb.call(total == 0 ? 0 : passedCount * 1f / total);
+                    }
+                });
             }
         });
     }
@@ -234,5 +243,16 @@ public class Lecture extends Notifier<LectureEvent> {
 
             }
         });
+    }
+
+    public void updatePassedCount() {
+        try {
+            semaphore.acquire();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        passedCount++;
+        semaphore.release();
+        notify(LectureEvent.HadPercent);
     }
 }

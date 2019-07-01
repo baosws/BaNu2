@@ -146,7 +146,6 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
                 presenter.restart();
             }
         });
-
     }
 
     @Override

@@ -31,10 +31,12 @@ public class Excercise extends Notifier<ExcerciseEvent> {
     private String id;
     private Bitmap image;
     private String answer;
-    private Boolean passed;
+    private Boolean passed = false;
     private DocumentReference ref;
+    private Lecture lecture;
 
     public Excercise(Lecture lecture) {
+        this.lecture = lecture;
     }
 
     public void setAnswer(String answer) {
@@ -80,7 +82,8 @@ public class Excercise extends Notifier<ExcerciseEvent> {
     }
 
     public void setPassed(Boolean passed) {
-        if ((this.passed != null) && ((this.passed == false && passed == true))) {
+        if ((this.passed == false && passed == true)) {
+            lecture.updatePassedCount();
             Map<String, Object> newData = new HashMap<>();
             newData.put("passed", FieldValue.arrayUnion(ref));
             FirebaseFirestore
@@ -88,7 +91,6 @@ public class Excercise extends Notifier<ExcerciseEvent> {
                     .collection("diary")
                     .document(FirebaseAuth.getInstance().getUid())
                     .update(newData);
-
         }
         this.passed = passed;
         notify(ExcerciseEvent.HadPassed);

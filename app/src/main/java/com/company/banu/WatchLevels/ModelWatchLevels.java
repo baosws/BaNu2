@@ -2,7 +2,6 @@ package com.company.banu.WatchLevels;
 
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
-import android.telecom.Call;
 import android.util.Log;
 
 import com.company.banu.Backend;
@@ -122,9 +121,9 @@ public class ModelWatchLevels {
         return res;
     }
 
-    private void getDiary(final String excerciseId, final CallBack<Boolean> cb) {
-        if (Backend.inCache("diary/" + excerciseId)) {
-            cb.call(((Map<String, Boolean>)Backend.getCache("diary/" + excerciseId)).get(excerciseId));
+    private void getDiary(final String id, final CallBack<Boolean> cb) {
+        if (Backend.inCache("diary/" + id)) {
+            cb.call(((Map<String, Boolean>)Backend.getCache("diary/" + id)).get(id));
             return;
         }
         final DocumentReference docRef = FirebaseFirestore
@@ -133,9 +132,21 @@ public class ModelWatchLevels {
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Map passed = (Map)documentSnapshot.getData().get("passed");
-                Backend.putCache("diary/" + excerciseId, passed);
-                cb.call((Boolean)passed.get(excerciseId));
+                if (documentSnapshot == null) {
+                    return;
+                }
+                ArrayList passed = (ArrayList) documentSnapshot.getData().get("passed");
+                if (passed == null) {
+                    return;
+                }
+                Backend.putCache("diary/" + id, passed);
+                for (Object o: passed) {
+                    if (((DocumentReference)o).getId().equals(id)) {
+                        cb.call(true);
+                        return;
+                    }
+                }
+                cb.call(false);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -151,6 +162,12 @@ public class ModelWatchLevels {
         excerciseRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
+                excercise.getId(new CallBack<String>() {
+                    @Override
+                    public void call(String data) {
+                        Log.d("btag", String.format("ModelWatchLevels:call: new excercise %s", data));
+                    }
+                });
                 excercise.setAnswer((String)documentSnapshot.get("answer"));
                 Backend.downloadImage("excercises/"
                         + (String) documentSnapshot.get("image")

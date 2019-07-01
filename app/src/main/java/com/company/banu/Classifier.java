@@ -46,7 +46,7 @@ public class Classifier {
         mInterpreter.run(mImageData, mResult);
         long endTime = SystemClock.uptimeMillis();
         long timeCost = endTime - startTime;
-        Log.v(LOG_TAG, "classify(): result = " + Arrays.toString(mResult[0])
+        Log.d("btag", "classify(): result = " + Arrays.toString(mResult[0])
                 + ", timeCost = " + timeCost);
         return new Result(mResult[0], timeCost);
     }

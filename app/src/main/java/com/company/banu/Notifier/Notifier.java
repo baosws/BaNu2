@@ -10,10 +10,12 @@ import java.util.concurrent.Semaphore;
 public class Notifier<EventType> {
     protected HashMap<EventType, Observer<EventType, ? extends Notifier>> events;
     Semaphore semaphore;
+
     public Notifier() {
         events = new HashMap<>();
         semaphore = new Semaphore(1);
     }
+
     protected void addEvent(EventType name, CallBack<? extends Notifier> cb) {
         try {
             semaphore.acquire();
@@ -31,6 +33,7 @@ public class Notifier<EventType> {
         events.get(name).addCallback(cb);
         semaphore.release();
     }
+
     protected void notify(EventType name) {
         try {
             semaphore.acquire();

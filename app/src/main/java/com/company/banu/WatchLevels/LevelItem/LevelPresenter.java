@@ -13,10 +13,9 @@ public class LevelPresenter {
         assert level != null;
         this.view = view;
         levelModel = new LevelModel(this, level);
-        init();
     }
 
-    private void init() {
+    public void init() {
         view.getViews();
         levelModel.getName(new CallBack<String>() {
             @Override

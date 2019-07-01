@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.company.banu.CallBack;
 import com.company.banu.R;
@@ -28,27 +29,32 @@ public class LevelHolder implements LevelView {
         assert level != null;
         this.view = view;
         levelPresenter = new LevelPresenter(this, level);
+        levelPresenter.init();
     }
     public void getViews() {
         Log.d("btag", "getViews: ");
         imgLevel = view.findViewById(R.id.img_item_level);
         tvLevel = view.findViewById(R.id.tv_item_levelName);
     }
+
+
     public void setImage(Bitmap bitmap) {
-        bitmapLevel = bitmap.copy(null, false);
+        bitmapLevel = bitmap;
         Glide.with(view.getContext())
-                .applyDefaultRequestOptions(GRAYSCALE)
+                .applyDefaultRequestOptions(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE).skipMemoryCache(true))
                 .load(bitmap)
+                .apply(GRAYSCALE)
                 .into(imgLevel);
     }
 
     @Override
-    public void updatePassed(boolean passed) {
+    public void updatePassed(final boolean passed) {
         if (passed)
         {
-//            Glide.with(view.getContext())
-//                    .load(bitmapLevel)
-//                    .into(imgLevel);
+            Log.d("btag", String.format("LevelHolder:updatePassed: " + passed));
+            Glide.with(view.getContext())
+                    .load(bitmapLevel)
+                    .into(imgLevel);
 
             imgLevel.setImageBitmap(bitmapLevel);
 

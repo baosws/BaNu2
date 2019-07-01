@@ -134,8 +134,9 @@ public class ModelWatchLevels {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Map passed = (Map)documentSnapshot.getData().get("passed");
+                Boolean res = (Boolean)passed.get(excerciseId);
                 Backend.putCache("diary/" + excerciseId, passed);
-                cb.call((Boolean)passed.get(excerciseId));
+                cb.call(res == null ? false : res);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -256,6 +257,13 @@ public class ModelWatchLevels {
                     }
                 });
                 level.setTopics(getTopics((ArrayList)documentSnapshot.get("topics"), level));
+                getDiary(levelRef.getId(), new CallBack<Boolean>() {
+                    @Override
+                    public void call(Boolean data) {
+                        Log.d("Nunu", "bindDocRefToLevel " + levelRef.getId() + " " + data);
+                        level.setPassed(data);
+                    }
+                });
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

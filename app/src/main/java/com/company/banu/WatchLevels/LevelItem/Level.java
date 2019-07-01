@@ -13,6 +13,7 @@ public class Level extends Notifier<LevelEvent> {
     private String id;
     private String name;
     private Bitmap image;
+    private Boolean passed;
     private ArrayList<Topic> topics;
     public Level() {
         super();
@@ -100,5 +101,21 @@ public class Level extends Notifier<LevelEvent> {
         for (LevelEvent event: events.keySet()) {
             addEvent(event, cb);
         }
+    }
+
+    public void setPassed(Boolean passed) {
+        Log.d("btag", String.format("Level:setTopics: name = %s, size = %d", name, topics.size()));
+        this.passed = passed;
+        notify(LevelEvent.HadPassed);
+    }
+
+    public void getPassed(final CallBack<Boolean> cb) {
+        addEvent(LevelEvent.HadPassed, new CallBack<Notifier>() {
+            @Override
+            public void call(Notifier data) {
+                Log.d("Nunu", String.format("Level:getPassed: name = %s, passed = %s", name, passed));
+                cb.call(passed);
+            }
+        });
     }
 }

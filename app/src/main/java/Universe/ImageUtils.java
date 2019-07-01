@@ -20,4 +20,6 @@ public class ImageUtils {
         byte[] byteArray = stream.toByteArray();
         return byteArray;
     }
+
+
 }

@@ -20,6 +20,10 @@ public class LevelModel {
         level.getImage(cb);
     }
 
+    public void getPassed(CallBack<Boolean> cb){
+        level.getPassed(cb);
+    }
+
     public void getName(CallBack<String> cb) {
         level.getName(cb);
     }

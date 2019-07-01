@@ -61,8 +61,6 @@ public class ActivityWatchLevels extends AppCompatActivity implements WatchLevel
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Level selectedItem = (Level) gridView_listLevel.getItemAtPosition(position);
-//                Toast.makeText(ActivityWatchLevels.this, "Selected :"
-//                        + selectedItem.name, Toast.LENGTH_LONG).show();
             }
         });
 

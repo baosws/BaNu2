@@ -11,11 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-
-import com.company.banu.WatchLectures.LectureItem.Lecture;
-import Universe.User;
 
 
 public class Backend {

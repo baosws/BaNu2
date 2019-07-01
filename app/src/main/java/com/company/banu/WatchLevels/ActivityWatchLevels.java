@@ -24,6 +24,7 @@ import java.util.List;
 
 public class ActivityWatchLevels extends AppCompatActivity implements WatchLevelView {
     static int layoutId = R.layout.activity_watch_levels;
+    ListLevelAdapter listLevelAdapter;
     PresenterWatchLevels presenterWatchLevels;
     GridView gridView_listLevel;
     AvatarImageView avatarImageView;
@@ -36,6 +37,12 @@ public class ActivityWatchLevels extends AppCompatActivity implements WatchLevel
         presenterWatchLevels = new PresenterWatchLevels(this);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        listLevelAdapter.notifyDataSetChanged();
+    }
+
     public void getViews()
     {
         tvScore = findViewById(R.id.tv_score);
@@ -46,6 +53,15 @@ public class ActivityWatchLevels extends AppCompatActivity implements WatchLevel
     public void loadGridviewListLevel(List<Level> levels)
     {
         final ListLevelAdapter listLevelAdapter = new ListLevelAdapter(this, levels);
+        for (Level level: levels) {
+            level.getAny(new CallBack<Level>() {
+                @Override
+                public void call(Level data) {
+                    listLevelAdapter.notifyDataSetChanged();
+                    gridView_listLevel.invalidate();
+                }
+            });
+        }
         gridView_listLevel.setAdapter(listLevelAdapter);
 
         avatarImageView.setOnClickListener(new View.OnClickListener() {

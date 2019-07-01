@@ -4,7 +4,8 @@ import android.graphics.Bitmap;
 
 public interface QuizView {
     void getViews();
-    void showDialog();
+    void showDialogPause();
+    void showDialogDone();
     void setImage(Bitmap bitmap);
     void getData();
     void updateScore();

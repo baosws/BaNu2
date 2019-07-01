@@ -26,7 +26,7 @@ public class QuizPresenter {
     }
 
     public void onPause() {
-        view.showDialog();
+        view.showDialogPause();
     }
 
     public void setExcercises(ArrayList<Excercise> excercises) {
@@ -49,6 +49,10 @@ public class QuizPresenter {
                             view.setImage(data);
                         }
                     });
+                }
+                else
+                {
+                    view.showDialogDone();
                 }
             }
         });

@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.company.banu.Backend;
@@ -19,6 +20,8 @@ public class ActivityStudy extends AppCompatActivity implements StudyView {
     PresenterStudy presenterStudy;
     TextView tb_title;
     ViewPager vpStudy;
+    ImageButton btnBack;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,14 @@ public class ActivityStudy extends AppCompatActivity implements StudyView {
     {
         tb_title = findViewById(R.id.tb_title);
         vpStudy = findViewById(R.id.vp_study);
+        btnBack = findViewById(R.id.btn_back);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         if (presenterStudy == null) {
             Log.d("btag", "initUI: presenter is null");
         }

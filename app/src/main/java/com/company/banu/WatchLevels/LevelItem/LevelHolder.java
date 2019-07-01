@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.company.banu.CallBack;
 import com.company.banu.R;
@@ -37,8 +38,8 @@ public class LevelHolder implements LevelView {
     public void setImage(Bitmap bitmap) {
         bitmapLevel = bitmap.copy(null, false);
         Glide.with(view.getContext())
-                .applyDefaultRequestOptions(GRAYSCALE)
                 .load(bitmap)
+                .apply(GRAYSCALE)
                 .into(imgLevel);
     }
 
@@ -46,11 +47,10 @@ public class LevelHolder implements LevelView {
     public void updatePassed(boolean passed) {
         if (passed)
         {
-//            Glide.with(view.getContext())
-//                    .load(bitmapLevel)
-//                    .into(imgLevel);
+            Glide.with(view.getContext())
+                    .load(bitmapLevel)
+                    .into(imgLevel);
 
-            imgLevel.setImageBitmap(bitmapLevel);
 
             imgLevel.setOnClickListener(new View.OnClickListener() {
                 @Override

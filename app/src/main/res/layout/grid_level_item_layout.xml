@@ -11,8 +11,6 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:id="@+id/img_item_level"
-                android:alpha="0.6"
-                android:outlineSpotShadowColor="@color/gray"
                 />
 
             <android.support.v7.widget.AppCompatTextView

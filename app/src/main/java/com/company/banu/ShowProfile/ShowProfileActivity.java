@@ -41,8 +41,8 @@ public class ShowProfileActivity extends AppCompatActivity implements ViewShowPr
     AvatarImageView avatarImageView;
     @BindView(R.id.tvUserName)
     TextView textViewUserName;
-    @BindView(R.id.ivSettings)
-    ImageView imageViewSetting;
+    @BindView(R.id.btn_setting)
+    ImageButton imageViewSetting;
     @BindView(R.id.btn_home)
     ImageButton btnHome;
 
@@ -73,6 +73,7 @@ public class ShowProfileActivity extends AppCompatActivity implements ViewShowPr
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
                 startActivity(new Intent(getApplicationContext(), ActivityWatchLevels.class));
             }
         });

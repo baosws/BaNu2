@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,13 +19,11 @@ import org.w3c.dom.Text;
 
 public class PresenterShowProfileSetting {
     Activity activity;
-    AvatarImageView avatarImageView;
     TextView textViewUserName;
     TextView textViewEmail;
     TextView textViewPassword;
     TextView textViewSignOut;
-    ImageView imageViewSetting;
-    ImageView imageViewHome;
+    ImageButton btnBack;
     ModelShowProfileSetting modelShowProfileSetting;
 
     public PresenterShowProfileSetting(Activity activity) {
@@ -48,6 +48,14 @@ public class PresenterShowProfileSetting {
                 Intent intent = new Intent(activity, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 activity.startActivity(intent);
+            }
+        });
+
+        btnBack = activity.findViewById(R.id.btn_back);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.finish();
             }
         });
     }

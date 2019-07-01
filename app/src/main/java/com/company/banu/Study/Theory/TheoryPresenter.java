@@ -40,7 +40,15 @@ public class TheoryPresenter {
             model.getResource(new CallBack<MediaResource>() {
                 @Override
                 public void call(MediaResource data) {
+                    youTubePlayer.setFullscreenControlFlags(0);
                     youTubePlayer.cueVideo(YoutubeUtils.GetCueFromLink(data.getUrl()));
+
+                    youTubePlayer.setOnFullscreenListener(new YouTubePlayer.OnFullscreenListener() {
+                        @Override
+                        public void onFullscreen(boolean b) {
+                            view.setFullScreen(b);
+                        }
+                    });
                 }
             });
 

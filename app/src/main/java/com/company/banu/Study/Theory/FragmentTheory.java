@@ -28,6 +28,7 @@ public class FragmentTheory extends StudyFragment implements YouTubePlayer.OnIni
     View mRootView;
     TextView tvContentLecture;
     TheoryPresenter presenter;
+    Boolean isYoutubeFullScreen;
     public FragmentTheory() {
         super();
         name = "Theory";
@@ -67,6 +68,12 @@ public class FragmentTheory extends StudyFragment implements YouTubePlayer.OnIni
         fragmentTransaction.replace(R.id.fl_video, youtubePlayerFragment);
         fragmentTransaction.commit();
     }
+
+    public void setFullScreen(boolean b){
+        this.isYoutubeFullScreen = b;
+    }
+
+
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {

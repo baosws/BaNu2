@@ -6,7 +6,7 @@
 - [x] Đặc tả
 - [x] Class diagram: chỉnh lại
 - [x] Database diagram
-- [ ] Kiến trúc
+- [x] Kiến trúc
 - [x] Màn hình thiết kế UI
 - [x] Code
 - [ ] Demo

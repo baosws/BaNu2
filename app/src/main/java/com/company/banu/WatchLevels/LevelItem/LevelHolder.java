@@ -35,7 +35,7 @@ public class LevelHolder implements LevelView {
         tvLevel = view.findViewById(R.id.tv_item_levelName);
     }
     public void setImage(Bitmap bitmap) {
-        bitmapLevel = bitmap;
+        bitmapLevel = bitmap.copy(null, false);
         Glide.with(view.getContext())
                 .applyDefaultRequestOptions(GRAYSCALE)
                 .load(bitmap)
@@ -46,9 +46,11 @@ public class LevelHolder implements LevelView {
     public void updatePassed(boolean passed) {
         if (passed)
         {
-            Glide.with(view.getContext())
-                    .load(bitmapLevel)
-                    .into(imgLevel);
+//            Glide.with(view.getContext())
+//                    .load(bitmapLevel)
+//                    .into(imgLevel);
+
+            imgLevel.setImageBitmap(bitmapLevel);
 
             imgLevel.setOnClickListener(new View.OnClickListener() {
                 @Override

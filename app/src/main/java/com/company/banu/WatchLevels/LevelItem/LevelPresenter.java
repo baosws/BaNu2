@@ -38,7 +38,6 @@ public class LevelPresenter {
                 view.updatePassed(data);
             }
         });
-
     }
 
     public void getLevelId(CallBack<String> cb) {

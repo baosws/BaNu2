@@ -90,5 +90,11 @@ public class QuizPresenter {
             }
         });
     }
+
+    public void restart() {
+        current = -1;
+        nextQuiz();
+        view.resetScore();
+    }
 }
 

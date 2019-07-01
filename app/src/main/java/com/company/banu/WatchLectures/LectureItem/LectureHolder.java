@@ -59,6 +59,6 @@ public class LectureHolder extends RecyclerView.ViewHolder implements LectureVie
     }
 
     public void setPercent(float percent) {
-        rbPercent.setRating(percent);
+        rbPercent.setRating(percent * 3);
     }
 }

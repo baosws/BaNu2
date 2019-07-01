@@ -12,11 +12,10 @@ public class TopicViewPresenter {
         assert topic != null;
         this.view = view;
         topicModel = new TopicModel(topic);
-        view.getViews();
-        init();
     }
 
     public void init() {
+        view.getViews();
         topicModel.getName(new CallBack<String>() {
             @Override
             public void call(String data) {
@@ -40,4 +39,5 @@ public class TopicViewPresenter {
     public void getTopicId(CallBack<String> cb) {
         topicModel.getId(cb);
     }
+
 }

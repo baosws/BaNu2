@@ -66,7 +66,7 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
     public void getData() {
         Intent intent = getIntent();
         Lecture lecture = (Lecture)Backend.getCache(intent.getStringExtra("lectureId"));
-        final String level = (String)intent.getStringExtra("level");
+        final String level = intent.getStringExtra("level");
         lecture.getExcercises(new CallBack<HashMap<QuizLevel, ArrayList<Excercise>>>() {
             @Override
             public void call(HashMap<QuizLevel, ArrayList<Excercise>> data) {
@@ -142,10 +142,10 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
         btnRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                dialogPause.dismiss();
+                presenter.restart();
             }
         });
-
     }
 
     @Override
@@ -166,7 +166,6 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
         btnDoAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
 
@@ -193,6 +192,11 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
         int score = Integer.valueOf(tvScore.getText().toString());
         score++;
         tvScore.setText(Integer.toString(score));
+    }
+
+    @Override
+    public void resetScore() {
+        tvScore.setText(Integer.toString(0));
     }
 
     @Override

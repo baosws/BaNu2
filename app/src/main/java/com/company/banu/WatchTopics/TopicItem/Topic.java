@@ -32,14 +32,22 @@ public class Topic extends Notifier<TopicEvent> {
     public void getPercent(final CallBack<Float> cb) {
         final Float[] res = {0f};
         for (Lecture lecture: lectures) {
+            final Semaphore semaphore = new Semaphore(0);
             lecture.getPercent(new CallBack<Float>() {
                 @Override
                 public void call(Float data) {
                     res[0] += data;
+                    semaphore.release();
                 }
             });
+            try {
+                semaphore.acquire(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-        cb.call(res[0]);
+        Log.d("btag", String.format("Topic:getPercent: res = %f, size = %d", res[0], lectures.size()));
+        cb.call(res[0] / lectures.size());
     }
 
     public void setName(String name) {

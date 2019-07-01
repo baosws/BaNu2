@@ -23,6 +23,7 @@ public class TopicViewHolder implements TopicView {
     public TopicViewHolder(View view, Topic topic) {
         this.view = view;
         topicViewPresenter = new TopicViewPresenter(this, topic);
+        topicViewPresenter.init();
     }
 
     @Override

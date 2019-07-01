@@ -1,17 +1,28 @@
 package com.company.banu.WatchLectures.LectureItem;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.telecom.Call;
+import android.util.Log;
 
+import com.company.banu.Backend;
 import com.company.banu.CallBack;
 import com.company.banu.Notifier.Notifier;
 import com.company.banu.Quiz.Excercise;
 import com.company.banu.Quiz.QuizLevel;
 import com.company.banu.WatchLevels.MediaResource;
+import com.company.banu.WatchLevels.MediaResourceFactory;
 import com.company.banu.WatchTopics.TopicItem.Topic;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Lecture extends Notifier<LectureEvent> {
     private Topic topic;
@@ -128,6 +139,96 @@ public class Lecture extends Notifier<LectureEvent> {
             @Override
             public void call(Notifier data) {
                 cb.call(resource);
+            }
+        });
+    }
+
+    public Lecture bind(final DocumentReference lectureRef) {
+        final Lecture lecture = this;
+        Backend.putCache(lectureRef.getId(), lecture);
+        lectureRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                lecture.setId(lectureRef.getId());
+                lecture.setName((String)documentSnapshot.get("name"));
+                lecture.setDescription((String)documentSnapshot.get("description"));
+                MediaResourceFactory.produce((DocumentReference) documentSnapshot.get("theory-source"), new CallBack<MediaResource>() {
+                    @Override
+                    public void call(MediaResource resource) {
+                        lecture.setResource(resource);
+                    }
+                });
+                lecture.setExcercises(getExcercises((HashMap)documentSnapshot.get("excercises"), lecture));
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("btag", "bindDocRefToLecture onFailure: " + lectureRef.getPath());
+            }
+        });
+        return this;
+    }
+
+    private static HashMap<QuizLevel, ArrayList<Excercise>> getExcercises(HashMap<String, Object> excercises, Lecture lecture) {
+        if (excercises == null) {
+            Log.d("btag", String.format("ModelWatchLevels:getExcercises: excercises is null"));
+            return new HashMap();
+        }
+        HashMap<QuizLevel, ArrayList<Excercise>> res = new HashMap<>();
+        for (String key: excercises.keySet()) {
+            QuizLevel quizLevel = QuizLevel.valueOf(key);
+            ArrayList<Excercise> lectureExcercises = new ArrayList<>();
+            for (Object e : (ArrayList)excercises.get(key)) {
+                final Excercise excercise = new Excercise(lecture).bind((DocumentReference) e);
+                excercise.getId(new CallBack<String>() {
+                    @Override
+                    public void call(String data) {
+                        getDiary(data, new CallBack<Boolean>() {
+                            @Override
+                            public void call(Boolean data) {
+                                excercise.setPassed(data == null ? false : data);
+                            }
+                        });
+                    }
+                });
+                lectureExcercises.add(excercise);
+            }
+            res.put(quizLevel, lectureExcercises);
+        }
+        return res;
+    }
+
+    private static void getDiary(final String id, final CallBack<Boolean> cb) {
+        if (Backend.inCache("diary/" + id)) {
+            cb.call(((Map<String, Boolean>)Backend.getCache("diary/" + id)).get(id));
+            return;
+        }
+        final DocumentReference docRef = FirebaseFirestore
+                .getInstance()
+                .document(String.format("diary/%s", FirebaseAuth.getInstance().getUid()));
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot == null) {
+                    return;
+                }
+                ArrayList passed = (ArrayList) documentSnapshot.getData().get("passed");
+                if (passed == null) {
+                    return;
+                }
+                Backend.putCache("diary/" + id, passed);
+                for (Object o: passed) {
+                    if (((DocumentReference)o).getId().equals(id)) {
+                        cb.call(true);
+                        return;
+                    }
+                }
+                cb.call(false);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
             }
         });
     }

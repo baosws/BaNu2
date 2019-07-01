@@ -1,11 +1,18 @@
 package com.company.banu.WatchTopics.TopicItem;
 
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
+import android.util.Log;
 
+import com.company.banu.Backend;
 import com.company.banu.CallBack;
 import com.company.banu.Notifier.Notifier;
 import com.company.banu.WatchLectures.LectureItem.Lecture;
 import com.company.banu.WatchLevels.LevelItem.Level;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
@@ -16,6 +23,7 @@ public class Topic extends Notifier<TopicEvent> {
     private String name;
     private Bitmap image;
     private ArrayList<Lecture> lectures;
+    DocumentReference ref;
     public Topic(Level level) {
         this.level = level;
         this.lectures = new ArrayList<>();
@@ -98,5 +106,52 @@ public class Topic extends Notifier<TopicEvent> {
         for (TopicEvent event: events.keySet()) {
             addEvent(event, cb);
         }
+    }
+
+    public Topic bind(final DocumentReference topicRef) {
+        this.ref = topicRef;
+        final Topic topic = this;
+        if (topicRef == null) {
+            Log.d("btag", "topicRef = null");
+            return null;
+        }
+        else {
+            Log.d("btag:", "bindDocRefToTopic: topicRef != null: " + topicRef.getId());
+        }
+        Backend.putCache(topicRef.getId(), topic);
+        topicRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                topic.setId(topicRef.getId());
+                topic.setName((String)documentSnapshot.get("name"));
+                Backend.downloadImage(topicRef.getPath() + ".jpg", new CallBack<Bitmap>() {
+                    @Override
+                    public void call(Bitmap data) {
+                        topic.setImage(data);
+                    }
+                });
+                topic.setLectures(getLectures((ArrayList)documentSnapshot.get("lectures"), topic));
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("btag", "bindDocRefToTopic onFailure: " + topicRef.getPath());
+            }
+        });
+        return this;
+    }
+
+    private static ArrayList<Lecture> getLectures(ArrayList lectures, Topic topic) {
+        if (lectures == null) {
+            Log.d("btag", String.format("ModelWatchLevels:getLectures: lectures is null"));
+            return new ArrayList<>();
+        }
+        ArrayList<Lecture> topicLectures = new ArrayList<>();
+        for (int i = 0; i < lectures.size(); ++i) {
+            Lecture lecture = new Lecture(topic).bind((DocumentReference)lectures.get(i));;
+            lecture.setOrd(i + 1);
+            topicLectures.add(lecture);
+        }
+        return topicLectures;
     }
 }

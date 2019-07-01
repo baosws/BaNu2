@@ -1,11 +1,17 @@
 package com.company.banu.Quiz;
 
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.company.banu.Backend;
 import com.company.banu.CallBack;
 import com.company.banu.Notifier.Notifier;
 import com.company.banu.WatchLectures.LectureItem.Lecture;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 public class Excercise extends Notifier<ExcerciseEvent> {
     private String id;
@@ -71,5 +77,37 @@ public class Excercise extends Notifier<ExcerciseEvent> {
                 cb.call(passed);
             }
         });
+    }
+
+    public Excercise bind(final DocumentReference excerciseRef) {
+        final Excercise excercise = this;
+        Backend.putCache(excerciseRef.getId(), excercise);
+        excercise.setId(excerciseRef.getId());
+        excerciseRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                excercise.getId(new CallBack<String>() {
+                    @Override
+                    public void call(String data) {
+                        Log.d("btag", String.format("ModelWatchLevels:call: new excercise %s", data));
+                    }
+                });
+                excercise.setAnswer((String)documentSnapshot.get("answer"));
+                Backend.downloadImage("excercises/"
+                        + (String) documentSnapshot.get("image")
+                        + ".jpg", new CallBack<Bitmap>() {
+                    @Override
+                    public void call(Bitmap data) {
+                        excercise.setImage(data);
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("btag", String.format("ModelWatchLevels:onFailure: %s", excerciseRef.getPath()));
+            }
+        });
+        return this;
     }
 }

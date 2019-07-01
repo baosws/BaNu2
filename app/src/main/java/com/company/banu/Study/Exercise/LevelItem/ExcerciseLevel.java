@@ -24,7 +24,12 @@ public class ExcerciseLevel extends Notifier<ExcerciseLevelEvent> {
         lecture.getExcercises(new CallBack<HashMap<QuizLevel, ArrayList<Excercise>>>() {
             @Override
             public void call(HashMap<QuizLevel, ArrayList<Excercise>> data) {
-                setExcercises(data.get(name));
+                if (data.containsKey(name)) {
+                    setExcercises(data.get(name));
+                }
+                else {
+                    setExcercises(new ArrayList<Excercise>());
+                }
             }
         });
     }

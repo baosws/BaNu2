@@ -2,6 +2,7 @@ package com.company.banu.Study.Exercise.LevelItem;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,6 +17,7 @@ public class ExcerciseLevelHolder extends RecyclerView.ViewHolder implements Exc
     TextView tvName;
     TextView tvScore;
     ImageView imgState;
+    CardView cvLevel;
     ExcerciseLevelPresenter presenter;
 
     public ExcerciseLevelHolder(@NonNull View itemView) {
@@ -27,7 +29,8 @@ public class ExcerciseLevelHolder extends RecyclerView.ViewHolder implements Exc
         tvName = itemView.findViewById(R.id.tv_levelName);
         tvScore = itemView.findViewById(R.id.tv_scoreExercise);
         imgState = itemView.findViewById(R.id.img_state);
-        tvName.setOnClickListener(new View.OnClickListener() {
+        cvLevel = itemView.findViewById(R.id.cv_levelExercise);
+        cvLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 presenter.onClick();

@@ -112,14 +112,46 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
         fpvPaint.setPen(p);
     }
 
+    private void setDialogListener()
+    {
+        Button btnHome = dialog.findViewById(R.id.btn_home);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        Button btnContinue = dialog.findViewById(R.id.btn_continue);
+
+        btnContinue.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        Button btnRestart = dialog.findViewById(R.id.btn_restart);
+
+        btnRestart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+    }
+
     @Override
     public void showDialog() {
         dialog = new Dialog(this);
         dialog.setTitle("Hehe");
+        dialog.setCanceledOnTouchOutside(false);
         dialog.setContentView(R.layout.dialog_quiz);
+        setDialogListener();
         dialog.show();
     }
-
     @Override
     public void setImage(Bitmap bitmap) {
         imgQuestion.setImageBitmap(bitmap);

@@ -7,6 +7,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +30,8 @@ public class ActivityWatchLectures extends AppCompatActivity implements WatchLec
     RecyclerView rvLecture;
     ImageView imgPenguin;
     ImageView imgMathBackground;
+    ImageButton btnBack;
+    ImageButton btnList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,13 @@ public class ActivityWatchLectures extends AppCompatActivity implements WatchLec
         toolbar = findViewById(R.id.toolbar);
         imgPenguin = findViewById(R.id.img_penguin);
         imgMathBackground = findViewById(R.id.img_math_pattern);
+        btnBack = findViewById(R.id.btn_back);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     public void showLectures(List<Lecture> lectures)

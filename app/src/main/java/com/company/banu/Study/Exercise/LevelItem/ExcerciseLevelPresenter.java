@@ -23,6 +23,7 @@ public class ExcerciseLevelPresenter {
         model.setExcerciseLevel(excerciseLevel);
         view.setName(model.getName());
         view.setColor(model.getColor());
+
     }
 
     public void onClick() {

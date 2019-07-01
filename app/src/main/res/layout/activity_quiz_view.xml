@@ -27,15 +27,30 @@
                 android:padding="10dp"
                 android:id="@+id/tv_scoretitle"
                 />
-            <TextView
+            
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1/10"
-                android:padding="10dp"
-                android:textSize="25sp"
-                android:layout_weight="1"
-                android:id="@+id/tv_score"
-                android:layout_toRightOf="@+id/tv_scoretitle"/>
+                android:orientation="horizontal"
+                android:layout_toRightOf="@+id/tv_scoretitle">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:paddingVertical="10dp"
+                    android:textSize="25sp"
+                    android:layout_weight="1"
+                    android:id="@+id/tv_score" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/10"
+                    android:paddingVertical="10dp"
+                    android:textSize="25sp"
+                    android:layout_weight="1"
+                    android:id="@+id/tv_numQuiz" />
+            </LinearLayout>
+
             
             <ImageButton
                 android:layout_width="wrap_content"

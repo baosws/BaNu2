@@ -148,15 +148,16 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
     @Override
     public void showDialog() {
         dialog = new Dialog(this);
-        dialog.setTitle("Hehe");
         dialog.setCanceledOnTouchOutside(false);
         dialog.setContentView(R.layout.dialog_quiz);
         setDialogListener();
         dialog.show();
     }
 
-    public void updateScore(String score) {
-        tvScore.setText(score);
+    public void updateScore() {
+        int score = Integer.valueOf((String) tvScore.getText());
+        score++;
+        tvScore.setText(Integer.toString(score));
     }
 
     @Override

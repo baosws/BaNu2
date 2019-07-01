@@ -7,6 +7,6 @@ public interface QuizView {
     void showDialog();
     void setImage(Bitmap bitmap);
     void getData();
-    void updateScore(String score);
+    void updateScore();
     void clearPainter();
 }

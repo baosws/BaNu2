@@ -53,12 +53,15 @@ public class QuizPresenter {
         });
     }
 
+    private void updateScore()
+    {
+        view.updateScore();
+    }
+
     public void check(Bitmap bitmap) {
         Result result = model.check(bitmap);
         final String out = String.valueOf(result.getNumber());
         Log.d("btag", String.format("QuizPresenter:check: out = %s, conf = %f, %d", out, result.getProbability(), result.getTimeCost()));
-
-//        Toast.makeText((AppCompatActivity)view, passed ? "Correct!!" : "Incorrect!!", Toast.LENGTH_SHORT).show();
 
         model.getExcercise(current, new CallBack<Excercise>() {
             @Override
@@ -71,8 +74,9 @@ public class QuizPresenter {
                             Toast.makeText((AppCompatActivity) view, data ? "Correct!!!" : "Incorrect!!!", Toast.LENGTH_SHORT).show();
                             view.clearPainter();
                             if (data) {
-                                nextQuiz();
+                                updateScore();
                             }
+                            nextQuiz();
                         }
                     });
 

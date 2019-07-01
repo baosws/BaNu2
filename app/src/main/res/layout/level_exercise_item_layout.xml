@@ -36,17 +36,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <TextView
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="--/10"
-                    android:textStyle="bold"
-                    android:textAlignment="center"
-                    android:textSize="30dp"
-                    android:padding="10dp"
-                    android:layout_weight="1"
-                    android:id="@+id/tv_scoreExercise"
-                    />
+                    android:orientation="horizontal"
+                    android:layout_toRightOf="@+id/tv_scoretitle"
+                    android:layout_weight="1">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:paddingVertical="10dp"
+                        android:textSize="40sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_score"
+                        android:textAlignment="textEnd"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="/10"
+                        android:paddingVertical="10dp"
+                        android:textSize="40sp"
+                        android:layout_weight="1"
+                        android:id="@+id/tv_numQuiz" />
+                </LinearLayout>
+
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

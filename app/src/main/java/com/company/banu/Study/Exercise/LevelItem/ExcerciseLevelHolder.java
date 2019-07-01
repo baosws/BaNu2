@@ -18,6 +18,7 @@ public class ExcerciseLevelHolder extends RecyclerView.ViewHolder implements Exc
     TextView tvScore;
     ImageView imgState;
     CardView cvLevel;
+    TextView tvNumQuiz;
     ExcerciseLevelPresenter presenter;
 
     public ExcerciseLevelHolder(@NonNull View itemView) {
@@ -27,7 +28,8 @@ public class ExcerciseLevelHolder extends RecyclerView.ViewHolder implements Exc
 
     public void getViews() {
         tvName = itemView.findViewById(R.id.tv_levelName);
-        tvScore = itemView.findViewById(R.id.tv_scoreExercise);
+        tvScore = itemView.findViewById(R.id.tv_score);
+        tvNumQuiz = itemView.findViewById(R.id.tv_numQuiz);
         imgState = itemView.findViewById(R.id.img_state);
         cvLevel = itemView.findViewById(R.id.cv_levelExercise);
         cvLevel.setOnClickListener(new View.OnClickListener() {

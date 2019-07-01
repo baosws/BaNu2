@@ -17,6 +17,11 @@ public class QuizModel extends Notifier<QuizEvent> {
         this.classifier = classifier;
     }
 
+    public int getSizeQuiz()
+    {
+        return excercises.size();
+    }
+
     public void setExcercises(ArrayList<Excercise> excercises) {
         this.excercises = excercises;
         notify(QuizEvent.HadExcercises);

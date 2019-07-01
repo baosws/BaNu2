@@ -35,4 +35,5 @@ public class ExcerciseLevelModel {
     public QuizLevel getLevel() {
         return excerciseLevel.getLevel();
     }
+
 }

@@ -21,4 +21,5 @@ public class ExcerciseModel {
     public Lecture getLecture() {
         return lecture;
     }
+
 }

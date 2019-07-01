@@ -53,8 +53,8 @@ public class ExcerciseLevelHolder extends RecyclerView.ViewHolder implements Exc
     }
 
     @Override
-    public void updateScore(int score) {
-
+    public void updateScore(int passed, int total) {
+        tvScore.setText(String.format("%d/%d", passed, total));
     }
 
     @Override

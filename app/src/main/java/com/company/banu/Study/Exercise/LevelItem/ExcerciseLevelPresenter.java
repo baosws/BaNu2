@@ -1,5 +1,7 @@
 package com.company.banu.Study.Exercise.LevelItem;
 
+import android.util.Pair;
+
 import com.company.banu.CallBack;
 import com.company.banu.WatchLectures.LectureItem.Lecture;
 
@@ -23,6 +25,12 @@ public class ExcerciseLevelPresenter {
         model.setExcerciseLevel(excerciseLevel);
         view.setName(model.getName());
         view.setColor(model.getColor());
+        model.getExcerciseCount(new CallBack<Pair<Integer, Integer>>() {
+            @Override
+            public void call(Pair<Integer, Integer> data) {
+                view.updateScore(data.first, data.second);
+            }
+        });
     }
 
     public void onClick() {

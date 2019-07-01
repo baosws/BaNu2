@@ -8,6 +8,7 @@ import com.company.banu.Quiz.QuizLevel;
 import com.company.banu.WatchLectures.LectureItem.Lecture;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ExcerciseLevel extends Notifier<ExcerciseLevelEvent> {
     private QuizLevel name;
@@ -15,11 +16,17 @@ public class ExcerciseLevel extends Notifier<ExcerciseLevelEvent> {
     private int color;
     private Lecture lecture;
 
-    public ExcerciseLevel(Lecture lecture, QuizLevel name, int c)
+    public ExcerciseLevel(Lecture lecture, final QuizLevel name, int c)
     {
         this.name = name;
         this.color = c;
         this.lecture = lecture;
+        lecture.getExcercises(new CallBack<HashMap<QuizLevel, ArrayList<Excercise>>>() {
+            @Override
+            public void call(HashMap<QuizLevel, ArrayList<Excercise>> data) {
+                setExcercises(data.get(name));
+            }
+        });
     }
 
     public QuizLevel getLevel() {

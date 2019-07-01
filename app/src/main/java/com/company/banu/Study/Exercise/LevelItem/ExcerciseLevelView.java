@@ -6,7 +6,7 @@ public interface ExcerciseLevelView {
     void bind(ExcerciseLevel excerciseLevel);
     void setName(String name);
     void setColor(int color);
-    void updateScore(int score);
+    void updateScore(int passed, int total);
     void updateState(boolean passed);
     void getViews();
     void startQuiz(String lectureId, QuizLevel level);

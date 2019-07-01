@@ -56,11 +56,11 @@
 2. Bài tập
 
 - [x] Giao diện
-- [ ] Thể hiện dữ liệu về điểm của user
+- [x] Thể hiện dữ liệu về điểm của user
 
 3. Chi tiết từng bài tập
 
 - [x] Giao diện
 - [x] Vẽ hình
-- [ ] Nhận diện
-- [ ] C
+- [x] Nhận diện
+- [x] Chấm điểm

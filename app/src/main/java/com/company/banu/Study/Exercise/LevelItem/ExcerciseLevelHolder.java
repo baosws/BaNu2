@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.company.banu.Quiz.ActivityQuiz;
 import com.company.banu.Quiz.QuizLevel;
 import com.company.banu.R;
@@ -20,9 +21,11 @@ public class ExcerciseLevelHolder extends RecyclerView.ViewHolder implements Exc
     CardView cvLevel;
     TextView tvNumQuiz;
     ExcerciseLevelPresenter presenter;
+    View view;
 
     public ExcerciseLevelHolder(@NonNull View itemView) {
         super(itemView);
+        view = itemView;
         presenter = new ExcerciseLevelPresenter(this);
     }
 
@@ -59,12 +62,24 @@ public class ExcerciseLevelHolder extends RecyclerView.ViewHolder implements Exc
 
     @Override
     public void updateScore(int passed, int total) {
-        tvScore.setText(String.format("%d/%d", passed, total));
+        tvScore.setText(Integer.toString(passed));
+        tvNumQuiz.setText("/" +Integer.toString(total));
     }
 
     @Override
     public void updateState(boolean passed) {
-
+        if (passed)
+        {
+            Glide.with(view)
+                    .load(R.drawable.fui_ic_check_circle_black_128dp)
+                    .into(imgState);
+        }
+        else if (!passed)
+        {
+            Glide.with(view)
+                    .load(R.drawable.ic_clear_red)
+                    .into(imgState);
+        }
     }
 
     @Override

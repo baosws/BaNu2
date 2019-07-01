@@ -14,8 +14,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+import com.google.firebase.functions.FirebaseFunctions;
+import com.google.firebase.functions.HttpsCallableResult;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Level extends Notifier<LevelEvent> {
@@ -93,10 +99,16 @@ public class Level extends Notifier<LevelEvent> {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot == null) {
+                    cb.call(false);
+                    return;
+                }
+                if (documentSnapshot.getData() == null) {
+                    cb.call(false);
                     return;
                 }
                 ArrayList passed = (ArrayList) documentSnapshot.getData().get("passed");
                 if (passed == null) {
+                    cb.call(false);
                     return;
                 }
                 Backend.putCache("diary/" + id, passed);

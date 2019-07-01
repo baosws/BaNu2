@@ -46,23 +46,7 @@ public class ActivityWatchLevels extends AppCompatActivity implements WatchLevel
     public void loadGridviewListLevel(List<Level> levels)
     {
         final ListLevelAdapter listLevelAdapter = new ListLevelAdapter(this, levels);
-        for (Level level: levels) {
-            level.getAny(new CallBack<Level>() {
-                @Override
-                public void call(Level data) {
-                    listLevelAdapter.notifyDataSetChanged();
-                    gridView_listLevel.invalidate();
-                }
-            });
-        }
         gridView_listLevel.setAdapter(listLevelAdapter);
-
-        gridView_listLevel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Level selectedItem = (Level) gridView_listLevel.getItemAtPosition(position);
-            }
-        });
 
         avatarImageView.setOnClickListener(new View.OnClickListener() {
             @Override

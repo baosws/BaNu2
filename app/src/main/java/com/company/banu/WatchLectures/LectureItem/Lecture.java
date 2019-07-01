@@ -15,10 +15,13 @@ import com.company.banu.WatchLevels.MediaResourceFactory;
 import com.company.banu.WatchTopics.TopicItem.Topic;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +36,7 @@ public class Lecture extends Notifier<LectureEvent> {
     private HashMap<QuizLevel, ArrayList<Excercise>> excercises;
     private String description;
     private MediaResource resource;
+    private DocumentReference ref;
 
     public Lecture(Topic topic)
     {
@@ -144,11 +148,12 @@ public class Lecture extends Notifier<LectureEvent> {
     }
 
     public Lecture bind(final DocumentReference lectureRef) {
+        this.ref = lectureRef;
         final Lecture lecture = this;
         Backend.putCache(lectureRef.getId(), lecture);
-        lectureRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        lectureRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
+            public void onEvent(DocumentSnapshot documentSnapshot, FirebaseFirestoreException e) {
                 lecture.setId(lectureRef.getId());
                 lecture.setName((String)documentSnapshot.get("name"));
                 lecture.setDescription((String)documentSnapshot.get("description"));
@@ -159,11 +164,6 @@ public class Lecture extends Notifier<LectureEvent> {
                     }
                 });
                 lecture.setExcercises(getExcercises((HashMap)documentSnapshot.get("excercises"), lecture));
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d("btag", "bindDocRefToLecture onFailure: " + lectureRef.getPath());
             }
         });
         return this;
@@ -210,6 +210,9 @@ public class Lecture extends Notifier<LectureEvent> {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot == null) {
+                    return;
+                }
+                if (documentSnapshot.getData() == null) {
                     return;
                 }
                 ArrayList passed = (ArrayList) documentSnapshot.getData().get("passed");

@@ -1,6 +1,5 @@
 package com.company.banu.WatchLevels;
 
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.util.Log;
 
@@ -23,8 +22,18 @@ public class PresenterWatchLevels {
     private void init() {
         modelWatchLevels.getLevels(new CallBack<ArrayList<Level>>() {
             @Override
-            public void call(ArrayList<Level> data) {
+            public void call(final ArrayList<Level> data) {
                 view.loadGridviewListLevel(data);
+                Log.d("btag", String.format("PresenterWatchLevels:call: size = %d", data.size()));
+                data.get(0).getPassed(new CallBack<Boolean>() {
+                    @Override
+                    public void call(Boolean passed) {
+                        Log.d("btag", String.format("PresenterWatchLevels:call: nooooooooooooo " + passed));
+                        if (passed == false) {
+                            modelWatchLevels.enableNewLevel(data.get(0));
+                        }
+                    }
+                });
             }
         });
         modelWatchLevels.getAvatar(new CallBack<Bitmap>() {

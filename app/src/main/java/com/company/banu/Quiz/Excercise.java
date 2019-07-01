@@ -10,17 +10,26 @@ import com.company.banu.Notifier.Notifier;
 import com.company.banu.WatchLectures.LectureItem.Lecture;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.functions.FirebaseFunctions;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Nullable;
 
 public class Excercise extends Notifier<ExcerciseEvent> {
     private String id;
     private Bitmap image;
     private String answer;
     private Boolean passed;
-    private Lecture lecture;
+    private DocumentReference ref;
+
     public Excercise(Lecture lecture) {
-        this.lecture = lecture;
     }
 
     public void setAnswer(String answer) {
@@ -80,12 +89,13 @@ public class Excercise extends Notifier<ExcerciseEvent> {
     }
 
     public Excercise bind(final DocumentReference excerciseRef) {
+        this.ref = excerciseRef;
         final Excercise excercise = this;
         Backend.putCache(excerciseRef.getId(), excercise);
         excercise.setId(excerciseRef.getId());
-        excerciseRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        excerciseRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 excercise.getId(new CallBack<String>() {
                     @Override
                     public void call(String data) {
@@ -101,11 +111,6 @@ public class Excercise extends Notifier<ExcerciseEvent> {
                         excercise.setImage(data);
                     }
                 });
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.d("btag", String.format("ModelWatchLevels:onFailure: %s", excerciseRef.getPath()));
             }
         });
         return this;

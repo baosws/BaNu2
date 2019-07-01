@@ -56,7 +56,6 @@ public class LevelHolder implements LevelView {
                     .load(bitmapLevel)
                     .into(imgLevel);
 
-
             imgLevel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

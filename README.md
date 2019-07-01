@@ -4,11 +4,11 @@
 
 - [x] Use case
 - [x] Đặc tả
-- [ ] Class diagram: chỉnh lại
-- [ ] Database diagram
+- [x] Class diagram: chỉnh lại
+- [x] Database diagram
 - [ ] Kiến trúc
 - [x] Màn hình thiết kế UI
-- [ ] Code
+- [x] Code
 - [ ] Demo
 
 ## Danh sách chức năng và màn hình:

@@ -23,6 +23,7 @@ import java.util.List;
 public class FragmentExercise extends StudyFragment implements ExcerciseView {
     View mRootView;
     RecyclerView rvLevelExercise;
+    ExcerciseLevelAdapter excerciseLevelAdapter;
     ExercisePresenter presenter;
 
     public FragmentExercise() {
@@ -45,6 +46,12 @@ public class FragmentExercise extends StudyFragment implements ExcerciseView {
         presenter = new ExercisePresenter(this, lecture);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        excerciseLevelAdapter.notifyDataSetChanged();
+    }
+
     public void getViews()
     {
         rvLevelExercise = mRootView.findViewById(R.id.rv_levelExercises);
@@ -56,7 +63,7 @@ public class FragmentExercise extends StudyFragment implements ExcerciseView {
         excerciseLevelData.add(new ExcerciseLevel(lecture, QuizLevel.Intermediate, getResources().getColor(R.color.intermediate)));
         excerciseLevelData.add(new ExcerciseLevel(lecture, QuizLevel.Advanced, getResources().getColor(R.color.advanced)));
 
-        ExcerciseLevelAdapter excerciseLevelAdapter = new ExcerciseLevelAdapter(excerciseLevelData);
+        excerciseLevelAdapter = new ExcerciseLevelAdapter(excerciseLevelData);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mRootView.getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvLevelExercise.setLayoutManager(layoutManager);

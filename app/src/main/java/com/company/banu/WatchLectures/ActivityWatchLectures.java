@@ -32,6 +32,7 @@ public class ActivityWatchLectures extends AppCompatActivity implements WatchLec
     ImageView imgMathBackground;
     ImageButton btnBack;
     ImageButton btnList;
+    LectureAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,12 @@ public class ActivityWatchLectures extends AppCompatActivity implements WatchLec
         String topicId = intent.getStringExtra("topicId");
         Topic topic = (Topic)Backend.getCache(topicId);
         presenterWatchLectures = new PresenterWatchLectures(this, topic);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
     }
 
     public void getViews()
@@ -63,7 +70,7 @@ public class ActivityWatchLectures extends AppCompatActivity implements WatchLec
     {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         rvLecture.setLayoutManager(layoutManager);
-        final LectureAdapter adapter = new LectureAdapter(this, lectures);
+        adapter = new LectureAdapter(this, lectures);
         rvLecture.setAdapter(adapter);
         for (Lecture lecture: lectures) {
             lecture.getAny(new CallBack<Lecture>() {

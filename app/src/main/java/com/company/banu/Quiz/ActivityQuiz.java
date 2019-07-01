@@ -51,8 +51,6 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
     QuizPresenter presenter;
     Dialog dialogPause, dialogDone;
 
-    private static int score = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -162,7 +160,7 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
     private void bindResultToDialog()
     {
         TextView tvResult = dialogDone.findViewById(R.id.tv_result);
-        tvResult.setText(Integer.toString(score) + tvNumQuiz.getText());
+        tvResult.setText(tvScore.getText().toString() + tvNumQuiz.getText());
 
         Button btnDoAgain = dialogDone.findViewById(R.id.btn_doAgain);
         btnDoAgain.setOnClickListener(new View.OnClickListener() {
@@ -192,6 +190,7 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
     }
 
     public void updateScore() {
+        int score = Integer.valueOf(tvScore.getText().toString());
         score++;
         tvScore.setText(Integer.toString(score));
     }

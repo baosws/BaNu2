@@ -40,7 +40,9 @@ public class ActivityWatchLevels extends AppCompatActivity implements WatchLevel
     @Override
     protected void onResume() {
         super.onResume();
-        listLevelAdapter.notifyDataSetChanged();
+        if (listLevelAdapter != null) {
+            listLevelAdapter.notifyDataSetChanged();
+        }
     }
 
     public void getViews()
@@ -52,7 +54,7 @@ public class ActivityWatchLevels extends AppCompatActivity implements WatchLevel
 
     public void loadGridviewListLevel(List<Level> levels)
     {
-        final ListLevelAdapter listLevelAdapter = new ListLevelAdapter(this, levels);
+        listLevelAdapter = new ListLevelAdapter(this, levels);
         for (Level level: levels) {
             level.getAny(new CallBack<Level>() {
                 @Override

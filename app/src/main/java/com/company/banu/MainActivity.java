@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
-        FirebaseAuth.getInstance().signOut();
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             startActivityForResult(new Intent(this, ViewSignIn.class), 12);
         }

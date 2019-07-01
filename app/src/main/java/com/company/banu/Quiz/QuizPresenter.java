@@ -70,9 +70,9 @@ public class QuizPresenter {
 
         model.getExcercise(current, new CallBack<Excercise>() {
             @Override
-            public void call(Excercise data) {
-                if (data != null) {
-                    model.check(out, data, new CallBack<Boolean>() {
+            public void call(final Excercise excercise) {
+                if (excercise != null) {
+                    model.check(out, excercise, new CallBack<Boolean>() {
                         @Override
                         public void call(Boolean data) {
                             Log.d("btag", String.format("QuizPresenter:call: " + data));
@@ -80,6 +80,7 @@ public class QuizPresenter {
                             view.clearPainter();
                             if (data) {
                                 updateScore();
+                                excercise.setPassed(true);
                             }
                             nextQuiz();
                         }

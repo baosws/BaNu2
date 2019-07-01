@@ -14,9 +14,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.functions.FirebaseFunctions;
+import com.google.firebase.storage.FirebaseStorage;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -75,6 +80,16 @@ public class Excercise extends Notifier<ExcerciseEvent> {
     }
 
     public void setPassed(Boolean passed) {
+        if ((this.passed != null) && ((this.passed == false && passed == true))) {
+            Map<String, Object> newData = new HashMap<>();
+            newData.put("passed", FieldValue.arrayUnion(ref));
+            FirebaseFirestore
+                    .getInstance()
+                    .collection("diary")
+                    .document(FirebaseAuth.getInstance().getUid())
+                    .update(newData);
+
+        }
         this.passed = passed;
         notify(ExcerciseEvent.HadPassed);
     }

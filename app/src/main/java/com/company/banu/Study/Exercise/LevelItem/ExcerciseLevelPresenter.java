@@ -29,13 +29,15 @@ public class ExcerciseLevelPresenter {
             @Override
             public void call(Pair<Integer, Integer> data) {
                 view.updateScore(data.first, data.second);
-                if (data.first / data.second >= 0.7)
+                if (data.first * 1.0 / data.second >= 0.7)
                 {
                     view.updateState(true);
                 }
-                else
-                {
+                else {
                     view.updateState(false);
+                }
+                if (data.second != 0) {
+                    view.setOnClick();
                 }
             }
         });

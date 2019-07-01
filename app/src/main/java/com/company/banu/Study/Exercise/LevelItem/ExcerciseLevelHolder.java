@@ -35,6 +35,9 @@ public class ExcerciseLevelHolder extends RecyclerView.ViewHolder implements Exc
         tvNumQuiz = itemView.findViewById(R.id.tv_numQuiz);
         imgState = itemView.findViewById(R.id.img_state);
         cvLevel = itemView.findViewById(R.id.cv_levelExercise);
+    }
+
+    public void setOnClick() {
         cvLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,7 +45,6 @@ public class ExcerciseLevelHolder extends RecyclerView.ViewHolder implements Exc
             }
         });
     }
-
     public void startQuiz(String lectureId, QuizLevel level) {
         Intent intent = new Intent(itemView.getContext(), ActivityQuiz.class);
         intent.putExtra("lectureId", lectureId);
@@ -81,7 +83,6 @@ public class ExcerciseLevelHolder extends RecyclerView.ViewHolder implements Exc
                     .into(imgState);
         }
     }
-
     @Override
     public void bind(ExcerciseLevel excerciseLevel) {
         presenter.setLevel(excerciseLevel);

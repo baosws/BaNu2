@@ -45,6 +45,8 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
     Button btnDone;
     @BindView(R.id.btn_clear)
     Button btnClear;
+    @BindView(R.id.tv_numQuiz)
+    TextView tvNumQuiz;
 
     QuizPresenter presenter;
     Dialog dialog;
@@ -69,7 +71,8 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
             @Override
             public void call(HashMap<QuizLevel, ArrayList<Excercise>> data) {
                 presenter.init();
-                presenter.setExcercises(data.get(QuizLevel.valueOf(level)));
+                QuizLevel key = QuizLevel.valueOf(level);
+                presenter.setExcercises(data.containsKey(key) ? data.get(key) : new ArrayList<Excercise>());
             }
         });
     }
@@ -169,4 +172,10 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
     public void clearPainter() {
         fpvPaint.clear();
     }
+
+    @Override
+    public void setNumQuiz(int size) {
+        tvNumQuiz.setText("/" + size);
+    }
+
 }

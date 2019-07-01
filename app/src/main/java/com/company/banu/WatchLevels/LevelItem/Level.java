@@ -1,23 +1,119 @@
 package com.company.banu.WatchLevels.LevelItem;
 
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.company.banu.Backend;
 import com.company.banu.CallBack;
 import com.company.banu.Notifier.Notifier;
 import com.company.banu.WatchTopics.TopicItem.Topic;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Level extends Notifier<LevelEvent> {
     private String id;
     private String name;
     private Bitmap image;
     private Boolean passed;
+    DocumentReference ref;
     private ArrayList<Topic> topics;
     public Level() {
         super();
         topics = new ArrayList<>();
+    }
+
+    public DocumentReference getRef() {
+        return ref;
+    }
+
+    public Level bind(final DocumentReference levelRef) {
+        final Level level = this;
+        ref = levelRef;
+        Backend.putCache(levelRef.getId(), this);
+        levelRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                level.setId(levelRef.getId());
+                level.setName((String)documentSnapshot.get("name"));
+                Backend.downloadImage(levelRef.getPath()
+                        + ".jpg", new CallBack<Bitmap>() {
+                    @Override
+                    public void call(Bitmap data) {
+                        level.setImage(data);
+                    }
+                });
+                level.setTopics(getTopics((ArrayList)documentSnapshot.get("topics"), level));
+                getDiary(levelRef.getId(), new CallBack<Boolean>() {
+                    @Override
+                    public void call(Boolean data) {
+                        Log.d("Nunu", "bindDocRefToLevel " + levelRef.getId() + " " + data);
+                        level.setPassed(data);
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("btag", "bindDocRefToLevel onFailure: " + levelRef.getPath());
+            }
+        });
+        return this;
+    }
+
+    private static ArrayList<Topic> getTopics(ArrayList topicRefs, Level level) {
+        if (topicRefs == null) {
+            Log.d("btag", String.format("ModelWatchLevels:getTopics: topicRefs is null"));
+            return new ArrayList<>();
+        }
+        final ArrayList<Topic> topics = new ArrayList<>();
+        for (Object t: topicRefs) {
+            Topic topic = new Topic(level).bind((DocumentReference)t);
+            topics.add(topic);
+        }
+        return topics;
+    }
+
+    private static void getDiary(final String id, final CallBack<Boolean> cb) {
+        if (Backend.inCache("diary/" + id)) {
+            cb.call(((Map<String, Boolean>)Backend.getCache("diary/" + id)).get(id));
+            return;
+        }
+        final DocumentReference docRef = FirebaseFirestore
+                .getInstance()
+                .document(String.format("diary/%s", FirebaseAuth.getInstance().getUid()));
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot == null) {
+                    return;
+                }
+                ArrayList passed = (ArrayList) documentSnapshot.getData().get("passed");
+                if (passed == null) {
+                    return;
+                }
+                Backend.putCache("diary/" + id, passed);
+                for (Object o: passed) {
+                    if (((DocumentReference)o).getId().equals(id)) {
+                        cb.call(true);
+                        return;
+                    }
+                }
+                cb.call(false);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
     }
 
     public void getPercent(final CallBack<Float> cb) {

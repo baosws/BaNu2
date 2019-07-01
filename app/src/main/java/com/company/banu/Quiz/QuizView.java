@@ -9,4 +9,5 @@ public interface QuizView {
     void getData();
     void updateScore();
     void clearPainter();
+    void setNumQuiz(int size);
 }

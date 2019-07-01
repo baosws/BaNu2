@@ -32,6 +32,7 @@ public class QuizPresenter {
     public void setExcercises(ArrayList<Excercise> excercises) {
         model.setExcercises(excercises);
         current = -1;
+        view.setNumQuiz(excercises.size());
         nextQuiz();
     }
 

@@ -11,4 +11,5 @@ public interface QuizView {
     void updateScore();
     void clearPainter();
     void setNumQuiz(int size);
+    void resetScore();
 }

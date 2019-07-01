@@ -29,24 +29,29 @@ public class LevelHolder implements LevelView {
         assert level != null;
         this.view = view;
         levelPresenter = new LevelPresenter(this, level);
+        levelPresenter.init();
     }
     public void getViews() {
         Log.d("btag", "getViews: ");
         imgLevel = view.findViewById(R.id.img_item_level);
         tvLevel = view.findViewById(R.id.tv_item_levelName);
     }
+
+
     public void setImage(Bitmap bitmap) {
-        bitmapLevel = bitmap.copy(null, false);
+        bitmapLevel = bitmap;
         Glide.with(view.getContext())
+                .applyDefaultRequestOptions(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE).skipMemoryCache(true))
                 .load(bitmap)
                 .apply(GRAYSCALE)
                 .into(imgLevel);
     }
 
     @Override
-    public void updatePassed(boolean passed) {
+    public void updatePassed(final boolean passed) {
         if (passed)
         {
+            Log.d("btag", String.format("LevelHolder:updatePassed: " + passed));
             Glide.with(view.getContext())
                     .load(bitmapLevel)
                     .into(imgLevel);

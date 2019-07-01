@@ -1,5 +1,6 @@
 package com.company.banu.WatchTopics;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.company.banu.Backend;
 import com.company.banu.CallBack;
 import com.company.banu.Notifier.Notifier;
+import com.company.banu.ShowProfile.ShowProfileActivity;
 import com.company.banu.WatchLevels.LevelItem.Level;
 import com.company.banu.WatchTopics.TopicItem.ListTopicAdapter;
 import com.company.banu.WatchTopics.TopicItem.Topic;
@@ -60,7 +62,7 @@ public class ActivityWatchTopics extends AppCompatActivity implements WatchTopic
         avatarImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ViewShowProfile.class));
+                startActivity(new Intent(getApplicationContext(), ShowProfileActivity.class));
             }
         });
     }

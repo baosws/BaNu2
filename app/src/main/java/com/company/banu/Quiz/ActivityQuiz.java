@@ -83,6 +83,7 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
                 presenter.onPause();
             }
         });
+
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,6 +95,7 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
                 presenter.check(bitmap);
             }
         });
+
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,8 +154,18 @@ public class ActivityQuiz extends AppCompatActivity implements QuizView {
         setDialogListener();
         dialog.show();
     }
+
+    public void updateScore(String score) {
+        tvScore.setText(score);
+    }
+
     @Override
     public void setImage(Bitmap bitmap) {
         imgQuestion.setImageBitmap(bitmap);
+    }
+
+    @Override
+    public void clearPainter() {
+        fpvPaint.clear();
     }
 }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.company.banu.ShowProfile.ShowProfileActivity;
 import com.company.banu.ShowProfile.ViewShowProfile;
 import com.company.banu.SignIn.ViewSignIn;
+import com.company.banu.WatchLevels.ActivityWatchLevels;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        startActivity(new Intent(this, ShowProfileActivity.class));
+        startActivity(new Intent(this, ActivityWatchLevels.class));
         finish();
     }
 

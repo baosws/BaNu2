@@ -9,7 +9,7 @@
 - [x] Kiến trúc
 - [x] Màn hình thiết kế UI
 - [x] Code
-- [ ] Demo
+- [x] Demo
 
 ## Danh sách chức năng và màn hình:
 
